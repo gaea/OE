@@ -8,6 +8,8 @@ var form_gestionar_profesores = new Ext.Panel({
 				{
 					text:'Agregar',
 					iconAlign:'top',
+					iconCls:'agregar_profesor32',
+					scale: 'large'
 				},
 				{
 					text:'Modificar',
