@@ -17,12 +17,14 @@ var viewport = new Ext.Viewport({
                 margins:'0 5 0 5',
                 activeTab:0,
                 region:'center',
+				//layout:'fit',
                 resizeTabs:true,
                 tabWidth:150,
                 items: [
                     {
 						title:'Gestionar Profesores',
 						tabTip:'Gestionar Profesores',
+						layout:'fit',
 						autoScroll:true,
 						autoLoad:{url: 'gestion_profesores/index', scripts: true, scope: this}
 					},

@@ -1,5 +1,20 @@
 
 var form_gestionar_profesores = new Ext.Panel({
+	//region:'center',
+	layout:'border',
+	//layout:'column',
+	/*layout:'hbox',
+	layoutConfig : {
+		flex: 1,
+		align: 'stretch',
+		pack: 'start'
+	},*/
+	//layout:'anchor',
+	defaults: {
+		collapsible: true,
+		split: true,
+		bodyStyle: 'padding:15px'
+	},
 	tbar:[
 		{
 			xtype:'buttongroup',
@@ -14,11 +29,14 @@ var form_gestionar_profesores = new Ext.Panel({
 				{
 					text:'Modificar',
 					iconAlign:'top',
+					iconCls:'modificar_profesor32',
+					scale: 'large'
 				},
 				{
 					text:'Eliminar',
 					iconAlign:'top',
-					with:100,
+					iconCls:'eliminar_profesor32',
+					scale: 'large'
 				}
 			]
 		},
@@ -29,7 +47,8 @@ var form_gestionar_profesores = new Ext.Panel({
 				{
 					text:'Buscar',
 					iconAlign:'top',
-					with:100,
+					iconCls:'buscar32',
+					scale: 'large'
 				}
 			]
 		},
@@ -40,13 +59,37 @@ var form_gestionar_profesores = new Ext.Panel({
 				{
 					text:'Estoy perdido!',
 					iconAlign:'top',
-					with:100,
+					iconCls:'ayuda32',
+					scale: 'large'
 				}
 			]
 		}
 	],
 	items:[
-		
+		{
+			xtype:'panel',
+			title:'ppppp',
+			region:'center'
+			
+		},
+		{
+			xtype:'panel',
+			title:'bbbbbb',
+			autoHeight: true,
+			region:'west',
+			html:'eeeee',
+			anchor:'50%',
+			//flex   : 1,
+			//frame:true,
+			split:true,
+			collapsible:true,
+			//columnWidth:0.5,
+			margins: '5 0 0 0',
+    cmargins: '5 5 0 0',
+    width: 175,
+    minSize: 100,
+    maxSize: 250
+		}
 	],
 	renderTo:'div_form_gestionar_profesores'
 });
