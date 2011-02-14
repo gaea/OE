@@ -1,3 +1,5 @@
+alto_border_center=screen.height-50;
+
 var viewport = new Ext.Viewport({
         layout:'border',
         items:[
@@ -20,6 +22,11 @@ var viewport = new Ext.Viewport({
 				//layout:'fit',
                 resizeTabs:true,
                 tabWidth:150,
+				listeners:{
+					beforeRender:function(){
+						
+					}
+				},
                 items: [
                     {
 						title:'Gestionar Profesores',

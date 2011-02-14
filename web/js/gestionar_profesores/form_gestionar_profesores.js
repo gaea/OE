@@ -2,7 +2,7 @@
 var form_gestionar_profesores = new Ext.Panel({
 	//region:'center',
 	layout:'border',
-	height:500,
+	//height:500,
 	//layout:'column',
 	/*layout:'hbox',
 	layoutConfig : {
@@ -11,6 +11,7 @@ var form_gestionar_profesores = new Ext.Panel({
 		pack: 'start'
 	},*/
 	//layout:'anchor',
+	height:screen.height-213,
 	defaults: {
 		collapsible: true,
 		split: true,
@@ -71,7 +72,7 @@ var form_gestionar_profesores = new Ext.Panel({
 			xtype:'panel',
 			title:'ppppp',
 			region:'center',
-			collapsible:false,
+			collapsible:false
 		},
 		{
 			xtype:'panel',
@@ -85,7 +86,7 @@ var form_gestionar_profesores = new Ext.Panel({
 			//frame:true,
 			//split:true,
 			//collapsible:true,
-			width:450,
+			width:450
 			//titleCollapse :true,
 			//margins: '5 0 0 0',
 			//cmargins: '5 5 0 0',
