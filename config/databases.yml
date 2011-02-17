@@ -5,6 +5,6 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn:      mysql:host=localhost;dbname=OE
-      username: root
-      password: 
+      dsn:      pgsql:host=localhost;dbname=oe
+      username: oe
+      password: oe
