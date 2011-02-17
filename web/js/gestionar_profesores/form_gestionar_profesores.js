@@ -68,7 +68,7 @@ var ges_pro_tipo_identificacion_combo = new Ext.form.ComboBox({
 var detalle_datos_profesor_panel = new Ext.Panel({
 	xtype:'panel',
 	title:'Datos del usuario',
-	region:'center',
+	//region:'center',
 	//collapsible:false,
 	//width:500,
 	frame:true,
@@ -163,6 +163,12 @@ var detalle_datos_profesor_panel = new Ext.Panel({
 	]
 });
 
+var gestionar_profesores_window = new Ext.Window({
+	title:'sadffg',
+	hidden:true,
+	items:[detalle_datos_profesor_panel]
+});
+
 var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
 	defaults:{sortable: true, locked: false, resizable: true, align:'center', /*css:'font-size:12px;'*/},
 	columns:[
@@ -187,7 +193,7 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 	//columnWidth: '.6',
 	width:800,
 	autoWidth:true,
-	region:'west',
+	region:'center',
 	collapseMode:'mini',
 	stripeRows:true,
 	style:'font-size:16px;',
@@ -283,7 +289,7 @@ var form_gestionar_profesores = new Ext.Panel({
 		}
 	],
 	items:[
-		detalle_datos_profesor_panel,
+		//detalle_datos_profesor_panel,
 		gestionar_profesores_gridpanel
 	],
 	renderTo:'div_form_gestionar_profesores'

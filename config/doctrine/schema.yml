@@ -1,0 +1,668 @@
+Ayuda:
+  connection: doctrine
+  tableName: ayuda
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: ayuda_codigo
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    penalizacion:
+      type: decimal(18)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cuerpo:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    EstudianteSolucionEvaluacion:
+      local: codigo
+      foreign: codigo_ayuda
+      type: many
+    EvaluacionPreguntaAyuda:
+      local: codigo
+      foreign: codigo_ayuda
+      type: many
+Curso:
+  connection: doctrine
+  tableName: curso
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Profesor:
+      local: codigo
+      foreign: codigo
+      type: one
+    EstudianteCurso:
+      local: codigo
+      foreign: codigo_curso
+      type: many
+Estudiante:
+  connection: doctrine
+  tableName: estudiante
+  columns:
+    codigo_usuario:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_identificacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: estudiante_codigo
+  relations:
+    Usuario:
+      local: codigo_usuario
+      foreign: codigo
+      type: one
+    Identificacion:
+      local: codigo_identificacion
+      foreign: codigo
+      type: one
+    EstudianteCurso:
+      local: codigo
+      foreign: codigo
+      type: many
+    EstudianteEvaluacionGrupo:
+      local: codigo
+      foreign: codigo
+      type: many
+    EstudianteSolucionEvaluacionAyuda:
+      local: codigo
+      foreign: codigo_estudiante
+      type: many
+EstudianteCurso:
+  connection: doctrine
+  tableName: estudiante_curso
+  columns:
+    codigo_curso:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+  relations:
+    Curso:
+      local: codigo_curso
+      foreign: codigo
+      type: one
+    Estudiante:
+      local: codigo
+      foreign: codigo
+      type: one
+EstudianteEvaluacionGrupo:
+  connection: doctrine
+  tableName: estudiante_evaluacion_grupo
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    eva_codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Evaluacion:
+      local: eva_codigo
+      foreign: codigo
+      type: one
+    Estudiante:
+      local: codigo
+      foreign: codigo
+      type: one
+EstudianteSolucionEvaluacion:
+  connection: doctrine
+  tableName: estudiante_solucion_evaluacion
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    codigo_estudiante:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_pregunta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_evaluacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_ayuda:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Ayuda:
+      local: codigo_ayuda
+      foreign: codigo
+      type: one
+EstudianteSolucionEvaluacionAyuda:
+  connection: doctrine
+  tableName: estudiante_solucion_evaluacion_ayuda
+  columns:
+    codigo_estudiante:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+    codigo_pregunta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+    codigo_evaluacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+  relations:
+    Estudiante:
+      local: codigo_estudiante
+      foreign: codigo
+      type: one
+Evaluacion:
+  connection: doctrine
+  tableName: evaluacion
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: evaluacion_codigo
+    codigo_profesor:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codigo_tema_materia:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    hora_inicio:
+      type: time(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    hora_fin:
+      type: time(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    numero_personas_grupo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    publico:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    fecha:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    numero_intentos:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    mostrar_solucion:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    barajar_preguntas:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Profesor:
+      local: codigo_profesor
+      foreign: codigo
+      type: one
+    TemaOMateria:
+      local: codigo_tema_materia
+      foreign: codigo
+      type: one
+    EstudianteEvaluacionGrupo:
+      local: codigo
+      foreign: eva_codigo
+      type: many
+    EvaluacionPregunta:
+      local: codigo
+      foreign: codigo_evaluacion
+      type: many
+EvaluacionPregunta:
+  connection: doctrine
+  tableName: evaluacion_pregunta
+  columns:
+    codigo_evaluacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+    codigo_pregunta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+  relations:
+    Pregunta:
+      local: codigo_pregunta
+      foreign: codigo
+      type: one
+    Evaluacion:
+      local: codigo_evaluacion
+      foreign: codigo
+      type: one
+EvaluacionPreguntaAyuda:
+  connection: doctrine
+  tableName: evaluacion_pregunta_ayuda
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    codigo_evaluacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_pregunta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_ayuda:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Ayuda:
+      local: codigo_ayuda
+      foreign: codigo
+      type: one
+Herramienta:
+  connection: doctrine
+  tableName: herramienta
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: herramienta_codigo
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    PreguntaHerramienta:
+      local: codigo
+      foreign: codigo_herramienta
+      type: many
+Identificacion:
+  connection: doctrine
+  tableName: identificacion
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: identificacion_codigo
+    tipo:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Estudiante:
+      local: codigo
+      foreign: codigo_identificacion
+      type: many
+    Profesor:
+      local: codigo
+      foreign: codigo_identificacion
+      type: many
+Pregunta:
+  connection: doctrine
+  tableName: pregunta
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: pregunta_codigo
+    codigo_profesor:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codigo_tema_o_materia:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_tipo_pregunta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cuerpo:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    solucion:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    publico:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    TemaOMateria:
+      local: codigo_tema_o_materia
+      foreign: codigo
+      type: one
+    Profesor:
+      local: codigo_profesor
+      foreign: codigo
+      type: one
+    TipoPregunta:
+      local: codigo_tipo_pregunta
+      foreign: codigo
+      type: one
+    EvaluacionPregunta:
+      local: codigo
+      foreign: codigo_pregunta
+      type: many
+    PreguntaHerramienta:
+      local: codigo
+      foreign: codigo_pregunta
+      type: many
+PreguntaHerramienta:
+  connection: doctrine
+  tableName: pregunta_herramienta
+  columns:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    codigo_herramienta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    codigo_pregunta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+  relations:
+    Herramienta:
+      local: codigo_herramienta
+      foreign: codigo
+      type: one
+    Pregunta:
+      local: codigo_pregunta
+      foreign: codigo
+      type: one
+Profesor:
+  connection: doctrine
+  tableName: profesor
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: profesor_codigo
+    codigo_usuario:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    codigo_identificacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: true
+      primary: false
+    nombres:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    apellidos:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    telefono:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    e_mail:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    habilitado:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    url_imagen:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Usuario:
+      local: codigo_usuario
+      foreign: codigo
+      type: one
+    Identificacion:
+      local: codigo_identificacion
+      foreign: codigo
+      type: one
+    Curso:
+      local: codigo
+      foreign: codigo
+      type: many
+    Evaluacion:
+      local: codigo
+      foreign: codigo_profesor
+      type: many
+    Pregunta:
+      local: codigo
+      foreign: codigo_profesor
+      type: many
+TemaOMateria:
+  connection: doctrine
+  tableName: tema_o_materia
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tema_o_materia_codigo
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Evaluacion:
+      local: codigo
+      foreign: codigo_tema_materia
+      type: many
+    Pregunta:
+      local: codigo
+      foreign: codigo_tema_o_materia
+      type: many
+TipoPregunta:
+  connection: doctrine
+  tableName: tipo_pregunta
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: tipo_pregunta_codigo
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    plantilla:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Pregunta:
+      local: codigo
+      foreign: codigo_tipo_pregunta
+      type: many
+Usuario:
+  connection: doctrine
+  tableName: usuario
+  columns:
+    codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: usuario_codigo
+    login:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    password:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    Estudiante:
+      local: codigo
+      foreign: codigo_usuario
+      type: many
+    Profesor:
+      local: codigo
+      foreign: codigo_usuario
+      type: many
