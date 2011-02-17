@@ -132,87 +132,98 @@ var form_gestionar_profesores = new Ext.Panel({
 	],
 	items:[
 		{
-			xtype:'form',
+			xtype:'panel',
 			title:'Datos del usuario',
 			region:'center',
 			collapsible:false,
 			frame:true,
-			fileUpload:true,
-			//layout:'column',
-			bodyStyle:'padding: 10px', 
-			defaults:{xtype:'textfield', labelStyle: 'font-size:16px;', height:30},
+			layout:'column',
 			items:[
-				new Ext.DataView({
-					store: gestionar_profesores_datastore,
-					tpl: gestionar_profesores_tpl,
-					height:100,
-					//columnWidth:0.5,
-					multiSelect:true,
-					overClass:'x-view-over',
-					itemSelector:'div.thumb-wrap',
-					emptyText:'No imagen'
-				}),
 				{
-					fieldLabel: 'Login',
-					id: 'ges_pro_login',
-					height:30,
-					//columnWidth:0.5,
-					name: 'ges_pro_login',
-					maskRe: /([a-zA-Z0-9\s]+)$/
+					xtype:'form',
+					columnWidth:0.7,
+					bodyStyle:'padding: 10px',
+					labelWidth:150,
+					defaults:{xtype:'textfield', labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'},
+					fileUpload:true,
+					items:[
+						{
+							fieldLabel: 'Login',
+							id: 'ges_pro_login',
+							height:30,
+							anchor:'100%',
+							name: 'ges_pro_login',
+							maskRe: /([a-zA-Z0-9\s]+)$/
+						},
+						{
+							fieldLabel: 'Nombre',
+							id: 'ges_pro_nombre',
+							anchor:'100%',
+							name: 'ges_pro_nombre',
+							maskRe: /([a-zA-Z0-9\s]+)$/
+						},
+						{
+							fieldLabel: 'Apellidos',
+							id: 'ges_pro_apellidos',
+							anchor:'100%',
+							name: 'ges_pro_apellidos',
+							maskRe: /([a-zA-Z0-9\s]+)$/
+						},
+						{
+							fieldLabel: 'Identificaci&oacute;n',
+							id: 'ges_pro_identificacion',
+							anchor:'100%',
+							name: 'ges_pro_identificacion',
+							maskRe: /([a-zA-Z0-9\s]+)$/
+						},
+						{
+							fieldLabel: 'E-mail',
+							id: 'ges_pro_e-mail',
+							anchor:'100%',
+							name: 'ges_pro_e-mail',
+							vtype: 'email'
+						},
+						{
+							fieldLabel: 'Telefono',
+							id: 'ges_pro_telefono',
+							anchor:'100%',
+							name: 'ges_pro_telefono',
+							vtype: 'phone'
+						},
+						{
+							xtype:'checkbox',
+							fieldLabel:'Habilitado',
+							id:'ges_pro_habilitado',
+							name:'ges_pro_habilitado',
+							allowBlank:false
+						},
+						ges_pro_tipo_identificacion_combo,
+						{
+							xtype:'fileuploadfield', 
+							id:'ges_pro_url', 
+							emptyText:'Seleccione una imagen de perfil', 
+							fieldLabel:'Imagen de Perfil',
+							name:'ges_pro_url-imagen',
+							buttonText:'...',
+							allowBlank:true,
+							///buttonCfg: {iconCls: 'archivo'}
+						}
+					]
 				},
-				{
-					fieldLabel: 'Nombre',
-					id: 'ges_pro_nombre',
-					//columnWidth:0.5,
-					name: 'ges_pro_nombre',
-					maskRe: /([a-zA-Z0-9\s]+)$/
+				{	
+					xtype:'fieldset',
+					border:false,
+					columnWidth:0.3,
+					padding:10,
+					items:[
+						{
+							xtype:'panel',
+							height:150,
+							width:150,
+							frame:true
+						}
+					]
 				},
-				{
-					fieldLabel: 'Apellidos',
-					id: 'ges_pro_apellidos',
-					//columnWidth:0.5,
-					name: 'ges_pro_apellidos',
-					maskRe: /([a-zA-Z0-9\s]+)$/
-				},
-				{
-					fieldLabel: 'Identificaci&oacute;n',
-					id: 'ges_pro_identificacion',
-					//columnWidth:0.5,
-					name: 'ges_pro_identificacion',
-					maskRe: /([a-zA-Z0-9\s]+)$/
-				},
-				{
-					fieldLabel: 'E-mail',
-					id: 'ges_pro_e-mail',
-					//columnWidth:0.5,
-					name: 'ges_pro_e-mail',
-					vtype: 'email'
-				},
-				{
-					fieldLabel: 'Telefono',
-					id: 'ges_pro_telefono',
-					//columnWidth:0.5,
-					name: 'ges_pro_telefono',
-					vtype: 'phone'
-				},
-				ges_pro_tipo_identificacion_combo,
-				{
-					xtype:'fileuploadfield', 
-					id:'ges_pro_url', 
-					emptyText:'Seleccione una imagen de perfil', 
-					fieldLabel:'Imagen de Perfil',
-					name:'ges_pro_url-imagen',
-					buttonText:'...',
-					allowBlank:true,
-					///buttonCfg: {iconCls: 'archivo'}
-				},
-				{
-					xtype:'checkbox',
-					fieldLabel:'Habilitado',
-					id:'ges_pro_habilitado',
-					name:'ges_pro_habilitado',
-					allowBlank:false
-				}
 			]
 		},
 		{
