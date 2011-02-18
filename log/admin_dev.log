@@ -1,0 +1,26 @@
+Feb 17 20:01:44 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /interfaz_administracion with parameters array (  'module' => 'interfaz_administracion',  'action' => 'index',)
+Feb 17 20:01:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Feb 17 20:01:44 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Feb 17 20:01:44 symfony [info] {interfaz_administracionActions} Call "interfaz_administracionActions->executeIndex()"
+Feb 17 20:01:44 symfony [info] {sfPHPView} Render "/var/www/OE/apps/admin/modules/interfaz_administracion/templates/indexSuccess.php"
+Feb 17 20:01:44 symfony [info] {sfPHPView} Decorate content with "/var/www/OE/apps/admin/templates/layout.php"
+Feb 17 20:01:44 symfony [info] {sfPHPView} Render "/var/www/OE/apps/admin/templates/layout.php"
+Feb 17 20:01:44 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Feb 17 20:01:44 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Feb 17 20:01:44 symfony [info] {sfWebDebugLogger} Configuration 71.36 ms (9)
+Feb 17 20:01:44 symfony [info] {sfWebDebugLogger} Factories 87.65 ms (1)
+Feb 17 20:01:44 symfony [info] {sfWebDebugLogger} Action "interfaz_administracion/index" 0.07 ms (1)
+Feb 17 20:01:44 symfony [info] {sfWebDebugLogger} View "Success" for "interfaz_administracion/index" 9.97 ms (1)
+Feb 17 20:01:44 symfony [info] {sfWebResponse} Send content (28791 o)
+Feb 17 20:01:46 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/index with parameters array (  'module' => 'gestion_profesores',  'action' => 'index',)
+Feb 17 20:01:46 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Feb 17 20:01:46 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Feb 17 20:01:46 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeIndex()"
+Feb 17 20:01:46 symfony [info] {sfPHPView} Render "/var/www/OE/apps/admin/modules/gestion_profesores/templates/indexSuccess.php"
+Feb 17 20:01:46 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Feb 17 20:01:46 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Feb 17 20:01:46 symfony [info] {sfWebDebugLogger} Configuration 13.54 ms (10)
+Feb 17 20:01:46 symfony [info] {sfWebDebugLogger} Factories 23.15 ms (1)
+Feb 17 20:01:46 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/index" 0.08 ms (1)
+Feb 17 20:01:46 symfony [info] {sfWebDebugLogger} View "Success" for "gestion_profesores/index" 8.49 ms (1)
+Feb 17 20:01:46 symfony [info] {sfWebResponse} Send content (156 o)

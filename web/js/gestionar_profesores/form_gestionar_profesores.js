@@ -51,7 +51,7 @@ var ges_pro_tipo_identificacion_combo = new Ext.form.ComboBox({
 	xtype: 'combo',
 	name: 'ges_pro_tipo_identificacion_nombre',
 	id: 'ges_pro_tipo_identificacion_combo',
-	fieldLabel: 'Tipo de identificacion',
+	fieldLabel: 'Tipo de identificaci&oacute;n',
 	width: 168,
 	mode: 'local',
 	store: ges_pro_tipo_identificacion_datastore,
@@ -67,10 +67,9 @@ var ges_pro_tipo_identificacion_combo = new Ext.form.ComboBox({
 
 var detalle_datos_profesor_panel = new Ext.Panel({
 	xtype:'panel',
-	title:'Datos del usuario',
 	//region:'center',
 	//collapsible:false,
-	//width:500,
+	width:600,
 	frame:true,
 	layout:'column',
 	items:[
@@ -113,7 +112,7 @@ var detalle_datos_profesor_panel = new Ext.Panel({
 					vtype: 'email'
 				},
 				{
-					fieldLabel: 'Telefono',
+					fieldLabel: 'Tel&eacute;fono',
 					id: 'ges_pro_telefono',
 					anchor:'100%',
 					name: 'ges_pro_telefono',
@@ -130,10 +129,10 @@ var detalle_datos_profesor_panel = new Ext.Panel({
 				{
 					xtype:'fileuploadfield', 
 					id:'ges_pro_url', 
-					emptyText:'Seleccione una imagen de perfil', 
+					emptyText:'Seleccione una imagen', 
 					fieldLabel:'Imagen de Perfil',
 					name:'ges_pro_url-imagen',
-					buttonText:'...',
+					buttonText:'Examinar',
 					allowBlank:true,
 					///buttonCfg: {iconCls: 'archivo'}
 				},
@@ -160,12 +159,29 @@ var detalle_datos_profesor_panel = new Ext.Panel({
 				}
 			]
 		},
+	],
+	buttons:[
+		{
+			text:'<font size=3px>Guardar</font>',
+			iconCls:'',
+			scale: 'large',
+			handler:function(){
+			}
+		},
+		{
+			text:'<font size=3px>Cancelar</font>',
+			iconCls:'',
+			scale: 'large',
+			handler:function(){
+			}
+		}
 	]
 });
 
 var gestionar_profesores_window = new Ext.Window({
-	title:'sadffg',
+	title:'Datos del usuario',
 	hidden:true,
+	closeAction:'hide',
 	items:[detalle_datos_profesor_panel]
 });
 
@@ -179,9 +195,9 @@ var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
 		{id: 'ges_pro_nombres', header: "<font size='3px'>Nombres</font>", width: 200, dataIndex: 'ges_pro_nombres'},
 		{id: 'ges_pro_apellidos', header: "<font size='3px'>Apellidos</font>", width: 200, dataIndex: 'ges_pro_apellidos'},
 		{id: 'ges_pro_e-mail', header: "<font size='3px'>E-mail</font>", width: 200, dataIndex: 'ges_pro_e-mail'},
-		{id: 'ges_pro_telefono', header: "<font size='3px'>Telefono</font>", width: 90, dataIndex: 'ges_pro_telefono'},
+		{id: 'ges_pro_telefono', header: "<font size='3px'>Tel&eacute;fono</font>", width: 90, dataIndex: 'ges_pro_telefono'},
 		{id: 'ges_pro_habilitado', header: "<font size='3px'>Habilitado</font>", width: 85, dataIndex: 'ges_pro_habilitado'},
-		{id: 'ges_pro_tipo_identificacion_nombre', header: "<font size='3px'>Identificacion</font>", width: 120, dataIndex: 'ges_pro_tipo_identificacion_nombre'}
+		{id: 'ges_pro_tipo_identificacion_nombre', header: "<font size='3px'>Identificaci&oacute;n</font>", width: 120, dataIndex: 'ges_pro_tipo_identificacion_nombre'}
 	]
 });
 
@@ -247,7 +263,10 @@ var form_gestionar_profesores = new Ext.Panel({
 					text:"<font size='3px'>Agregar</font>",
 					iconAlign:'top',
 					iconCls:'agregar_profesor32',
-					scale: 'large'
+					scale:'large',
+					handler:function(){
+						gestionar_profesores_window.show();
+					}
 				},
 				{
 					text:"<font size='3px'>Modificar</font>",
