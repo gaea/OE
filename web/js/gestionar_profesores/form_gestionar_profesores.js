@@ -1,7 +1,6 @@
 var gestionar_profesores_datastore = new Ext.data.GroupingStore({
-		id: 'gestionar_profesores_datastore',
 		proxy: new Ext.data.HttpProxy({
-			url: 'gestion_profesores/consultarProfesores',
+			url: 'gestion_profesores/consultar_profesores',
 			method: 'POST',
 			limit: 20,
 			start: 0
@@ -9,72 +8,66 @@ var gestionar_profesores_datastore = new Ext.data.GroupingStore({
 		baseParams:{}, 
 		reader: new Ext.data.JsonReader({
 			root: 'results',
-			totalProperty: 'total',
-			//id: 'id_reader'
+			totalProperty: 'total'
 			},[ 
-				{name:'ges_pro_codigo_usuario'},
-				{name:'ges_pro_codigo'},
-				{name:'ges_pro_nombres'},
-				{name:'ges_pro_apellidos'},
-				{name:'ges_pro_login'},
-				{name:'ges_pro_identificacion_codigo'},
-				{name:'ges_pro_tipo_identificacion_nombre'},
-				{name:'ges_pro_e-mail'},
-				{name:'ges_pro_telefono'},
-				{name:'ges_pro_url-image'},
-				{name:'ges_pro_habilitado'},
+				{name:'pro_codigo_usuario'},
+				{name:'pro_codigo'},
+				{name:'pro_nombres'},
+				{name:'pro_apellidos'},
+				{name:'pro_login'},
+				{name:'pro_identificacion'},
+				{name:'ide_codigo'},
+				{name:'ide_nombre'},
+				{name:'pro_e-mail'},
+				{name:'pro_telefono'},
+				{name:'pro_url-image'},
+				{name:'pro_habilitado'}
 			]),
-		sortInfo:{field: 'codigo', direction: "ASC"}
+		sortInfo:{field: 'pro_codigo', direction: "ASC"}
 	});
 //gestionar_profesores_datastore.load();
 
-var ges_pro_tipo_identificacion_datastore = new Ext.data.GroupingStore({
-	id: 'ges_pro_tipo_identificacion_datastore',
+var gestionar_profesor_tipo_identificacion_datastore = new Ext.data.GroupingStore({
 	proxy: new Ext.data.HttpProxy({
-		url: 'tipo_identificacion/consultarTipos',
+		url: 'tipo_identificacion/consultar_tipos',
 		method: 'POST'
 	}),
 	reader: new Ext.data.JsonReader({
 		root: 'results',
-		totalProperty: 'total',
-		id: 'id'
+		totalProperty: 'total'
 	},
 	[ 
-		{name: 'ges_pro_tipo_identificacion_codigo'},
-		{name: 'ges_pro_tipo_identificacion_nombre'}
+		{name: 'ide_codigo'},
+		{name: 'ide_nombre'}
 	]),
-	sortInfo:{field: 'identificacion_nombre', direction: "ASC"}
+	sortInfo:{field: 'ide_nombre', direction: "ASC"}
 });
-//ges_pro_tipo_identificacion_datastore.load();
+//gestionar_profesor_tipo_identificacion_datastore.load();
 
-var ges_pro_tipo_identificacion_combo = new Ext.form.ComboBox({
-	xtype: 'combo',
-	name: 'ges_pro_tipo_identificacion_nombre',
-	id: 'ges_pro_tipo_identificacion_combo',
+var gestionar_profesor_tipo_identificacion_combo = new Ext.form.ComboBox({
+	name: 'ide_nombre',
 	fieldLabel: 'Tipo de identificaci&oacute;n',
 	width: 168,
 	mode: 'local',
-	store: ges_pro_tipo_identificacion_datastore,
-	valueField: 'ges_pro_tipo_identificacion_codigo',
-	displayField:'ges_pro_tipo_identificacion_nombre',
+	store: gestionar_profesor_tipo_identificacion_datastore,
+	valueField: 'ide_codigo',
+	displayField:'ide_nombre',
 	typeAhead: true,
 	triggerAction: 'all',
 	allowBlank: false,
 	forceSelection: true, 
 	selectOnFocus: true,
-	emptyText: ' [seleccione uno]'
+	emptyText: 'seleccione uno'
 });
 
-var detalle_datos_profesor_panel = new Ext.Panel({
-	xtype:'panel',
-	//region:'center',
-	//collapsible:false,
+var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 	width:600,
 	frame:true,
 	layout:'column',
 	items:[
 		{
-			xtype:'form',
+			xtype:'panel',
+			layout:'form',
 			columnWidth:0.7,
 			bodyStyle:'padding: 10px',
 			labelWidth:150,
@@ -83,55 +76,55 @@ var detalle_datos_profesor_panel = new Ext.Panel({
 			items:[
 				{
 					fieldLabel: 'Login',
-					id: 'ges_pro_login',
+					id: 'pro_login',
 					height:30,
 					anchor:'100%',
-					name: 'ges_pro_login',
+					name: 'pro_login',
 					maskRe: /([a-zA-Z0-9\s]+)$/
 				},
 				{
 					fieldLabel: 'Nombres',
-					id: 'ges_pro_nombres',
+					id: 'pro_nombres',
 					anchor:'100%',
-					name: 'ges_pro_nombres',
+					name: 'pro_nombres',
 					maskRe: /([a-zA-Z0-9\s]+)$/
 				},
 				{
 					fieldLabel: 'Apellidos',
-					id: 'ges_pro_apellidos',
+					id: 'pro_apellidos',
 					anchor:'100%',
-					name: 'ges_pro_apellidos',
+					name: 'pro_apellidos',
 					maskRe: /([a-zA-Z0-9\s]+)$/
 				},
 				
 				{
 					fieldLabel: 'E-mail',
-					id: 'ges_pro_e-mail',
+					id: 'pro_e-mail',
 					anchor:'100%',
-					name: 'ges_pro_e-mail',
+					name: 'pro_e-mail',
 					vtype: 'email'
 				},
 				{
 					fieldLabel: 'Tel&eacute;fono',
-					id: 'ges_pro_telefono',
+					id: 'pro_telefono',
 					anchor:'100%',
-					name: 'ges_pro_telefono',
+					name: 'pro_telefono',
 					vtype: 'phone'
 				},
 				{
 					fieldLabel: 'Identificaci&oacute;n',
-					id: 'ges_pro_identificacion',
+					id: 'pro_identificacion',
 					anchor:'100%',
-					name: 'ges_pro_identificacion',
+					name: 'pro_identificacion',
 					maskRe: /([a-zA-Z0-9\s]+)$/
 				},
-				ges_pro_tipo_identificacion_combo,
+				gestionar_profesor_tipo_identificacion_combo,
 				{
 					xtype:'fileuploadfield', 
-					id:'ges_pro_url', 
+					id:'pro_url', 
 					emptyText:'Seleccione una imagen', 
 					fieldLabel:'Imagen de Perfil',
-					name:'ges_pro_url-imagen',
+					name:'pro_url-imagen',
 					buttonText:'Examinar',
 					allowBlank:true,
 					///buttonCfg: {iconCls: 'archivo'}
@@ -139,8 +132,8 @@ var detalle_datos_profesor_panel = new Ext.Panel({
 				{
 					xtype:'checkbox',
 					fieldLabel:'Habilitado',
-					id:'ges_pro_habilitado',
-					name:'ges_pro_habilitado',
+					id:'pro_habilitado',
+					name:'pro_habilitado',
 					allowBlank:false
 				}
 			]
@@ -153,7 +146,7 @@ var detalle_datos_profesor_panel = new Ext.Panel({
 			items:[
 				{
 					xtype:'panel',
-					height:150,
+					height:170,
 					width:150,
 					frame:true
 				}
@@ -182,22 +175,22 @@ var gestionar_profesores_window = new Ext.Window({
 	title:'Datos del usuario',
 	hidden:true,
 	closeAction:'hide',
-	items:[detalle_datos_profesor_panel]
+	items:[gestionar_profesor_datos_profesor_panel]
 });
 
 var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
 	defaults:{sortable: true, locked: false, resizable: true, align:'center', /*css:'font-size:12px;'*/},
 	columns:[
-		{id: 'ges_pro_url-image', header: "<font size='3px'>Pinta</font>", width: 80, dataIndex: 'ges_pro_url-image'},
-		{id: 'ges_pro_codigo_usuario', header: "<font size='3px'>Codigo de usuario</font>", dataIndex: 'ges_pro_codigo_usuario', hidden: true},
-		{id: 'ges_pro_login', header: "<font size='3px'>Login</font>", width: 100, dataIndex: 'ges_pro_login'},
-		{id: 'ges_pro_codigo', header: "<font size='3px'>Codigo</font>", width: 100, dataIndex: 'ges_pro_codigo'},
-		{id: 'ges_pro_nombres', header: "<font size='3px'>Nombres</font>", width: 200, dataIndex: 'ges_pro_nombres'},
-		{id: 'ges_pro_apellidos', header: "<font size='3px'>Apellidos</font>", width: 200, dataIndex: 'ges_pro_apellidos'},
-		{id: 'ges_pro_e-mail', header: "<font size='3px'>E-mail</font>", width: 200, dataIndex: 'ges_pro_e-mail'},
-		{id: 'ges_pro_telefono', header: "<font size='3px'>Tel&eacute;fono</font>", width: 90, dataIndex: 'ges_pro_telefono'},
-		{id: 'ges_pro_habilitado', header: "<font size='3px'>Habilitado</font>", width: 85, dataIndex: 'ges_pro_habilitado'},
-		{id: 'ges_pro_tipo_identificacion_nombre', header: "<font size='3px'>Identificaci&oacute;n</font>", width: 120, dataIndex: 'ges_pro_tipo_identificacion_nombre'}
+		{header: "<font size='3px'>Pinta</font>", width: 80, dataIndex: 'pro_url-image'},
+		{header: "<font size='3px'>Codigo de usuario</font>", dataIndex: 'pro_codigo_usuario', hidden: true},
+		{header: "<font size='3px'>Login</font>", width: 100, dataIndex: 'pro_login'},
+		{header: "<font size='3px'>Codigo</font>", width: 100, dataIndex: 'pro_codigo'},
+		{id: 'col_pro_nombres', header: "<font size='3px'>Nombres</font>", width: 200, dataIndex: 'pro_nombres'},
+		{header: "<font size='3px'>Apellidos</font>", width: 200, dataIndex: 'pro_apellidos'},
+		{header: "<font size='3px'>E-mail</font>", width: 200, dataIndex: 'pro_e-mail'},
+		{header: "<font size='3px'>Tel&eacute;fono</font>", width: 90, dataIndex: 'pro_telefono'},
+		{header: "<font size='3px'>Habilitado</font>", width: 85, dataIndex: 'pro_habilitado'},
+		{header: "<font size='3px'>Identificaci&oacute;n</font>", width: 120, dataIndex: 'pro_tipo_identificacion_nombre'}
 	]
 });
 
@@ -213,7 +206,6 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 	collapseMode:'mini',
 	stripeRows:true,
 	style:'font-size:16px;',
-	//style: {"margin-left": "10px"},
 	frame: true,
 	ds: gestionar_profesores_datastore,
 	cm: gestionar_profesores_colmodel,
@@ -228,7 +220,7 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 			}
 		}
 	}),
-	//autoExpandColumn: 'grid_persona_nombre',
+	autoExpandColumn: 'col_pro_nombres',
 	autoExpandMin: 200,
 	height: 413,
 	listeners: {
@@ -246,14 +238,9 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 	view: new Ext.grid.GroupingView()
 });
 
-var form_gestionar_profesores = new Ext.Panel({
+var gestionar_profesores_panel = new Ext.Panel({
 	layout:'border',
 	height:screen.height-313,
-	defaults: {
-		collapsible:true,
-		split:true
-		//bodyStyle:'padding:15px'
-	},
 	tbar:[
 		{
 			xtype:'buttongroup',
@@ -308,8 +295,17 @@ var form_gestionar_profesores = new Ext.Panel({
 		}
 	],
 	items:[
-		//detalle_datos_profesor_panel,
 		gestionar_profesores_gridpanel
 	],
 	renderTo:'div_form_gestionar_profesores'
 });
+
+
+///**************** funciones ***************************///
+
+gestionar_profesores_guardar_profesor_function = function (){
+	subir_datos(
+		gestionar_profesor_datos_profesor_panel,
+		'gestion_profesores/guardar_profesor'
+	);
+}

@@ -20,7 +20,7 @@ class gestion_profesoresActions extends sfActions
     //$this->forward('default', 'module');
   }
   
-	public function executeConsultarProfesores()
+	public function executeConsultar_profesores(sfWebRequest $request)
 	{
 		$salida='({"total":"0", "results":""})';
 		$datos;
@@ -62,6 +62,12 @@ class gestion_profesoresActions extends sfActions
 		  $this->renderText("({success: false, errors: { reason: 'Hubo una excepci&oacute;n en listar los profesores ' , error: '".$exception->getMessage()."'}})");
 		}
 
+		return $this->renderText($salida);
+	}
+	
+	public function executeGuardar_profesor(sfWebRequest $request)
+	{
+		$salida = "";
 		return $this->renderText($salida);
 	}
 }
