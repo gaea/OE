@@ -14,7 +14,7 @@ var gestionar_profesores_datastore = new Ext.data.GroupingStore({
 				{name:'pro_codigo'},
 				{name:'pro_nombres'},
 				{name:'pro_apellidos'},
-				{name:'pro_login'},
+				{name:'usu_login'},
 				{name:'pro_identificacion'},
 				{name:'ide_codigo'},
 				{name:'ide_nombre'},
@@ -25,7 +25,7 @@ var gestionar_profesores_datastore = new Ext.data.GroupingStore({
 			]),
 		sortInfo:{field: 'pro_codigo', direction: "ASC"}
 	});
-//gestionar_profesores_datastore.load();
+gestionar_profesores_datastore.load();
 
 var gestionar_profesor_tipo_identificacion_datastore = new Ext.data.GroupingStore({
 	proxy: new Ext.data.HttpProxy({
@@ -45,7 +45,7 @@ var gestionar_profesor_tipo_identificacion_datastore = new Ext.data.GroupingStor
 //gestionar_profesor_tipo_identificacion_datastore.load();
 
 var gestionar_profesor_tipo_identificacion_combo = new Ext.form.ComboBox({
-	name: 'ide_nombre',
+	name: 'ide_codigo',
 	fieldLabel: 'Tipo de identificaci&oacute;n',
 	width: 168,
 	mode: 'local',
@@ -54,7 +54,7 @@ var gestionar_profesor_tipo_identificacion_combo = new Ext.form.ComboBox({
 	displayField:'ide_nombre',
 	typeAhead: true,
 	triggerAction: 'all',
-	allowBlank: false,
+	//allowBlank: false,
 	forceSelection: true, 
 	selectOnFocus: true,
 	emptyText: 'seleccione uno'
@@ -64,6 +64,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 	width:600,
 	frame:true,
 	layout:'column',
+	fileUpload:true,
 	items:[
 		{
 			xtype:'panel',
@@ -72,15 +73,23 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 			bodyStyle:'padding: 10px',
 			labelWidth:150,
 			defaults:{xtype:'textfield', labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'},
-			fileUpload:true,
 			items:[
 				{
 					fieldLabel: 'Login',
-					id: 'pro_login',
+					id: 'usu_login',
 					height:30,
 					anchor:'100%',
-					name: 'pro_login',
+					name: 'usu_login',
 					maskRe: /([a-zA-Z0-9\s]+)$/
+				},
+				{
+					xtype:'textfield',
+					fieldLabel: 'Password',
+					//id: 'usu_password',
+					anchor: '100%',
+					allowBlank: false,
+					name: 'usu_password',
+					inputType: 'password',
 				},
 				{
 					fieldLabel: 'Nombres',
@@ -109,6 +118,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 					id: 'pro_telefono',
 					anchor:'100%',
 					name: 'pro_telefono',
+					invalidText: 'dff',
 					vtype: 'phone'
 				},
 				{
@@ -134,6 +144,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 					fieldLabel:'Habilitado',
 					id:'pro_habilitado',
 					name:'pro_habilitado',
+					inputValue:'true',
 					allowBlank:false
 				}
 			]
@@ -159,6 +170,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 			iconCls:'',
 			scale: 'large',
 			handler:function(){
+				gestionar_profesores_guardar_profesor_function();
 			}
 		},
 		{
@@ -166,6 +178,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 			iconCls:'',
 			scale: 'large',
 			handler:function(){
+				gestionar_profesores_window.hide();
 			}
 		}
 	]
@@ -175,6 +188,7 @@ var gestionar_profesores_window = new Ext.Window({
 	title:'Datos del usuario',
 	hidden:true,
 	closeAction:'hide',
+	forceLayout:true,
 	items:[gestionar_profesor_datos_profesor_panel]
 });
 
@@ -183,7 +197,7 @@ var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
 	columns:[
 		{header: "<font size='3px'>Pinta</font>", width: 80, dataIndex: 'pro_url-image'},
 		{header: "<font size='3px'>Codigo de usuario</font>", dataIndex: 'pro_codigo_usuario', hidden: true},
-		{header: "<font size='3px'>Login</font>", width: 100, dataIndex: 'pro_login'},
+		{header: "<font size='3px'>Login</font>", width: 100, dataIndex: 'usu_login'},
 		{header: "<font size='3px'>Codigo</font>", width: 100, dataIndex: 'pro_codigo'},
 		{id: 'col_pro_nombres', header: "<font size='3px'>Nombres</font>", width: 200, dataIndex: 'pro_nombres'},
 		{header: "<font size='3px'>Apellidos</font>", width: 200, dataIndex: 'pro_apellidos'},
@@ -199,13 +213,13 @@ var codigo_profesor = '';
 var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 	id: 'gestionar_profesores_gridpanel',
 	title:'Lista de profesores',
-	//columnWidth: '.6',
+	columnLines:true,
 	width:800,
 	autoWidth:true,
 	region:'center',
 	collapseMode:'mini',
 	stripeRows:true,
-	style:'font-size:16px;',
+	bodyStyle:'font-size:16px;',
 	frame: true,
 	ds: gestionar_profesores_datastore,
 	cm: gestionar_profesores_colmodel,
@@ -213,10 +227,10 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 		singleSelect: true,
 		listeners: {
 			rowselect: function(sm, row, rec) {
-				/*gestion_admin_formpanel.getForm().reset();
-				gestion_admin_formpanel.getForm().loadRecord(rec);
-				comboTipoId.setValue(rec.data.identificacion_nombre);
-				codigo_usuario = rec.get('usuario_codigo');*/
+				gestionar_profesor_datos_profesor_panel.getForm().reset();
+				gestionar_profesor_datos_profesor_panel.getForm().loadRecord(rec);
+				//comboTipoId.setValue(rec.data.identificacion_nombre);
+				//codigo_usuario = rec.get('usuario_codigo');*/
 			}
 		}
 	}),
@@ -306,6 +320,9 @@ var gestionar_profesores_panel = new Ext.Panel({
 gestionar_profesores_guardar_profesor_function = function (){
 	subir_datos(
 		gestionar_profesor_datos_profesor_panel,
-		'gestion_profesores/guardar_profesor'
+		'gestion_profesores/guardar_profesor',
+		[],
+		function(){},
+		function(){}
 	);
 }

@@ -55,5 +55,5 @@ Ext.form.VTypes["passwordMask"]=/./;
 
 Ext.form.VTypes["phone"] = /^(\d{3}[-]?){1,2}(\d{4})$/;
 Ext.form.VTypes["phoneMask"] = /[\d-]/;
-Ext.form.VTypes["phoneText"] = 'Not a valid phone number.  Must be in the format 123-4567 or 123-456-7890 (dashes optional)';
-
+//Ext.form.VTypes["phoneText"] = 'Not a valid phone number.  Must be in the format 123-4567 or 123-456-7890 (dashes optional)';
+Ext.form.VTypes["phoneText"] = 'No es un numero tel&eacute;fonico v&aacute;lido.  Debe estar en el formato 123-4567 o 123-456-7890 (los separadores son opcionales)';
