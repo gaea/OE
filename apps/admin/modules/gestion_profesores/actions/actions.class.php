@@ -34,6 +34,7 @@ class gestion_profesoresActions extends sfActions
 			foreach($profesores As $profesor)
 			{
 				$datos[$fila]['pro_codigo_usuario'] = $profesor->getCodigoUsuario();
+				$datos[$fila]['usu_login'] = $profesor->getUsuario()->getLogin();
 				$datos[$fila]['pro_codigo'] = $profesor->getCodigo();
 				$datos[$fila]['pro_nombres'] = $profesor->getNombres();
 
@@ -43,7 +44,7 @@ class gestion_profesoresActions extends sfActions
 				
 				
 				
-				//$datos[$fila]['ges_pro_identificacion'] = $profesor->getCodigoIdentificacion();
+				//$datos[$fila]['ges_pro_identificacion'] = $profesor->getIdentificacion();
 				$datos[$fila]['pro_identificacion_codigo'] = $identificacion->getCodigo();
 				$datos[$fila]['pro_tipo_identificacion_nombre'] = $identificacion->getTipo();
 
