@@ -54,6 +54,11 @@ var viewport = new Ext.Viewport({
 					},
 					{
 						xtype:'panel',
+						tabTip:'Maestras',
+						title:'Maestras'
+					},
+					{
+						xtype:'panel',
 						tabTip:'Ayuda',
 						title:'Ayuda'
 					},

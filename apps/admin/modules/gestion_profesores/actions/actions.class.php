@@ -33,27 +33,27 @@ class gestion_profesoresActions extends sfActions
 
 			foreach($profesores As $profesor)
 			{
-				$datos[$fila]['pro_codigo_usuario'] = $profesor->getCodigoUsuario();
-				$datos[$fila]['usu_login'] = $profesor->getUsuario()->getLogin();
-				$datos[$fila]['pro_codigo'] = $profesor->getCodigo();
-				$datos[$fila]['pro_nombres'] = $profesor->getNombres();
+				$datos[$fila]['pro_codigo_usuario'] = $profesor->getProCodigoUsuario();
+				$datos[$fila]['usu_login'] = $profesor->getUsuario()->getUsuLogin();
+				$datos[$fila]['pro_codigo'] = $profesor->getProCodigo();
+				$datos[$fila]['pro_nombres'] = $profesor->getProNombres();
 
-				//$identificacion = IdentificacionPeer::retrieveByPK($profesor->getCodigoIdentificacion());
+				//$identificacion = IdentificacionPeer::retrieveByPK($profesor->getProCodigoIdentificacion());
 				$identificacionTable =  Doctrine_Core::getTable('Identificacion');  
-				$identificacion = $identificacionTable->find($profesor->getCodigoIdentificacion()); 
+				$identificacion = $identificacionTable->find($profesor->getProCodigoIdentificacion()); 
 				
 				
 				
-				//$datos[$fila]['ges_pro_identificacion'] = $profesor->getIdentificacion();
-				$datos[$fila]['pro_identificacion_codigo'] = $identificacion->getCodigo();
-				$datos[$fila]['pro_tipo_identificacion_nombre'] = $identificacion->getTipo();
+				$datos[$fila]['ges_pro_identificacion'] = $profesor->getProIdentificacion();
+				$datos[$fila]['pro_identificacion_codigo'] = $identificacion->getIdeCodigo();
+				$datos[$fila]['pro_tipo_identificacion_nombre'] = $identificacion->getIdeTipo();
 
-				$datos[$fila]['pro_apellidos'] = $profesor->getApellidos();
-				$datos[$fila]['pro_e-mail'] = $profesor->getEMail();
-				$datos[$fila]['pro_telefono'] = $profesor->getTelefono();
-				$datos[$fila]['pro_url-image'] = $profesor->getUrlImagen();
+				$datos[$fila]['pro_apellidos'] = $profesor->getProApellidos();
+				$datos[$fila]['pro_e-mail'] = $profesor->getProEMail();
+				$datos[$fila]['pro_telefono'] = $profesor->getProTelefono();
+				$datos[$fila]['pro_url-image'] = $profesor->getProUrlImagen();
 
-				$datos[$fila]['pro_habilitado'] = $profesor->getHabilitado();
+				$datos[$fila]['pro_habilitado'] = $profesor->getProHabilitado();
 
 				$fila++;
 			}
@@ -74,36 +74,39 @@ class gestion_profesoresActions extends sfActions
 	
 	public function executeGuardar_profesor(sfWebRequest $request)
 	{
-		$salida = "";
+		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: 'desconocido'}})";
 		
 		try
 		{
 			$usuario = new Usuario();
-			$usuario->setLogin($request->getParameter('usu_login'));
-			$usuario->setPassword($request->getParameter('usu_password'));
+			$usuario->setUsuLogin($request->getParameter('usu_login'));
+			$usuario->setUsuPassword($request->getParameter('usu_password'));
 			$usuario->save();
 			
 			$profesor = new Profesor();
 			$profesor->setUsuario($usuario);
-			$profesor->setCodigoIdentificacion('1');	
-			$profesor->setNombres($request->getParameter('pro_nombres'));
-			$profesor->setApellidos($request->getParameter('pro_apellidos'));
-			$profesor->setTelefono($request->getParameter('pro_telefono'));
-			$profesor->setEMail($request->getParameter('pro_e-mail'));
+			$profesor->setProCodigoIdentificacion('1');	
+			$profesor->setProNombres($request->getParameter('pro_nombres'));
+			$profesor->setProApellidos($request->getParameter('pro_apellidos'));
+			$profesor->setProTelefono($request->getParameter('pro_telefono'));
+			$profesor->setProEMail($request->getParameter('pro_e-mail'));
 			if($request->getParameter('pro_habilitado') == 'true')
 			{
-				$profesor->setHabilitado($request->getParameter('pro_habilitado'));
+				$profesor->setProHabilitado($request->getParameter('pro_habilitado'));
 			}
 			else
 			{
-				$profesor->setHabilitado(false);
+				$profesor->setProHabilitado(false);
 			}
 			
-			$nombre_carpeta = "uploads/".$usuario->getLogin();
+			$nombre_carpeta = "uploads/".$usuario->getUsuLogin();
 			
 			if(!is_dir($nombre_carpeta))
 			{
-				mkdir($nombre_carpeta, 0777, true);
+				if(!mkdir($nombre_carpeta, 0777, true))
+				{
+					$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: 'no se pudo crear la carpeta del usuario'}})";
+				}
 			}
 			
 			sleep(2);
@@ -113,23 +116,23 @@ class gestion_profesoresActions extends sfActions
 			$temporal = $_FILES['pro_url-imagen']['tmp_name'];
 			
 
-			if($tamano > 2100000)//$tamano >  1000000 aprox 1mega
+			/*if($tamano > 2100000)//$tamano >  1000000 aprox 1mega
 			{
 				$salida = "El archivo excede el limite de tama&ntilde;o";
 				
 			}
 			else
-			{
+			{*/
 				$copio=move_uploaded_file($temporal, $nombre_carpeta."/".$nombre);
 
 				if($copio)
 				{
-					$profesor->setUrlImagen($nombre_carpeta."/".$nombre);
+					$profesor->setProUrlImagen($nombre_carpeta."/".$nombre);
 					$profesor->save();
 					$salida = "({success: true, mensaje:'El profesor fue creado exitosamente'})";
 				}
-			}
-
+			//}
+			
 			return $this->renderText($salida);
 		}
 		catch (Exception $exception)

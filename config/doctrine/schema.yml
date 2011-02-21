@@ -2,49 +2,49 @@ Ayuda:
   connection: doctrine
   tableName: ayuda
   columns:
-    codigo:
+    ayu_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: ayuda_codigo
-    nombre:
+      sequence: ayuda_ayu_codigo
+    ayu_nombre:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    penalizacion:
+    ayu_penalizacion:
       type: decimal(18)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    cuerpo:
+    ayu_cuerpo:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
   relations:
-    EstudianteSolucionEvaluacion:
-      local: codigo
-      foreign: codigo_ayuda
+    EstudianteSolucionEvaluacionPreguntaAyuda:
+      local: ayu_codigo
+      foreign: est_sol_eva_pre_ayu_codigo_ayuda
       type: many
     EvaluacionPreguntaAyuda:
-      local: codigo
-      foreign: codigo_ayuda
+      local: ayu_codigo
+      foreign: eva_pre_ayu_codigo_ayuda
       type: many
 Curso:
   connection: doctrine
   tableName: curso
   columns:
-    codigo:
+    cur_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-    nombre:
+    cur_nombre:
       type: string()
       fixed: false
       unsigned: false
@@ -52,78 +52,141 @@ Curso:
       primary: false
   relations:
     Profesor:
-      local: codigo
-      foreign: codigo
+      local: cur_codigo
+      foreign: pro_codigo
       type: one
     EstudianteCurso:
-      local: codigo
-      foreign: codigo_curso
+      local: cur_codigo
+      foreign: est_cur_codigo_curso
+      type: many
+Dispositivo:
+  connection: doctrine
+  tableName: dispositivo
+  columns:
+    dis_codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: dispositivo_dis_codigo
+    nombre:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+  relations:
+    EstudianteSolucionEvaluacionPreguntaDispositivo:
+      local: dis_codigo
+      foreign: est_sol_eva_pre_dis_codigo_dispositivo
       type: many
 Estudiante:
   connection: doctrine
   tableName: estudiante
   columns:
-    codigo_usuario:
+    est_codigo_usuario:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_identificacion:
+    est_codigo_identificacion:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: true
       primary: false
-    codigo:
+    est_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: estudiante_codigo
+      sequence: estudiante_est_codigo
+    est_nombres:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    est_apellidos:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    est_telefono:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    est_e_mail:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    est_habilitado:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    est_url_imagen:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    pre_identificacion:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
   relations:
     Usuario:
-      local: codigo_usuario
-      foreign: codigo
+      local: est_codigo_usuario
+      foreign: usu_codigo
       type: one
     Identificacion:
-      local: codigo_identificacion
-      foreign: codigo
+      local: est_codigo_identificacion
+      foreign: ide_codigo
       type: one
     EstudianteCurso:
-      local: codigo
-      foreign: codigo
+      local: est_codigo
+      foreign: est_cur_codigo_estudiante
       type: many
     EstudianteEvaluacionGrupo:
-      local: codigo
-      foreign: codigo
+      local: est_codigo
+      foreign: est_eva_gru_codigo_estudiante
       type: many
-    EstudianteSolucionEvaluacionAyuda:
-      local: codigo
-      foreign: codigo_estudiante
+    EstudianteSolucionEvaluacionPregunta:
+      local: est_codigo
+      foreign: est_sol_eva_pre_codigo_estudiante
       type: many
 EstudianteCurso:
   connection: doctrine
   tableName: estudiante_curso
   columns:
-    codigo_curso:
+    est_cur_codigo_curso:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-    codigo:
+    est_cur_codigo_estudiante:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
   relations:
     Curso:
-      local: codigo_curso
-      foreign: codigo
+      local: est_cur_codigo_curso
+      foreign: cur_codigo
       type: one
     Estudiante:
-      local: codigo
-      foreign: codigo
+      local: est_cur_codigo_estudiante
+      foreign: est_codigo
       type: one
 EstudianteEvaluacionGrupo:
   connection: doctrine
@@ -133,13 +196,19 @@ EstudianteEvaluacionGrupo:
       type: integer(8)
       autoincrement: true
       primary: true
-    codigo:
+    est_eva_gru_codigo_estudiante:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    eva_codigo:
+    est_eva_gru_codigo_evaluacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    est_eva_gru_numero_grupo:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -147,40 +216,64 @@ EstudianteEvaluacionGrupo:
       primary: false
   relations:
     Evaluacion:
-      local: eva_codigo
-      foreign: codigo
+      local: est_eva_gru_codigo_evaluacion
+      foreign: eva_codigo
       type: one
     Estudiante:
-      local: codigo
-      foreign: codigo
+      local: est_eva_gru_codigo_estudiante
+      foreign: est_codigo
       type: one
-EstudianteSolucionEvaluacion:
+EstudianteSolucionEvaluacionPregunta:
   connection: doctrine
-  tableName: estudiante_solucion_evaluacion
+  tableName: estudiante_solucion_evaluacion_pregunta
+  columns:
+    est_sol_eva_pre_codigo_estudiante:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+    est_sol_eva_pre_codigo_pregunta:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+    est_sol_eva_pre_codigo_evaluacion:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+  relations:
+    Estudiante:
+      local: est_sol_eva_pre_codigo_estudiante
+      foreign: est_codigo
+      type: one
+EstudianteSolucionEvaluacionPreguntaAyuda:
+  connection: doctrine
+  tableName: estudiante_solucion_evaluacion_pregunta_ayuda
   columns:
     id:
       type: integer(8)
       autoincrement: true
       primary: true
-    codigo_estudiante:
+    est_sol_eva_pre_ayu_codigo_estudiante:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_pregunta:
+    est_sol_eva_pre_ayu_codigo_pregunta:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_evaluacion:
+    est_sol_eva_pre_ayu_codigo_evaluacion:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_ayuda:
+    est_sol_eva_pre_ayu_codigo_ayuda:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -188,104 +281,117 @@ EstudianteSolucionEvaluacion:
       primary: false
   relations:
     Ayuda:
-      local: codigo_ayuda
-      foreign: codigo
+      local: est_sol_eva_pre_ayu_codigo_ayuda
+      foreign: ayu_codigo
       type: one
-EstudianteSolucionEvaluacionAyuda:
+EstudianteSolucionEvaluacionPreguntaDispositivo:
   connection: doctrine
-  tableName: estudiante_solucion_evaluacion_ayuda
+  tableName: estudiante_solucion_evaluacion_pregunta_dispositivo
   columns:
-    codigo_estudiante:
+    id:
+      type: integer(8)
+      autoincrement: true
+      primary: true
+    est_sol_eva_pre_dis_codigo_estudiante:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
-    codigo_pregunta:
+      notnull: false
+      primary: false
+    est_sol_eva_pre_dis_codigo_pregunta:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
-    codigo_evaluacion:
+      notnull: false
+      primary: false
+    est_sol_eva_pre_dis_codigo_evaluacion:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
+      notnull: false
+      primary: false
+    est_sol_eva_pre_dis_codigo_dispositivo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
   relations:
-    Estudiante:
-      local: codigo_estudiante
-      foreign: codigo
+    Dispositivo:
+      local: est_sol_eva_pre_dis_codigo_dispositivo
+      foreign: dis_codigo
       type: one
 Evaluacion:
   connection: doctrine
   tableName: evaluacion
   columns:
-    codigo:
+    eva_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: evaluacion_codigo
-    codigo_profesor:
+      sequence: evaluacion_eva_codigo
+    eva_codigo_profesor:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: true
       primary: false
-    codigo_tema_materia:
+    eva_codigo_tema_materia:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    nombre:
+    eva_nombre:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    hora_inicio:
+    eva_hora_inicio:
       type: time(25)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    hora_fin:
+    eva_hora_fin:
       type: time(25)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    numero_personas_grupo:
+    eva_numero_personas_grupo:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    publico:
+    eva_publico:
       type: boolean(1)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    fecha:
+    eva_fecha:
       type: date(25)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    numero_intentos:
+    eva_numero_intentos:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    mostrar_solucion:
+    eva_mostrar_solucion:
       type: boolean(1)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    barajar_preguntas:
+    eva_barajar_preguntas:
       type: boolean(1)
       fixed: false
       unsigned: false
@@ -293,43 +399,43 @@ Evaluacion:
       primary: false
   relations:
     Profesor:
-      local: codigo_profesor
-      foreign: codigo
+      local: eva_codigo_profesor
+      foreign: pro_codigo
       type: one
     TemaOMateria:
-      local: codigo_tema_materia
-      foreign: codigo
+      local: eva_codigo_tema_materia
+      foreign: tom_codigo
       type: one
     EstudianteEvaluacionGrupo:
-      local: codigo
-      foreign: eva_codigo
+      local: eva_codigo
+      foreign: est_eva_gru_codigo_evaluacion
       type: many
     EvaluacionPregunta:
-      local: codigo
-      foreign: codigo_evaluacion
+      local: eva_codigo
+      foreign: eva_pre_codigo_evaluacion
       type: many
 EvaluacionPregunta:
   connection: doctrine
   tableName: evaluacion_pregunta
   columns:
-    codigo_evaluacion:
+    eva_pre_codigo_evaluacion:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-    codigo_pregunta:
+    eva_pre_codigo_pregunta:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
   relations:
     Pregunta:
-      local: codigo_pregunta
-      foreign: codigo
+      local: eva_pre_codigo_pregunta
+      foreign: pre_codigo
       type: one
     Evaluacion:
-      local: codigo_evaluacion
-      foreign: codigo
+      local: eva_pre_codigo_evaluacion
+      foreign: eva_codigo
       type: one
 EvaluacionPreguntaAyuda:
   connection: doctrine
@@ -339,19 +445,19 @@ EvaluacionPreguntaAyuda:
       type: integer(8)
       autoincrement: true
       primary: true
-    codigo_evaluacion:
+    eva_pre_ayu_codigo_evaluacion:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_pregunta:
+    eva_pre_ayu_codigo_pregunta:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_ayuda:
+    eva_pre_ayu_codigo_ayuda:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -359,20 +465,20 @@ EvaluacionPreguntaAyuda:
       primary: false
   relations:
     Ayuda:
-      local: codigo_ayuda
-      foreign: codigo
+      local: eva_pre_ayu_codigo_ayuda
+      foreign: ayu_codigo
       type: one
 Herramienta:
   connection: doctrine
   tableName: herramienta
   columns:
-    codigo:
+    her_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: herramienta_codigo
-    nombre:
+      sequence: herramienta_her_codigo
+    her_nombre:
       type: string()
       fixed: false
       unsigned: false
@@ -380,20 +486,20 @@ Herramienta:
       primary: false
   relations:
     PreguntaHerramienta:
-      local: codigo
-      foreign: codigo_herramienta
+      local: her_codigo
+      foreign: pre_her_codigo_herramienta
       type: many
 Identificacion:
   connection: doctrine
   tableName: identificacion
   columns:
-    codigo:
+    ide_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: identificacion_codigo
-    tipo:
+      sequence: identificacion_ide_codigo
+    ide_tipo:
       type: string()
       fixed: false
       unsigned: false
@@ -401,54 +507,54 @@ Identificacion:
       primary: false
   relations:
     Estudiante:
-      local: codigo
-      foreign: codigo_identificacion
+      local: ide_codigo
+      foreign: est_codigo_identificacion
       type: many
     Profesor:
-      local: codigo
-      foreign: codigo_identificacion
+      local: ide_codigo
+      foreign: pro_codigo_identificacion
       type: many
 Pregunta:
   connection: doctrine
   tableName: pregunta
   columns:
-    codigo:
+    pre_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: pregunta_codigo
-    codigo_profesor:
+      sequence: pregunta_pre_codigo
+    pre_codigo_profesor:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: true
       primary: false
-    codigo_tema_o_materia:
+    pre_codigo_tema_o_materia:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_tipo_pregunta:
+    pre_codigo_tipo_pregunta:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    cuerpo:
+    pre_cuerpo:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    solucion:
+    pre_solucion:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    publico:
+    pre_publico:
       type: boolean(1)
       fixed: false
       unsigned: false
@@ -456,24 +562,24 @@ Pregunta:
       primary: false
   relations:
     TemaOMateria:
-      local: codigo_tema_o_materia
-      foreign: codigo
+      local: pre_codigo_tema_o_materia
+      foreign: tom_codigo
       type: one
     Profesor:
-      local: codigo_profesor
-      foreign: codigo
+      local: pre_codigo_profesor
+      foreign: pro_codigo
       type: one
     TipoPregunta:
-      local: codigo_tipo_pregunta
-      foreign: codigo
+      local: pre_codigo_tipo_pregunta
+      foreign: tip_pre_codigo
       type: one
     EvaluacionPregunta:
-      local: codigo
-      foreign: codigo_pregunta
+      local: pre_codigo
+      foreign: eva_pre_codigo_pregunta
       type: many
     PreguntaHerramienta:
-      local: codigo
-      foreign: codigo_pregunta
+      local: pre_codigo
+      foreign: pre_her_codigo_pregunta
       type: many
 PreguntaHerramienta:
   connection: doctrine
@@ -483,13 +589,13 @@ PreguntaHerramienta:
       type: integer(8)
       autoincrement: true
       primary: true
-    codigo_herramienta:
+    pre_her_codigo_herramienta:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: true
       primary: false
-    codigo_pregunta:
+    pre_her_codigo_pregunta:
       type: integer(4)
       fixed: false
       unsigned: false
@@ -497,66 +603,72 @@ PreguntaHerramienta:
       primary: false
   relations:
     Herramienta:
-      local: codigo_herramienta
-      foreign: codigo
+      local: pre_her_codigo_herramienta
+      foreign: her_codigo
       type: one
     Pregunta:
-      local: codigo_pregunta
-      foreign: codigo
+      local: pre_her_codigo_pregunta
+      foreign: pre_codigo
       type: one
 Profesor:
   connection: doctrine
   tableName: profesor
   columns:
-    codigo:
+    pro_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: profesor_codigo
-    codigo_usuario:
+      sequence: profesor_pro_codigo
+    pro_codigo_usuario:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    codigo_identificacion:
+    pro_codigo_identificacion:
       type: integer(4)
       fixed: false
       unsigned: false
       notnull: true
       primary: false
-    nombres:
+    pro_nombres:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    apellidos:
+    pro_apellidos:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    telefono:
+    pro_telefono:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    e_mail:
+    pro_e_mail:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    habilitado:
+    pro_habilitado:
       type: boolean(1)
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    url_imagen:
+    pro_url_imagen:
+      type: string()
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    pro_identificacion:
       type: string()
       fixed: false
       unsigned: false
@@ -564,36 +676,36 @@ Profesor:
       primary: false
   relations:
     Usuario:
-      local: codigo_usuario
-      foreign: codigo
+      local: pro_codigo_usuario
+      foreign: usu_codigo
       type: one
     Identificacion:
-      local: codigo_identificacion
-      foreign: codigo
+      local: pro_codigo_identificacion
+      foreign: ide_codigo
       type: one
     Curso:
-      local: codigo
-      foreign: codigo
+      local: pro_codigo
+      foreign: cur_codigo
       type: many
     Evaluacion:
-      local: codigo
-      foreign: codigo_profesor
+      local: pro_codigo
+      foreign: eva_codigo_profesor
       type: many
     Pregunta:
-      local: codigo
-      foreign: codigo_profesor
+      local: pro_codigo
+      foreign: pre_codigo_profesor
       type: many
 TemaOMateria:
   connection: doctrine
   tableName: tema_o_materia
   columns:
-    codigo:
+    tom_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: tema_o_materia_codigo
-    nombre:
+      sequence: tema_o_materia_tom_codigo
+    tom_nombre:
       type: string()
       fixed: false
       unsigned: false
@@ -601,30 +713,30 @@ TemaOMateria:
       primary: false
   relations:
     Evaluacion:
-      local: codigo
-      foreign: codigo_tema_materia
+      local: tom_codigo
+      foreign: eva_codigo_tema_materia
       type: many
     Pregunta:
-      local: codigo
-      foreign: codigo_tema_o_materia
+      local: tom_codigo
+      foreign: pre_codigo_tema_o_materia
       type: many
 TipoPregunta:
   connection: doctrine
   tableName: tipo_pregunta
   columns:
-    codigo:
+    tip_pre_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: tipo_pregunta_codigo
-    nombre:
+      sequence: tipo_pregunta_tip_pre_codigo
+    tip_pre_nombre:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    plantilla:
+    tip_pre_plantilla:
       type: string()
       fixed: false
       unsigned: false
@@ -632,26 +744,26 @@ TipoPregunta:
       primary: false
   relations:
     Pregunta:
-      local: codigo
-      foreign: codigo_tipo_pregunta
+      local: tip_pre_codigo
+      foreign: pre_codigo_tipo_pregunta
       type: many
 Usuario:
   connection: doctrine
   tableName: usuario
   columns:
-    codigo:
+    usu_codigo:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      sequence: usuario_codigo
-    login:
+      sequence: usuario_usu_codigo
+    usu_login:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
-    password:
+    usu_password:
       type: string()
       fixed: false
       unsigned: false
@@ -659,10 +771,10 @@ Usuario:
       primary: false
   relations:
     Estudiante:
-      local: codigo
-      foreign: codigo_usuario
+      local: usu_codigo
+      foreign: est_codigo_usuario
       type: many
     Profesor:
-      local: codigo
-      foreign: codigo_usuario
+      local: usu_codigo
+      foreign: pro_codigo_usuario
       type: many
