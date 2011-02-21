@@ -11,6 +11,10 @@ function mostrar_mensaje_confirmacion(titulo, contenido){
     });
 }
 
+function getAbsoluteUrl(module, action){
+    return urlPrefix + module + '/' + action;
+}
+
 function subir_datos(panel, url_Action, extra_params, funcion_success, funcion_failure){
     panel.getForm().submit({
         method:'POST',

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<xliff version="1.0">
+  <file orginal="global" source-language="es_CO" datatype="plaintext">
+    <body>
+      <trans-unit id="1">
+        <source>Edit</source>
+        <target>Editar</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Delete</source>
+        <target>Eliminar</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

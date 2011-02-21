@@ -3,7 +3,7 @@
 
 prod:
   .settings:
-    no_script_name:         true
+    no_script_name:         false
     logging_enabled:        false
 
 dev:
@@ -24,6 +24,9 @@ test:
 
 all:
   .settings:
+    default_culture:        es_CO
+    i18n:                   true
+    charset:                utf-8
     # Form security secret (CSRF protection)
     csrf_secret:            23f327a31f0929f927318bc8246f483553dd3be2
 
@@ -33,3 +36,4 @@ all:
 
     # Enable the database manager
     use_database:           true
+

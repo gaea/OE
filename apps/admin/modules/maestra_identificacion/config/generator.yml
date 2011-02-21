@@ -1,0 +1,32 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Identificacion
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          identificacion
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    i18n_catalogue: admin
+
+    config:
+      actions: 
+          _new: { label: "Crear identificacion" }
+      fields:  
+          ide_codigo:    { label: Codigo }
+          ide_tipo:    { label: Tipo de identificacion, help: Ingrese el nombre del nuevo tipo de identificacion }
+      list:    
+          title: Lista de tipos de identificacion
+          max_per_page:   20
+          sort:   [ide_tipo, desc]
+      filter:  ~
+      form:    ~
+      edit:
+          title: Editando tipo de identificacion "%%ide_tipo%%"
+      new:     
+          title: Crear nuevos tipos de identificacion
+      show:
+          title: Detalle del tipo de identificacion

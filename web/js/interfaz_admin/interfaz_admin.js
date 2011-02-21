@@ -55,7 +55,10 @@ var viewport = new Ext.Viewport({
 					{
 						xtype:'panel',
 						tabTip:'Maestras',
-						title:'Maestras'
+						title:'Maestras',
+						autoScroll:true,
+						html: '<iframe style="overflow:auto;width:100%;height:100%;" frameborder="0"  src="' + urlPrefix + 'maestra_identificacion' + '"></iframe>'
+						//autoLoad:{url: 'maestra_identificacion', scripts: true, scope: this}
 					},
 					{
 						xtype:'panel',

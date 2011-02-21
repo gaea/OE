@@ -1,6 +1,6 @@
 var gestionar_profesores_datastore = new Ext.data.GroupingStore({
 		proxy: new Ext.data.HttpProxy({
-			url: 'gestion_profesores/consultar_profesores',
+			url: getAbsoluteUrl('gestion_profesores', 'consultar_profesores'),
 			method: 'POST',
 			limit: 20,
 			start: 0
@@ -29,7 +29,7 @@ gestionar_profesores_datastore.load();
 
 var gestionar_profesor_tipo_identificacion_datastore = new Ext.data.GroupingStore({
 	proxy: new Ext.data.HttpProxy({
-		url: 'tipo_identificacion/consultar_tipos',
+		url: getAbsoluteUrl('tipo_identificacion', 'consultar_tipos'),
 		method: 'POST'
 	}),
 	reader: new Ext.data.JsonReader({
@@ -210,7 +210,7 @@ function poner_pinta(val, x, store){
 }
 
 function si_no(val, x, store){
-	if(val != true){
+	if(val == true){
 		return "<font size='3px' color=blue>Si</font>";
 	}
 	else{
@@ -373,7 +373,7 @@ Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 gestionar_profesores_guardar_profesor_function = function (){
 	subir_datos(
 		gestionar_profesor_datos_profesor_panel,
-		'gestion_profesores/guardar_profesor',
+		getAbsoluteUrl('gestion_profesores', 'guardar_profesor'),
 		[],
 		function(){},
 		function(){}
