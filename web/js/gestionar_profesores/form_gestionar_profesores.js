@@ -246,6 +246,7 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 	region:'center',
 	collapseMode:'mini',
 	stripeRows:true,
+	monitorResize: true,
 	//bodyStyle:'font-size:16px;',
 	frame: true,
 	ds: gestionar_profesores_datastore,
@@ -269,27 +270,28 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 			}
 		}
 	}),
-	autoExpandColumn: 'col_pro_nombres',
-	autoExpandMin: 200,
-	height: 413,
-	listeners: {
+	autoExpandColumn:'col_pro_nombres',
+	autoExpandMin:200,
+	autoHeight:true,
+	listeners:{
 		viewready: function(g) {
 			g.getSelectionModel().selectRow(0);
 		}
 	},
 	bbar: new Ext.PagingToolbar({
-		pageSize: 10,
-		store: gestionar_profesores_datastore,
-		displayInfo: true,
-		displayMsg: 'Profesores {0} - {1} de {2}',
-		emptyMsg: "No hay profesores"
+		pageSize:10,
+		store:gestionar_profesores_datastore,
+		displayInfo:true,
+		displayMsg:'Profesores {0} - {1} de {2}',
+		emptyMsg:"No hay profesores"
 	}),
 	view: new Ext.grid.GroupingView()
 });
 
 var gestionar_profesores_panel = new Ext.Panel({
 	layout:'border',
-	height:screen.height-313,
+	height:window.innerHeight-112,
+	monitorResize: true,
 	tbar:[
 		{
 			xtype:'buttongroup',
@@ -371,6 +373,13 @@ var gestionar_profesores_panel = new Ext.Panel({
 	items:[
 		gestionar_profesores_gridpanel
 	],
+	/*listeners :{
+		bodyresize:function(p,w,h){
+		heightCentro=(agPrinCentro.getSize().height)-68;
+		
+		this.doLayout();
+		}
+	},*/
 	renderTo:'div_form_gestionar_profesores'
 });
 
@@ -387,3 +396,5 @@ gestionar_profesores_guardar_profesor_function = function (){
 		function(){}
 	);
 }
+
+
