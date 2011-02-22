@@ -65,7 +65,16 @@ var viewport = new Ext.Viewport({
 						tabTip:'Ayuda',
 						title:'Ayuda'
 					},
-				]
+				],
+				listeners :{
+					bodyresize:function(p,w,h){
+					//heightCentro=(agPrinCentro.getSize().height)-68;
+					//alert(6);
+					if(Ext.getCmp('gestionar_profesores_panel') != null){
+						Ext.getCmp('gestionar_profesores_panel').setSize (w,h);
+					}
+					}
+				}
 			},
 			{
 				xtype:'panel',

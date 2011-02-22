@@ -289,6 +289,7 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 });
 
 var gestionar_profesores_panel = new Ext.Panel({
+	id:'gestionar_profesores_panel',
 	layout:'border',
 	height:window.innerHeight-112,
 	monitorResize: true,
@@ -375,9 +376,10 @@ var gestionar_profesores_panel = new Ext.Panel({
 	],
 	/*listeners :{
 		bodyresize:function(p,w,h){
-		heightCentro=(agPrinCentro.getSize().height)-68;
+		//heightCentro=(agPrinCentro.getSize().height)-68;
+		alert(6);
 		
-		this.doLayout();
+		//this.doLayout();
 		}
 	},*/
 	renderTo:'div_form_gestionar_profesores'
