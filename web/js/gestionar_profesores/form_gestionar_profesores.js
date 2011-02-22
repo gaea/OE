@@ -17,7 +17,7 @@ var gestionar_profesores_datastore = new Ext.data.GroupingStore({
 				{name:'usu_login'},
 				{name:'pro_identificacion'},
 				{name:'ide_codigo'},
-				{name:'ide_nombre'},
+				{name:'ide_tipo'},
 				{name:'pro_e-mail'},
 				{name:'pro_telefono'},
 				{name:'pro_url-image'},
@@ -29,7 +29,7 @@ gestionar_profesores_datastore.load();
 
 var gestionar_profesor_tipo_identificacion_datastore = new Ext.data.GroupingStore({
 	proxy: new Ext.data.HttpProxy({
-		url: getAbsoluteUrl('tipo_identificacion', 'consultar_tipos'),
+		url: getAbsoluteUrl('gestion_profesores', 'consultar_tipos_identificacion'),
 		method: 'POST'
 	}),
 	reader: new Ext.data.JsonReader({
@@ -38,11 +38,11 @@ var gestionar_profesor_tipo_identificacion_datastore = new Ext.data.GroupingStor
 	},
 	[ 
 		{name: 'ide_codigo'},
-		{name: 'ide_nombre'}
+		{name: 'ide_tipo'}
 	]),
-	sortInfo:{field: 'ide_nombre', direction: "ASC"}
+	sortInfo:{field: 'ide_tipo', direction: "ASC"}
 });
-//gestionar_profesor_tipo_identificacion_datastore.load();
+gestionar_profesor_tipo_identificacion_datastore.load();
 
 var gestionar_profesor_tipo_identificacion_combo = new Ext.form.ComboBox({
 	name: 'ide_codigo',
@@ -50,11 +50,12 @@ var gestionar_profesor_tipo_identificacion_combo = new Ext.form.ComboBox({
 	width: 168,
 	mode: 'local',
 	store: gestionar_profesor_tipo_identificacion_datastore,
+	hiddenName:'ide_codigo',
 	valueField: 'ide_codigo',
-	displayField:'ide_nombre',
+	displayField:'ide_tipo',
 	typeAhead: true,
 	triggerAction: 'all',
-	//allowBlank: false,
+	allowBlank: false,
 	forceSelection: true, 
 	selectOnFocus: true,
 	emptyText: 'seleccione uno'
@@ -161,7 +162,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 					width:150,
 					frame:true,
 					//bodyStyle:'text-align:center;margin-left:auto;',
-					html: '<img id="pro_image_foto" width=140 heigth=165 align=center />'
+					html: '<img id="pro_image_foto" width=140 heigth=160 align=center />'
 				}
 			]
 		},
@@ -230,7 +231,7 @@ var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
 		{header: "<font size='3px'>E-mail</font>", width: 200, dataIndex: 'pro_e-mail'},
 		{header: "<font size='3px'>Tel&eacute;fono</font>", width: 90, dataIndex: 'pro_telefono'},
 		{header: "<font size='3px'>Habilitado</font>", width: 85, dataIndex: 'pro_habilitado', renderer:si_no},
-		{header: "<font size='3px'>Identificaci&oacute;n</font>", width: 120, dataIndex: 'pro_tipo_identificacion_nombre'}
+		{header: "<font size='3px'>Identificaci&oacute;n</font>", width: 120, dataIndex: 'pro_identificacion'}
 	]
 });
 
@@ -300,6 +301,8 @@ var gestionar_profesores_panel = new Ext.Panel({
 					iconCls:'agregar_profesor32',
 					scale:'large',
 					handler:function(){
+						gestionar_profesor_datos_profesor_panel.getForm().reset();
+						Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 						gestionar_profesores_window.show();
 					}
 				},
@@ -307,7 +310,12 @@ var gestionar_profesores_panel = new Ext.Panel({
 					text:"<font size='3px'>Modificar</font>",
 					iconAlign:'top',
 					iconCls:'modificar_profesor32',
-					scale: 'large'
+					scale: 'large',
+					handler:function(){
+						if(true){
+							gestionar_profesores_window.show();
+						}
+					}
 				},
 				{
 					text:"<font size='3px'>Eliminar</font>",

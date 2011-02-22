@@ -3,6 +3,7 @@ generator:
   param:
     model_class:           Identificacion
     theme:                 jroller
+    extra:      [show, print, export]
     non_verbose_templates: true
     with_show:             false
     singular:              ~
@@ -20,7 +21,7 @@ generator:
           ide_tipo:    { label: Tipo de identificacion, help: Ingrese el nombre del nuevo tipo de identificacion }
       list:    
           title: Lista de tipos de identificacion
-          max_per_page:   20
+          #max_per_page:   20
           sort:   [ide_tipo, desc]
       filter:  ~
       form:    ~
