@@ -139,7 +139,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 					buttonText:'Examinar',
 					allowBlank:true,
 					///buttonCfg: {iconCls: 'archivo'}
-				},
+				}/*,
 				{
 					xtype:'checkbox',
 					fieldLabel:'Habilitado',
@@ -147,7 +147,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 					name:'pro_habilitado',
 					inputValue:'true',
 					allowBlank:false
-				}
+				}*/
 			]
 		},
 		{	
@@ -173,7 +173,12 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 			iconCls:'guardar32',
 			scale: 'large',
 			handler:function(){
-				gestionar_profesores_guardar_profesor_function();
+				if(codigo_profesor == ''){
+					gestionar_profesores_guardar_profesor_function();
+				}
+				else{
+					gestionar_profesores_actualizar_profesor_function();
+				}
 			}
 		},
 		{
@@ -189,7 +194,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 
 var gestionar_profesores_window = new Ext.Window({
 	title:'Datos del usuario',
-	//hidden:true,
+	modal:true,
 	closeAction:'hide',
 	forceLayout:true,
 	items:[gestionar_profesor_datos_profesor_panel]
@@ -258,6 +263,8 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 				gestionar_profesor_datos_profesor_panel.getForm().reset();
 				gestionar_profesor_datos_profesor_panel.getForm().loadRecord(rec);
 				
+				codigo_profesor = rec.get('pro_codigo');
+				
 				if(rec.get('pro_url-image') != null){
 					Ext.get('pro_image_foto').dom.src = urlPrefix +'../'+rec.get('pro_url-image');
 				}
@@ -304,27 +311,54 @@ var gestionar_profesores_panel = new Ext.Panel({
 					iconCls:'agregar_profesor32',
 					scale:'large',
 					handler:function(){
+						codigo_profesor = '';
 						gestionar_profesor_datos_profesor_panel.getForm().reset();
 						Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 						gestionar_profesores_window.show();
+						gestionar_profesores_gridpanel.getSelectionModel().clearSelections();
 					}
 				},
 				{
 					text:"<font size='3px'>Modificar</font>",
 					iconAlign:'top',
 					iconCls:'modificar_profesor32',
-					scale: 'large',
+					scale:'large',
 					handler:function(){
-						if(true){
+						if(codigo_profesor != ''){
 							gestionar_profesores_window.show();
+						}
+						else{
+							mostrar_mensaje_rapido('Alerta', 'Por favor seleccione un profesor');
 						}
 					}
 				},
 				{
-					text:"<font size='3px'>Eliminar</font>",
+					text:"<font size='3px'>Habilitar</font>",
 					iconAlign:'top',
-					iconCls:'eliminar_profesor32',
-					scale: 'large'
+					iconCls:'habilitar_profesor32',
+					scale:'large',
+					handler:function(){
+						if(codigo_profesor != ''){
+							gestionar_profesores_habilitar_profesor_function();
+						}
+						else{
+							mostrar_mensaje_rapido('Alerta', 'Por favor seleccione un profesor');
+						}
+					}
+				},
+				{
+					text:"<font size='3px'>Desabilitar</font>",
+					iconAlign:'top',
+					iconCls:'desabilitar_profesor32',
+					scale:'large',
+					handler:function(){
+						if(codigo_profesor != ''){
+							gestionar_profesores_desabilitar_profesor_function();
+						}
+						else{
+							mostrar_mensaje_rapido('Alerta', 'Por favor seleccione un profesor');
+						}
+					}
 				}
 			]
 		},
@@ -333,10 +367,42 @@ var gestionar_profesores_panel = new Ext.Panel({
 			title:"<font size='3px'>Filtro</font>",
 			items:[
 				{
+					xtype:'splitbutton',
 					text:"<font size='3px'>Buscar</font>",
 					iconAlign:'top',
 					iconCls:'buscar32',
-					scale: 'large'
+					scale:'large',
+					colspan:1,
+					menu:[
+						{xtype: 'textfield', iconCls: 'buscar', id: 'busqueda_profesor', emptyText: 'buscar'},
+						{
+							text:'Buscar por login', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo:'login', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar por nombre', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo:'nombres', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar por todos los campos', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo:'todos', start: 0, limit: 20}
+								});
+							}
+						}
+					]
 				}
 			]
 		},
@@ -389,14 +455,40 @@ Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 
 ///**************** funciones ***************************///
 
-gestionar_profesores_guardar_profesor_function = function (){
+gestionar_profesores_guardar_profesor_function = function(){
 	subir_datos(
 		gestionar_profesor_datos_profesor_panel,
 		getAbsoluteUrl('gestion_profesores', 'guardar_profesor'),
 		[],
-		function(){},
+		function(){gestionar_profesores_datastore.reload();},
 		function(){}
 	);
 }
 
+gestionar_profesores_actualizar_profesor_function = function(){
+	subir_datos(
+		gestionar_profesor_datos_profesor_panel,
+		getAbsoluteUrl('gestion_profesores', 'actualizar_profesor'),
+		{codigo_profesor: codigo_profesor},
+		function(){gestionar_profesores_datastore.reload();},
+		function(){}
+	);
+}
 
+gestionar_profesores_habilitar_profesor_function = function(){
+	subirDatosAjax(
+		getAbsoluteUrl('gestion_profesores', 'habilitar_profesor'),
+		{codigo_profesor: codigo_profesor},
+		function(){gestionar_profesores_datastore.reload();},
+		function(){}
+	);
+}
+
+gestionar_profesores_desabilitar_profesor_function = function(){
+	subirDatosAjax(
+		getAbsoluteUrl('gestion_profesores', 'desabilitar_profesor'),
+		{codigo_profesor: codigo_profesor},
+		function(){gestionar_profesores_datastore.reload();},
+		function(){}
+	);
+}

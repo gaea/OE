@@ -15,11 +15,11 @@ function getAbsoluteUrl(module, action){
     return urlPrefix + module + '/' + action;
 }
 
-function subir_datos(panel, url_Action, extra_params, funcion_success, funcion_failure){
+function subir_datos(panel, url_action, extra_params, funcion_success, funcion_failure){
     panel.getForm().submit({
         method:'POST',
 		timeout:60000,
-        url:url_Action,
+        url:url_action,
         params:extra_params,
         waitTitle:'Enviando',
         waitMsg:'Enviando datos...',
@@ -35,7 +35,6 @@ function subir_datos(panel, url_Action, extra_params, funcion_success, funcion_f
 			if(obj.success==true){
 				mostrar_mensaje_rapido('Aviso', obj.mensaje);
 			}
-            
         },
         failure: function(form, action, response){
             if (action.failureType == 'server') {
@@ -50,4 +49,29 @@ function subir_datos(panel, url_Action, extra_params, funcion_success, funcion_f
 			}
         }
     });
+}
+
+function subirDatosAjax(url_action, extra_params, funcion_success, funcion_failure){
+
+    Ext.Ajax.request({
+        method: 'POST',
+        url: url_action,
+        params: extra_params,
+        waitTitle: 'Enviando',
+        waitMsg: 'Enviando datos...',
+        success: function(response){
+            obj = Ext.util.JSON.decode(response.responseText);
+            salida = true;
+            funcion_success();
+            mostrar_mensaje_rapido('Aviso', obj.mensaje);
+        },
+        failure: function(form, response){
+            if (action.failureType == 'server') {
+                obj = Ext.util.JSON.decode(response.responseText);
+                mostrar_mensaje_confirmacion('Error', obj.errors.reason);
+            }
+            funcion_failure();
+        }
+    });
+    
 }
