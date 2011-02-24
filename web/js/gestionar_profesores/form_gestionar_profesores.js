@@ -425,7 +425,7 @@ var gestionar_profesores_panel = new Ext.Panel({
 					iconCls:'exportar32',
 					scale: 'large',
 					handler:function(){ 
-						gestionar_profesores_exportar_profesor_function();
+						//gestionar_profesores_exportar_profesor_function();
 					}
 				},
 			]
