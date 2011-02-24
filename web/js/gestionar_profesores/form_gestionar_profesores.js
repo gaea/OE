@@ -426,6 +426,7 @@ var gestionar_profesores_panel = new Ext.Panel({
 					scale: 'large',
 					handler:function(){ 
 						//gestionar_profesores_exportar_profesor_function();
+						window.open (getAbsoluteUrl('gestion_profesores', 'exportar_profesor'),"csv");
 					}
 				},
 			]
