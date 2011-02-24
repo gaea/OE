@@ -630,7 +630,7 @@ Profesor:
       type: integer(4)
       fixed: false
       unsigned: false
-      notnull: true
+      notnull: false
       primary: false
     pro_nombres:
       type: string()

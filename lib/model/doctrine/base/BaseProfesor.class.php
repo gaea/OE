@@ -84,7 +84,7 @@ abstract class BaseProfesor extends sfDoctrineRecord
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
-             'notnull' => true,
+             'notnull' => false,
              'primary' => false,
              'length' => 4,
              ));

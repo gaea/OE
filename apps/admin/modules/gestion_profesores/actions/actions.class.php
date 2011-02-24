@@ -51,12 +51,13 @@ class gestion_profesoresActions extends sfActions
 				//$identificacion = IdentificacionPeer::retrieveByPK($profesor->getProCodigoIdentificacion());
 				$identificacionTable =  Doctrine_Core::getTable('Identificacion');  
 				$identificacion = $identificacionTable->find($profesor->getProCodigoIdentificacion()); 
-				
-				
+				if($identificacion)
+				{
+					$datos[$fila]['ide_codigo'] = $identificacion->getIdeCodigo();
+					$datos[$fila]['ide_tipo'] = $identificacion->getIdeTipo();
+				}
 				
 				$datos[$fila]['pro_identificacion'] = $profesor->getProIdentificacion();
-				$datos[$fila]['ide_codigo'] = $identificacion->getIdeCodigo();
-				$datos[$fila]['ide_tipo'] = $identificacion->getIdeTipo();
 
 				$datos[$fila]['pro_apellidos'] = $profesor->getProApellidos();
 				$datos[$fila]['pro_e-mail'] = $profesor->getProEMail();
@@ -311,6 +312,90 @@ class gestion_profesoresActions extends sfActions
 		catch (Exception $exception)
 		{
 			$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: '".$exception->getMessage()."'}})";
+			return $this->renderText($salida);
+		}
+	}
+	
+	public function executeImportar_profesor(sfWebRequest $request)
+	{
+		try
+		{
+			$texto="";
+			sleep(2);
+			$nombre = $_FILES['pro_importar']['name'];
+			$tamano = $_FILES['pro_importar']['size'];
+			$tipo = $_FILES['pro_importar']['type'];
+			$temporal = $_FILES['pro_importar']['tmp_name'];
+			
+			if($tamano > 2100000)//$tamano >  1000000 aprox 1mega
+			{
+				$salida = "El archivo excede el limite de tama&ntilde;o";
+				
+			}
+			else
+			{
+				$archivo_csv = fopen($temporal,"r");
+
+				while ($linea= fgets($archivo_csv))
+				{
+					$texto.=$linea;
+					$campos = explode(";", $linea);
+					//$linea = str_replace($cadena,"<b>$cadena</b>",$linea);
+					$usuario = new Usuario();
+					$usuario->setUsuLogin($campos[0]);
+					$usuario->setUsuPassword(md5($campos[1]));
+					$usuario->save();
+					
+					$profesor = new Profesor();
+					$profesor->setUsuario($usuario);
+					//$profesor->setProCodigoIdentificacion(1);/// 1 para la cedula
+					//$profesor->setProIdentificacion();	
+					$profesor->setProNombres($campos[2]);
+					$profesor->setProApellidos($campos[3]);
+					//$profesor->setProTelefono();
+					$profesor->setProEMail($campos[4]);
+					$profesor->setProHabilitado(true);
+					
+					$profesor->save();
+				}
+			}
+			
+			$salida = "({success: true, mensaje:'La importacion fue concluida exitosamente'})";
+			return $this->renderText($salida);
+		}
+		catch (Exception $exception)
+		{
+			$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en proceso de importacion ' , error: '".$exception->getMessage()."'}})";
+			return $this->renderText($salida);
+		}
+	}
+	
+	public function executeExportar_profesor(sfWebRequest $request)
+	{
+		try
+		{
+			$profesoresTable =  Doctrine_Core::getTable('Profesor'); 
+			$profesores =  $profesoresTable->findAll();
+			
+			$cvs_profesores = "";
+
+			foreach($profesores As $profesor)
+			{
+				$cvs_profesores .= $profesor->getUsuario()->getUsuLogin().";";
+				$cvs_profesores .= $profesor->getProCodigo().";";
+				$cvs_profesores .= $profesor->getProNombres().";";
+				$cvs_profesores .= $profesor->getProApellidos()."\n";
+			}
+			
+			$this->getContext()->getResponse()->setContentType('text/csv');
+			
+			$this->getContext()->getResponse()->setHttpHeader('Content-Disposition', 'inline;filename=Profesores_'.date("Y-m-d_Hi").'.csv;');
+			return $this->renderText($cvs_profesores);
+		
+		}
+		catch (Exception $exception)
+		{
+			$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en proceso de importacion ' , error: '".$exception->getMessage()."'}})";
 			return $this->renderText($salida);
 		}
 	}

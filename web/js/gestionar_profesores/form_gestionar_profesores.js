@@ -414,13 +414,19 @@ var gestionar_profesores_panel = new Ext.Panel({
 					text:"<font size='3px'>Importar</font>",
 					iconAlign:'top',
 					iconCls:'importar32',
-					scale: 'large'
+					scale: 'large',
+					handler:function(){ 
+						gestionar_profesores_importar_window.show();
+					}
 				},
 				{
 					text:"<font size='3px'>Exportar</font>",
 					iconAlign:'top',
 					iconCls:'exportar32',
-					scale: 'large'
+					scale: 'large',
+					handler:function(){ 
+						gestionar_profesores_exportar_profesor_function();
+					}
 				},
 			]
 		},
@@ -453,7 +459,83 @@ var gestionar_profesores_panel = new Ext.Panel({
 
 Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 
+var gestionar_profesor_importar_panel = new Ext.FormPanel({
+	width:500,
+	frame:true,
+	fileUpload:true,
+	labelWidth:180,
+	defaults:{xtype:'textfield', labelStyle: 'font-size:14px;', height:30, style:'font-size:14px;'},
+	items:[
+		{
+			xtype:'label',
+			html:'<b>Las columnas deben seguir el siguiente orden:</b><br><br><center>login;password;nombres;apellidos;e-mail</center><br><br>',
+			height:30,
+			anchor:'100%'
+		},
+		{
+			xtype:'fileuploadfield', 
+			id:'pro_importar_file', 
+			emptyText:'Seleccione un archivo', 
+			fieldLabel:'Importar datos en CSV',
+			name:'pro_importar',
+			buttonText:'Examinar',
+			allowBlank:true
+		}
+	],
+	buttons:[
+		{
+			text:'<font size=3px>Subir</font>',
+			iconCls:'guardar32',
+			scale: 'large',
+			handler:function(){
+				gestionar_profesores_importar_profesor_function();
+			}
+		},
+		{
+			text:'<font size=3px>Cancelar</font>',
+			iconCls:'cancelar32',
+			scale: 'large',
+			handler:function(){
+				gestionar_profesores_importar_window.hide();
+			}
+		}
+	]
+});
+
+var gestionar_profesores_importar_window = new Ext.Window({
+	title:'Importacion de archivos CSV',
+	modal:true,
+	closeAction:'hide',
+	forceLayout:true,
+	items:[gestionar_profesor_importar_panel]
+});
+gestionar_profesores_importar_window.show();
+gestionar_profesores_importar_window.hide();
+
 ///**************** funciones ***************************///
+
+gestionar_profesores_importar_profesor_function = function(){
+	subir_datos(
+		gestionar_profesor_importar_panel,
+		getAbsoluteUrl('gestion_profesores', 'importar_profesor'),
+		[],
+		function(){
+			gestionar_profesores_datastore.reload();
+			gestionar_profesor_importar_panel.getForm().reset();
+			gestionar_profesores_importar_window.hide();
+		},
+		function(){}
+	);
+}
+
+gestionar_profesores_exportar_profesor_function = function(){
+	subirDatosAjax(
+		getAbsoluteUrl('gestion_profesores', 'exportar_profesor'),
+		[],
+		function(){},
+		function(){}
+	);
+}
 
 gestionar_profesores_guardar_profesor_function = function(){
 	subir_datos(

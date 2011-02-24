@@ -17518,3 +17518,128 @@ feb 23 23:34:51 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/con
 feb 23 23:34:51 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.04 ms (6)
 feb 23 23:34:51 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_profesores" 0.01 ms (1)
 feb 23 23:34:51 symfony [info] {sfWebResponse} Send content (667 o)
+Feb 24 11:06:04 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_profesores',)
+feb 24 11:06:04 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+feb 24 11:06:04 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+feb 24 11:06:04 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_profesores()"
+feb 24 11:06:04 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+feb 24 11:06:04 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+feb 24 11:06:04 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+feb 24 11:06:04 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+feb 24 11:06:04 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+Feb 24 11:07:41 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_profesores',)
+feb 24 11:07:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+feb 24 11:07:41 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+feb 24 11:07:41 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_profesores()"
+feb 24 11:07:41 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+feb 24 11:07:41 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+feb 24 11:07:41 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+feb 24 11:07:41 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+feb 24 11:07:41 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+feb 24 11:07:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+feb 24 11:07:41 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+feb 24 11:07:41 symfony [info] {sfWebDebugLogger} Configuration 1.11 ms (8)
+feb 24 11:07:41 symfony [info] {sfWebDebugLogger} Factories 8.24 ms (1)
+feb 24 11:07:41 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/consultar_profesores" 63.30 ms (1)
+feb 24 11:07:41 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (5)
+feb 24 11:07:41 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_profesores" 0.01 ms (1)
+feb 24 11:07:41 symfony [info] {sfWebResponse} Send content (24807 o)
+Feb 24 11:51:47 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/exportar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'exportar_profesores',)
+feb 24 11:51:47 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+feb 24 11:51:47 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+feb 24 11:51:47 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeExportar_profesores()"
+feb 24 11:51:47 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+feb 24 11:51:47 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+feb 24 11:51:47 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+feb 24 11:51:47 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+feb 24 11:51:47 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+feb 24 11:51:47 symfony [info] {sfWebDebugLogger} Configuration 1.10 ms (8)
+feb 24 11:51:47 symfony [info] {sfWebDebugLogger} Factories 7.93 ms (1)
+feb 24 11:51:47 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/exportar_profesores" 86.94 ms (1)
+feb 24 11:51:47 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (3)
+feb 24 11:51:47 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/exportar_profesores" 0.01 ms (1)
+feb 24 11:51:47 symfony [info] {sfWebResponse} Send content (21757 o)
+Feb 24 11:52:02 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/exportar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'exportar_profesores',)
+feb 24 11:52:02 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+feb 24 11:52:02 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+feb 24 11:52:02 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeExportar_profesores()"
+feb 24 11:52:02 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+feb 24 11:52:02 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+feb 24 11:52:02 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+feb 24 11:52:02 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+feb 24 11:52:02 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+feb 24 11:52:02 symfony [info] {sfWebDebugLogger} Configuration 1.10 ms (8)
+feb 24 11:52:02 symfony [info] {sfWebDebugLogger} Factories 7.36 ms (1)
+feb 24 11:52:02 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/exportar_profesores" 63.34 ms (1)
+feb 24 11:52:02 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (3)
+feb 24 11:52:02 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/exportar_profesores" 0.01 ms (1)
+feb 24 11:52:02 symfony [info] {sfWebResponse} Send content (21790 o)
+Feb 24 11:52:11 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/exportar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'exportar_profesores',)
+feb 24 11:52:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+feb 24 11:52:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+feb 24 11:52:11 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeExportar_profesores()"
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (10)
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (11)
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (12)
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (9)
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (13)
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (14)
+feb 24 11:52:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+feb 24 11:52:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+feb 24 11:52:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/csv; charset=utf-8"
+feb 24 11:52:11 symfony [info] {sfWebResponse} Send header "Content-Disposition: inline;filename=Profesores_2011-02-24_1152.csv;"
+feb 24 11:52:11 symfony [info] {sfWebDebugLogger} Configuration 1.11 ms (8)
+feb 24 11:52:11 symfony [info] {sfWebDebugLogger} Factories 7.47 ms (1)
+feb 24 11:52:11 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/exportar_profesores" 85.10 ms (1)
+feb 24 11:52:11 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.04 ms (10)
+feb 24 11:52:11 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/exportar_profesores" 0.01 ms (1)
+feb 24 11:52:11 symfony [info] {sfWebResponse} Send content (304 o)
+Feb 24 11:52:33 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/exportar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'exportar_profesores',)
+feb 24 11:52:33 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+feb 24 11:52:33 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+feb 24 11:52:33 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeExportar_profesores()"
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (10)
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (11)
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (12)
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (9)
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (13)
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (14)
+feb 24 11:52:33 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+feb 24 11:52:33 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+feb 24 11:52:33 symfony [info] {sfWebResponse} Send header "Content-Type: text/csv; charset=utf-8"
+feb 24 11:52:33 symfony [info] {sfWebResponse} Send header "Content-Disposition: inline;filename=Profesores_2011-02-24_1152.csv;"
+feb 24 11:52:33 symfony [info] {sfWebDebugLogger} Configuration 0.86 ms (8)
+feb 24 11:52:33 symfony [info] {sfWebDebugLogger} Factories 5.98 ms (1)
+feb 24 11:52:33 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/exportar_profesores" 86.88 ms (1)
+feb 24 11:52:33 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.03 ms (10)
+feb 24 11:52:33 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/exportar_profesores" 0.01 ms (1)
+feb 24 11:52:33 symfony [info] {sfWebResponse} Send content (304 o)
+Feb 24 11:53:01 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/exportar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'exportar_profesores',)
+feb 24 11:53:01 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+feb 24 11:53:01 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+feb 24 11:53:01 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeExportar_profesores()"
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (10)
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (11)
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (12)
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (9)
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (13)
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (14)
+feb 24 11:53:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+feb 24 11:53:01 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+feb 24 11:53:01 symfony [info] {sfWebResponse} Send header "Content-Type: text/csv; charset=utf-8"
+feb 24 11:53:01 symfony [info] {sfWebResponse} Send header "Content-Disposition: inline;filename=Profesores_2011-02-24_1153.csv;"
+feb 24 11:53:01 symfony [info] {sfWebDebugLogger} Configuration 1.13 ms (8)
+feb 24 11:53:01 symfony [info] {sfWebDebugLogger} Factories 7.25 ms (1)
+feb 24 11:53:01 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/exportar_profesores" 79.69 ms (1)
+feb 24 11:53:01 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.04 ms (10)
+feb 24 11:53:01 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/exportar_profesores" 0.01 ms (1)
+feb 24 11:53:01 symfony [info] {sfWebResponse} Send content (304 o)
