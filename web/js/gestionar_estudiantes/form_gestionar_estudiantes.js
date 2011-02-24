@@ -533,7 +533,7 @@ gestionar_estudiantes_exportar_estudiante_function = function(){
 
 gestionar_estudiantes_guardar_estudiante_function = function(){
 	subir_datos(
-		gestionar_estudiante_datos_estudiante_panel,
+		gestionar_estudiantes_datos_estudiante_panel,
 		getAbsoluteUrl('gestion_estudiantes', 'guardar_estudiante'),
 		[],
 		function(){gestionar_estudiantes_datastore.reload();},
@@ -543,7 +543,7 @@ gestionar_estudiantes_guardar_estudiante_function = function(){
 
 gestionar_estudiantes_actualizar_estudiante_function = function(){
 	subir_datos(
-		gestionar_estudiante_datos_estudiante_panel,
+		gestionar_estudiantes_datos_estudiante_panel,
 		getAbsoluteUrl('gestion_estudiantes', 'actualizar_estudiante'),
 		{codigo_estudiante: codigo_estudiante},
 		function(){gestionar_estudiantes_datastore.reload();},

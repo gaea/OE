@@ -87,7 +87,7 @@ class gestion_profesoresActions extends sfActions
 	{
 		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: 'desconocido'}})";
 		
-		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('oe')->getDoctrineConnection();  
 		$connection->beginTransaction();  
 		
 		try
