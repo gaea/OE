@@ -50,7 +50,10 @@ var viewport = new Ext.Viewport({
 					{
 						xtype:'panel',
 						tabTip:'Temas',
-						title:'Temas'
+						title:'Temas',
+						autoScroll:true,
+						//autoLoad:{url: '../extjs/ex/themes/index.html', scripts: true, scope: this}
+						html: '<iframe style="overflow:auto;width:100%;height:100%;" frameborder="0"  src="../extjs/ex/themes/index.html"></iframe>'
 					},
 					{
 						xtype:'panel',

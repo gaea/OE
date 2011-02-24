@@ -17643,3 +17643,10 @@ feb 24 11:53:01 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/exp
 feb 24 11:53:01 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.04 ms (10)
 feb 24 11:53:01 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/exportar_profesores" 0.01 ms (1)
 feb 24 11:53:01 symfony [info] {sfWebResponse} Send content (304 o)
+Feb 24 15:21:55 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/exportar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'exportar_profesores',)
+feb 24 15:21:55 symfony [info] {sfFrontWebController} Action "gestion_profesores/exportar_profesores" does not exist
+feb 24 15:21:55 symfony [err] {sfError404Exception} Action "gestion_profesores/exportar_profesores" does not exist.
+feb 24 15:21:55 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+feb 24 15:21:55 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+feb 24 15:21:55 symfony [info] {sfWebDebugLogger} Configuration 101.82 ms (5)
+feb 24 15:21:55 symfony [info] {sfWebDebugLogger} Factories 120.74 ms (1)
