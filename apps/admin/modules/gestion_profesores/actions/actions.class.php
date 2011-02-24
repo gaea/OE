@@ -87,6 +87,9 @@ class gestion_profesoresActions extends sfActions
 	{
 		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: 'desconocido'}})";
 		
+		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection->beginTransaction();  
+		
 		try
 		{
 			$usuario = new Usuario();
@@ -148,12 +151,15 @@ class gestion_profesoresActions extends sfActions
 			}
 			
 			$profesor->save();
+			
+			$connection->commit();
 			$salida = "({success: true, mensaje:'El profesor fue creado exitosamente'})";
 			
 			return $this->renderText($salida);
 		}
 		catch (Exception $exception)
 		{
+			$connection->rollback();
 			$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: '".$exception->getMessage()."'}})";
 			return $this->renderText($salida);
 		}
@@ -162,6 +168,9 @@ class gestion_profesoresActions extends sfActions
 	public function executeActualizar_profesor(sfWebRequest $request)
 	{
 		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n al actualizar el profesor profesor ' , error: 'desconocido'}})";
+		
+		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection->beginTransaction();  
 		
 		try
 		{
@@ -230,11 +239,13 @@ class gestion_profesoresActions extends sfActions
 				$profesor->save();
 				$salida = "({success: true, mensaje:'El profesor fue actualizado exitosamente'})";
 			}
+			$connection->commit();
 			
 			return $this->renderText($salida);
 		}
 		catch (Exception $exception)
 		{
+			$connection->rollback();
 			$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: '".$exception->getMessage()."'}})";
 			return $this->renderText($salida);
 		}
@@ -318,6 +329,9 @@ class gestion_profesoresActions extends sfActions
 	
 	public function executeImportar_profesor(sfWebRequest $request)
 	{
+		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection->beginTransaction(); 
+		
 		try
 		{
 			$texto="";
@@ -359,12 +373,13 @@ class gestion_profesoresActions extends sfActions
 					$profesor->save();
 				}
 			}
-			
+			$connection->commit();
 			$salida = "({success: true, mensaje:'La importacion fue concluida exitosamente'})";
 			return $this->renderText($salida);
 		}
 		catch (Exception $exception)
 		{
+			$connection->rollback();
 			$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en proceso de importacion ' , error: '".$exception->getMessage()."'}})";
 			return $this->renderText($salida);
 		}
