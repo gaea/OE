@@ -87,7 +87,7 @@ class gestion_profesoresActions extends sfActions
 	{
 		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar profesor ' , error: 'desconocido'}})";
 		
-		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('oe')->getDoctrineConnection();  
+		$connection = Doctrine_Manager::getInstance()->getCurrentConnection();  
 		$connection->beginTransaction();  
 		
 		try
@@ -169,7 +169,7 @@ class gestion_profesoresActions extends sfActions
 	{
 		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n al actualizar el profesor profesor ' , error: 'desconocido'}})";
 		
-		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 		$connection->beginTransaction();  
 		
 		try
@@ -329,7 +329,7 @@ class gestion_profesoresActions extends sfActions
 	
 	public function executeImportar_profesor(sfWebRequest $request)
 	{
-		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 		$connection->beginTransaction(); 
 		
 		try

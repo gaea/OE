@@ -87,7 +87,7 @@ class gestion_estudiantesActions extends sfActions
 	{
 		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n en gestionar estudiante ' , error: 'desconocido'}})";
 		
-		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection = Doctrine_Manager::getInstance()->getCurrentConnection();  
 		$connection->beginTransaction();  
 		
 		try
@@ -169,7 +169,7 @@ class gestion_estudiantesActions extends sfActions
 	{
 		$salida = "({success: false, errors: { reason: 'Hubo una excepci&oacute;n al actualizar el estudiante estudiante ' , error: 'desconocido'}})";
 		
-		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 		$connection->beginTransaction();  
 		
 		try
@@ -329,7 +329,7 @@ class gestion_estudiantesActions extends sfActions
 	
 	public function executeImportar_estudiante(sfWebRequest $request)
 	{
-		$connection = sfContext::getInstance()->getDatabaseManager()->getDatabase('default')->getDoctrineConnection();  
+		$connection = Doctrine_Manager::getInstance()->getCurrentConnection(); 
 		$connection->beginTransaction(); 
 		
 		try
