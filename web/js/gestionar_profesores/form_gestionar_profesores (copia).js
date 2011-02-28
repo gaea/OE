@@ -72,11 +72,12 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 			layout:'form',
 			columnWidth:0.7,
 			bodyStyle:'padding: 10px',
-			labelWidth:140,
-			defaults:{xtype:'textfield', /*labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'*/},
+			labelWidth:150,
+			defaults:{xtype:'textfield', labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'},
 			items:[
 				{
 					fieldLabel: 'Login',
+					height:30,
 					anchor:'100%',
 					name: 'usu_login',
 					maskRe: /([a-zA-Z0-9\s]+)$/
@@ -161,8 +162,9 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 	],
 	buttons:[
 		{
-			text:'Guardar',
-			iconCls:'guardar16',
+			text:'<font size=3px>Guardar</font>',
+			iconCls:'guardar32',
+			scale: 'large',
 			handler:function(){
 				if(codigo_profesor == ''){
 					gestionar_profesores_guardar_profesor_function();
@@ -173,8 +175,9 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 			}
 		},
 		{
-			text:'Cancelar',
-			iconCls:'cancelar16',
+			text:'<font size=3px>Cancelar</font>',
+			iconCls:'cancelar32',
+			scale: 'large',
 			handler:function(){
 				gestionar_profesores_window.hide();
 			}
@@ -198,7 +201,7 @@ function aumentar_tamano_letra_3px(val, x, store){
 
 function poner_pinta(val, x, store){
 	if(val != null){
-		return '<img src="../'+val+'" width=40 heigth=60 align=center />';
+		return '<img src="../'+val+'" width=50 heigth=80 align=center />';
 	}
 	else{
 		return '<img src="../images/no_user_image.png" width=50 heigth=80 align=center />';
@@ -207,26 +210,26 @@ function poner_pinta(val, x, store){
 
 function si_no(val, x, store){
 	if(val == true){
-		return "<font  color=blue>Si</font>";
+		return "<font size='3px' color=blue>Si</font>";
 	}
 	else{
-		return "<font  color=Red>No</font>";
+		return "<font size='3px' color=Red>No</font>";
 	}
 }
 
 var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
-	defaults:{sortable: true, locked: false, resizable: true, align:'center', /*renderer:aumentar_tamano_letra_3px, css:'height:32px;'*/},
+	defaults:{sortable: true, locked: false, resizable: true, align:'center', renderer:aumentar_tamano_letra_3px, css:'height:32px;'},
 	columns:[
-		{header: "Imagen", width: 80, dataIndex: 'pro_url-image', renderer:poner_pinta},
-		{header: "Codigo de usuario", dataIndex: 'pro_codigo_usuario', hidden: true},
-		{header: "Login", width: 100, dataIndex: 'usu_login'},
-		{header: "Codigo", width: 100, dataIndex: 'pro_codigo'},
-		{id: 'col_pro_nombres', header: "Nombres", width: 200, dataIndex: 'pro_nombres'},
-		{header: "Apellidos", width: 200, dataIndex: 'pro_apellidos'},
-		{header: "E-mail", width: 200, dataIndex: 'pro_e-mail'},
-		{header: "Tel&eacute;fono", width: 90, dataIndex: 'pro_telefono'},
-		{header: "Habilitado", width: 85, dataIndex: 'pro_habilitado', renderer:si_no},
-		{header: "Identificaci&oacute;n", width: 120, dataIndex: 'pro_identificacion'}
+		{header: "<font size='3px'>Pinta</font>", width: 80, dataIndex: 'pro_url-image', renderer:poner_pinta},
+		{header: "<font size='3px'>Codigo de usuario</font>", dataIndex: 'pro_codigo_usuario', hidden: true},
+		{header: "<font size='3px'>Login</font>", width: 100, dataIndex: 'usu_login'},
+		{header: "<font size='3px'>Codigo</font>", width: 100, dataIndex: 'pro_codigo'},
+		{id: 'col_pro_nombres', header: "<font size='3px'>Nombres</font>", width: 200, dataIndex: 'pro_nombres'},
+		{header: "<font size='3px'>Apellidos</font>", width: 200, dataIndex: 'pro_apellidos'},
+		{header: "<font size='3px'>E-mail</font>", width: 200, dataIndex: 'pro_e-mail'},
+		{header: "<font size='3px'>Tel&eacute;fono</font>", width: 90, dataIndex: 'pro_telefono'},
+		{header: "<font size='3px'>Habilitado</font>", width: 85, dataIndex: 'pro_habilitado', renderer:si_no},
+		{header: "<font size='3px'>Identificaci&oacute;n</font>", width: 120, dataIndex: 'pro_identificacion'}
 	]
 });
 
@@ -293,13 +296,13 @@ var gestionar_profesores_panel = new Ext.Panel({
 	tbar:[
 		{
 			xtype:'buttongroup',
-			title:"Gesti&oacute;n",
+			title:"<font size='3px'>Gesti&oacute;n</font>",
 			items:[
 				{
-					text:"Agregar",
+					text:"<font size='3px'>Agregar</font>",
 					iconAlign:'top',
-					iconCls:'agregar_profesor24',
-					scale:'medium',
+					iconCls:'agregar_profesor32',
+					scale:'large',
 					handler:function(){
 						codigo_profesor = '';
 						gestionar_profesor_datos_profesor_panel.getForm().reset();
@@ -309,10 +312,10 @@ var gestionar_profesores_panel = new Ext.Panel({
 					}
 				},
 				{
-					text:"Modificar",
+					text:"<font size='3px'>Modificar</font>",
 					iconAlign:'top',
-					iconCls:'modificar_profesor24',
-					scale:'medium',
+					iconCls:'modificar_profesor32',
+					scale:'large',
 					handler:function(){
 						if(codigo_profesor != ''){
 							gestionar_profesores_window.show();
@@ -323,10 +326,10 @@ var gestionar_profesores_panel = new Ext.Panel({
 					}
 				},
 				{
-					text:"Habilitar",
+					text:"<font size='3px'>Habilitar</font>",
 					iconAlign:'top',
-					iconCls:'habilitar_profesor24',
-					scale:'medium',
+					iconCls:'habilitar_profesor32',
+					scale:'large',
 					handler:function(){
 						if(codigo_profesor != ''){
 							gestionar_profesores_habilitar_profesor_function();
@@ -337,10 +340,10 @@ var gestionar_profesores_panel = new Ext.Panel({
 					}
 				},
 				{
-					text:"Desabilitar",
+					text:"<font size='3px'>Desabilitar</font>",
 					iconAlign:'top',
-					iconCls:'desabilitar_profesor24',
-					scale:'medium',
+					iconCls:'desabilitar_profesor32',
+					scale:'large',
 					handler:function(){
 						if(codigo_profesor != ''){
 							gestionar_profesores_desabilitar_profesor_function();
@@ -354,17 +357,17 @@ var gestionar_profesores_panel = new Ext.Panel({
 		},
 		{
 			xtype:'buttongroup',
-			title:"Filtro",
+			title:"<font size='3px'>Filtro</font>",
 			items:[
 				{
 					xtype:'splitbutton',
-					text:"Buscar",
+					text:"<font size='3px'>Buscar</font>",
 					iconAlign:'top',
-					iconCls:'buscar24',
-					scale:'medium',
+					iconCls:'buscar32',
+					scale:'large',
 					colspan:1,
 					menu:[
-						{xtype: 'textfield', iconCls: 'texto_buscar', id: 'busqueda_profesor', emptyText: 'buscar'},
+						{xtype: 'textfield', iconCls: 'buscar', id: 'busqueda_profesor', emptyText: 'buscar'},
 						{
 							text:'Buscar por login', 
 							iconCls:'buscar_por', 
@@ -398,22 +401,22 @@ var gestionar_profesores_panel = new Ext.Panel({
 		},
 		{
 			xtype:'buttongroup',
-			title:"CSV",
+			title:"<font size='3px'>CSV</font>",
 			items:[
 				{
-					text:"Importar",
+					text:"<font size='3px'>Importar</font>",
 					iconAlign:'top',
-					iconCls:'importar24',
-					scale: 'medium',
+					iconCls:'importar32',
+					scale: 'large',
 					handler:function(){ 
 						gestionar_profesores_importar_window.show();
 					}
 				},
 				{
-					text:"Exportar",
+					text:"<font size='3px'>Exportar</font>",
 					iconAlign:'top',
-					iconCls:'exportar24',
-					scale: 'medium',
+					iconCls:'exportar32',
+					scale: 'large',
 					handler:function(){ 
 						//gestionar_profesores_exportar_profesor_function();
 						window.open (getAbsoluteUrl('gestion_profesores', 'exportar_profesor'),"csv");
@@ -423,13 +426,13 @@ var gestionar_profesores_panel = new Ext.Panel({
 		},
 		{
 			xtype:'buttongroup',
-			title:"Ayuda",
+			title:"<font size='3px'>Ayuda</font>",
 			items:[
 				{
-					text:"Estoy perdido!",
+					text:"<font size='3px'>Estoy perdido!</font>",
 					iconAlign:'top',
-					iconCls:'ayuda24',
-					scale: 'medium'
+					iconCls:'ayuda32',
+					scale: 'large'
 				}
 			]
 		}
@@ -455,7 +458,7 @@ var gestionar_profesor_importar_panel = new Ext.FormPanel({
 	frame:true,
 	fileUpload:true,
 	labelWidth:180,
-	defaults:{xtype:'textfield', /*labelStyle: 'font-size:14px;', height:30, style:'font-size:14px;'*/},
+	defaults:{xtype:'textfield', labelStyle: 'font-size:14px;', height:30, style:'font-size:14px;'},
 	items:[
 		{
 			xtype:'label',
@@ -475,17 +478,17 @@ var gestionar_profesor_importar_panel = new Ext.FormPanel({
 	],
 	buttons:[
 		{
-			text:'Subir',
-			iconCls:'guardar24',
-			scale: 'medium',
+			text:'<font size=3px>Subir</font>',
+			iconCls:'guardar32',
+			scale: 'large',
 			handler:function(){
 				gestionar_profesores_importar_profesor_function();
 			}
 		},
 		{
-			text:'Cancelar',
-			iconCls:'cancelar24',
-			scale: 'medium',
+			text:'<font size=3px>Cancelar</font>',
+			iconCls:'cancelar32',
+			scale: 'large',
 			handler:function(){
 				gestionar_profesores_importar_window.hide();
 			}

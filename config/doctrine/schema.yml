@@ -138,7 +138,7 @@ Estudiante:
       unsigned: false
       notnull: false
       primary: false
-    pre_identificacion:
+    est_identificacion:
       type: string()
       fixed: false
       unsigned: false

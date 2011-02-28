@@ -16,7 +16,7 @@ Doctrine_Manager::getInstance()->bindComponent('Estudiante', 'doctrine');
  * @property string $est_e_mail
  * @property string $est_habilitado
  * @property string $est_url_imagen
- * @property string $pre_identificacion
+ * @property string $est_identificacion
  * @property Usuario $Usuario
  * @property Identificacion $Identificacion
  * @property Doctrine_Collection $EstudianteCurso
@@ -32,7 +32,7 @@ Doctrine_Manager::getInstance()->bindComponent('Estudiante', 'doctrine');
  * @method string              getEstEMail()                             Returns the current record's "est_e_mail" value
  * @method string              getEstHabilitado()                        Returns the current record's "est_habilitado" value
  * @method string              getEstUrlImagen()                         Returns the current record's "est_url_imagen" value
- * @method string              getPreIdentificacion()                    Returns the current record's "pre_identificacion" value
+ * @method string              getEstIdentificacion()                    Returns the current record's "est_identificacion" value
  * @method Usuario             getUsuario()                              Returns the current record's "Usuario" value
  * @method Identificacion      getIdentificacion()                       Returns the current record's "Identificacion" value
  * @method Doctrine_Collection getEstudianteCurso()                      Returns the current record's "EstudianteCurso" collection
@@ -47,7 +47,7 @@ Doctrine_Manager::getInstance()->bindComponent('Estudiante', 'doctrine');
  * @method Estudiante          setEstEMail()                             Sets the current record's "est_e_mail" value
  * @method Estudiante          setEstHabilitado()                        Sets the current record's "est_habilitado" value
  * @method Estudiante          setEstUrlImagen()                         Sets the current record's "est_url_imagen" value
- * @method Estudiante          setPreIdentificacion()                    Sets the current record's "pre_identificacion" value
+ * @method Estudiante          setEstIdentificacion()                    Sets the current record's "est_identificacion" value
  * @method Estudiante          setUsuario()                              Sets the current record's "Usuario" value
  * @method Estudiante          setIdentificacion()                       Sets the current record's "Identificacion" value
  * @method Estudiante          setEstudianteCurso()                      Sets the current record's "EstudianteCurso" collection
@@ -136,7 +136,7 @@ abstract class BaseEstudiante extends sfDoctrineRecord
              'primary' => false,
              'length' => '',
              ));
-        $this->hasColumn('pre_identificacion', 'string', null, array(
+        $this->hasColumn('est_identificacion', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
