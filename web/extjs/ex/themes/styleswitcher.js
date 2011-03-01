@@ -16,6 +16,7 @@ function setActiveStyleSheet(title) {
             if (a.getAttribute("title") == title) a.disabled = false;
         }
     }
+    Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-'+title+'.css');
 }
 
 function getActiveStyleSheet() {
@@ -86,6 +87,6 @@ window.onunload = function (e) {
     createCookie("style", title, 365);
 }
 
-var cookie = readCookie("style");
-var title = cookie ? cookie : getPreferredStyleSheet();
-setActiveStyleSheet(title);
+//var cookie = readCookie("style");
+//var title = cookie ? cookie : getPreferredStyleSheet();
+//setActiveStyleSheet(title);

@@ -1,14 +1,14 @@
 var gestionar_profesores_datastore = new Ext.data.GroupingStore({
-		proxy: new Ext.data.HttpProxy({
-			url: getAbsoluteUrl('gestion_profesores', 'consultar_profesores'),
-			method: 'POST',
-			limit: 20,
-			start: 0
+		proxy:new Ext.data.HttpProxy({
+			url:getAbsoluteUrl('gestion_profesores', 'consultar_profesores'),
+			method:'POST',
+			limit:20,
+			start:0
 		}),
 		baseParams:{}, 
-		reader: new Ext.data.JsonReader({
-			root: 'results',
-			totalProperty: 'total'
+		reader:new Ext.data.JsonReader({
+			root:'results',
+			totalProperty:'total'
 			},[ 
 				{name:'pro_codigo_usuario'},
 				{name:'pro_codigo'},
@@ -29,36 +29,36 @@ gestionar_profesores_datastore.load();
 
 var gestionar_profesor_tipo_identificacion_datastore = new Ext.data.GroupingStore({
 	proxy: new Ext.data.HttpProxy({
-		url: getAbsoluteUrl('gestion_profesores', 'consultar_tipos_identificacion'),
-		method: 'POST'
+		url:getAbsoluteUrl('gestion_profesores', 'consultar_tipos_identificacion'),
+		method:'POST'
 	}),
 	reader: new Ext.data.JsonReader({
-		root: 'results',
-		totalProperty: 'total'
+		root:'results',
+		totalProperty:'total'
 	},
 	[ 
-		{name: 'ide_codigo'},
-		{name: 'ide_tipo'}
+		{name:'ide_codigo'},
+		{name:'ide_tipo'}
 	]),
 	sortInfo:{field: 'ide_tipo', direction: "ASC"}
 });
 gestionar_profesor_tipo_identificacion_datastore.load();
 
 var gestionar_profesor_tipo_identificacion_combo = new Ext.form.ComboBox({
-	name: 'ide_codigo',
-	fieldLabel: 'Tipo de identificaci&oacute;n',
-	width: 168,
-	mode: 'local',
-	store: gestionar_profesor_tipo_identificacion_datastore,
+	name:'ide_codigo',
+	fieldLabel:'Tipo de identificaci&oacute;n',
+	width:168,
+	mode:'local',
+	store:gestionar_profesor_tipo_identificacion_datastore,
 	hiddenName:'ide_codigo',
-	valueField: 'ide_codigo',
+	valueField:'ide_codigo',
 	displayField:'ide_tipo',
-	typeAhead: true,
-	triggerAction: 'all',
-	allowBlank: false,
-	forceSelection: true, 
-	selectOnFocus: true,
-	emptyText: 'seleccione uno'
+	typeAhead:true,
+	triggerAction:'all',
+	allowBlank:false,
+	forceSelection:true, 
+	selectOnFocus:true,
+	emptyText:'seleccione uno'
 });
 
 var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
@@ -73,53 +73,52 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 			columnWidth:0.7,
 			bodyStyle:'padding: 10px',
 			labelWidth:140,
-			defaults:{xtype:'textfield', /*labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'*/},
+			defaults:{xtype:'textfield'},
 			items:[
 				{
-					fieldLabel: 'Login',
+					fieldLabel:'Login',
 					anchor:'100%',
-					name: 'usu_login',
-					maskRe: /([a-zA-Z0-9\s]+)$/
+					name:'usu_login',
+					maskRe:/([a-zA-Z0-9\s]+)$/
 				},
 				{
 					xtype:'textfield',
-					fieldLabel: 'Password',
-					anchor: '100%',
-					allowBlank: false,
-					name: 'usu_password',
-					inputType: 'password',
+					fieldLabel:'Password',
+					anchor:'100%',
+					allowBlank:false,
+					name:'usu_password',
+					inputType:'password',
 				},
 				{
-					fieldLabel: 'Nombres',
+					fieldLabel:'Nombres',
 					anchor:'100%',
-					name: 'pro_nombres',
-					maskRe: /([a-zA-Z0-9\s]+)$/
+					name:'pro_nombres',
+					maskRe:/([a-zA-Z0-9\s]+)$/
 				},
 				{
-					fieldLabel: 'Apellidos',
+					fieldLabel:'Apellidos',
 					anchor:'100%',
-					name: 'pro_apellidos',
-					maskRe: /([a-zA-Z0-9\s]+)$/
+					name:'pro_apellidos',
+					maskRe:/([a-zA-Z0-9\s]+)$/
 				},
 				
 				{
-					fieldLabel: 'E-mail',
+					fieldLabel:'E-mail',
 					anchor:'100%',
-					name: 'pro_e-mail',
-					vtype: 'email'
+					name:'pro_e-mail',
+					vtype:'email'
 				},
 				{
-					fieldLabel: 'Tel&eacute;fono',
+					fieldLabel:'Tel&eacute;fono',
 					anchor:'100%',
-					name: 'pro_telefono',
-					invalidText: 'dff',
-					vtype: 'phone'
+					name:'pro_telefono',
+					vtype:'phone'
 				},
 				{
-					fieldLabel: 'Identificaci&oacute;n',
+					fieldLabel:'Identificaci&oacute;n',
 					anchor:'100%',
-					name: 'pro_identificacion',
-					maskRe: /([a-zA-Z0-9\s]+)$/
+					name:'pro_identificacion',
+					maskRe:/([a-zA-Z0-9\s]+)$/
 				},
 				gestionar_profesor_tipo_identificacion_combo,
 				{
@@ -130,16 +129,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 					name:'pro_url-imagen',
 					buttonText:'Examinar',
 					allowBlank:true,
-					///buttonCfg: {iconCls: 'archivo'}
-				}/*,
-				{
-					xtype:'checkbox',
-					fieldLabel:'Habilitado',
-					id:'pro_habilitado',
-					name:'pro_habilitado',
-					inputValue:'true',
-					allowBlank:false
-				}*/
+				}
 			]
 		},
 		{	
@@ -153,8 +143,7 @@ var gestionar_profesor_datos_profesor_panel = new Ext.FormPanel({
 					height:170,
 					width:150,
 					frame:true,
-					//bodyStyle:'text-align:center;margin-left:auto;',
-					html: '<img id="pro_image_foto" width=140 heigth=160 align=center />'
+					html:'<img id="pro_image_foto" width=140 heigth=160 align=center />'
 				}
 			]
 		},
@@ -192,10 +181,6 @@ var gestionar_profesores_window = new Ext.Window({
 gestionar_profesores_window.show();
 gestionar_profesores_window.hide();
 
-function aumentar_tamano_letra_3px(val, x, store){
-	return "<font size='3px'>"+val+"</font>";
-}
-
 function poner_pinta(val, x, store){
 	if(val != null){
 		return '<img src="../'+val+'" width=40 heigth=60 align=center />';
@@ -207,33 +192,33 @@ function poner_pinta(val, x, store){
 
 function si_no(val, x, store){
 	if(val == true){
-		return "<font  color=blue>Si</font>";
+		return "<font color=blue>Si</font>";
 	}
 	else{
-		return "<font  color=Red>No</font>";
+		return "<font color=Red>No</font>";
 	}
 }
 
 var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
-	defaults:{sortable: true, locked: false, resizable: true, align:'center', /*renderer:aumentar_tamano_letra_3px, css:'height:32px;'*/},
+	defaults:{sortable: true, locked: false, resizable: true, align:'center'},
 	columns:[
-		{header: "Imagen", width: 80, dataIndex: 'pro_url-image', renderer:poner_pinta},
-		{header: "Codigo de usuario", dataIndex: 'pro_codigo_usuario', hidden: true},
-		{header: "Login", width: 100, dataIndex: 'usu_login'},
-		{header: "Codigo", width: 100, dataIndex: 'pro_codigo'},
-		{id: 'col_pro_nombres', header: "Nombres", width: 200, dataIndex: 'pro_nombres'},
-		{header: "Apellidos", width: 200, dataIndex: 'pro_apellidos'},
-		{header: "E-mail", width: 200, dataIndex: 'pro_e-mail'},
-		{header: "Tel&eacute;fono", width: 90, dataIndex: 'pro_telefono'},
-		{header: "Habilitado", width: 85, dataIndex: 'pro_habilitado', renderer:si_no},
-		{header: "Identificaci&oacute;n", width: 120, dataIndex: 'pro_identificacion'}
+		{header: "<b>Imagen</b>", width: 80, dataIndex: 'pro_url-image', renderer:poner_pinta},
+		{header: "<b>Codigo de usuario</b>", dataIndex: 'pro_codigo_usuario', hidden: true},
+		{header: "<b>Login</b>", width: 100, dataIndex: 'usu_login'},
+		{header: "<b>Codigo</b>", width: 100, dataIndex: 'pro_codigo'},
+		{id: 'col_pro_nombres', header: "<b>Nombres</b>", width: 200, dataIndex: 'pro_nombres'},
+		{header: "<b>Apellidos</b>", width: 200, dataIndex: 'pro_apellidos'},
+		{header: "<b>E-mail</b>", width: 200, dataIndex: 'pro_e-mail'},
+		{header: "<b>Tel&eacute;fono</b>", width: 90, dataIndex: 'pro_telefono'},
+		{header: "<b>Habilitado</b>", width: 85, dataIndex: 'pro_habilitado', renderer:si_no},
+		{header: "<b>Identificaci&oacute;n</b>", width: 120, dataIndex: 'pro_identificacion'}
 	]
 });
 
 var codigo_profesor = '';
 
 var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
-	id: 'gestionar_profesores_gridpanel',
+	id:'gestionar_profesores_gridpanel',
 	title:'Lista de profesores',
 	columnLines:true,
 	width:800,
@@ -241,14 +226,13 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 	region:'center',
 	collapseMode:'mini',
 	stripeRows:true,
-	monitorResize: true,
-	//bodyStyle:'font-size:16px;',
-	frame: true,
-	ds: gestionar_profesores_datastore,
-	cm: gestionar_profesores_colmodel,
-	sm: new Ext.grid.RowSelectionModel({
-		singleSelect: true,
-		listeners: {
+	monitorResize:true,
+	frame:true,
+	ds:gestionar_profesores_datastore,
+	cm:gestionar_profesores_colmodel,
+	sm:new Ext.grid.RowSelectionModel({
+		singleSelect:true,
+		listeners:{
 			rowselect: function(sm, row, rec) {
 				gestionar_profesor_datos_profesor_panel.getForm().reset();
 				gestionar_profesor_datos_profesor_panel.getForm().loadRecord(rec);
@@ -261,9 +245,6 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 				else{
 					Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 				}
-				
-				//comboTipoId.setValue(rec.data.identificacion_nombre);
-				//codigo_usuario = rec.get('usuario_codigo');*/
 			}
 		}
 	}),
@@ -271,11 +252,11 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 	autoExpandMin:200,
 	autoHeight:true,
 	listeners:{
-		viewready: function(g) {
+		viewready:function(g) {
 			g.getSelectionModel().selectRow(0);
 		}
 	},
-	bbar: new Ext.PagingToolbar({
+	bbar:new Ext.PagingToolbar({
 		pageSize:10,
 		store:gestionar_profesores_datastore,
 		displayInfo:true,
@@ -404,7 +385,7 @@ var gestionar_profesores_panel = new Ext.Panel({
 					text:"Importar",
 					iconAlign:'top',
 					iconCls:'importar24',
-					scale: 'medium',
+					scale:'medium',
 					handler:function(){ 
 						gestionar_profesores_importar_window.show();
 					}
@@ -414,9 +395,8 @@ var gestionar_profesores_panel = new Ext.Panel({
 					iconAlign:'top',
 					iconCls:'exportar24',
 					scale: 'medium',
-					handler:function(){ 
-						//gestionar_profesores_exportar_profesor_function();
-						window.open (getAbsoluteUrl('gestion_profesores', 'exportar_profesor'),"csv");
+					handler:function(){
+						window.open(getAbsoluteUrl('gestion_profesores', 'exportar_profesor'),"csv");
 					}
 				},
 			]
@@ -429,7 +409,7 @@ var gestionar_profesores_panel = new Ext.Panel({
 					text:"Estoy perdido!",
 					iconAlign:'top',
 					iconCls:'ayuda24',
-					scale: 'medium'
+					scale:'medium'
 				}
 			]
 		}
@@ -437,31 +417,22 @@ var gestionar_profesores_panel = new Ext.Panel({
 	items:[
 		gestionar_profesores_gridpanel
 	],
-	/*listeners :{
-		bodyresize:function(p,w,h){
-		//heightCentro=(agPrinCentro.getSize().height)-68;
-		alert(6);
-		
-		//this.doLayout();
-		}
-	},*/
 	renderTo:'div_form_gestionar_profesores'
 });
 
 Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 
 var gestionar_profesor_importar_panel = new Ext.FormPanel({
-	width:500,
+	width:400,
 	frame:true,
 	fileUpload:true,
-	labelWidth:180,
-	defaults:{xtype:'textfield', /*labelStyle: 'font-size:14px;', height:30, style:'font-size:14px;'*/},
+	labelWidth:140,
+	defaults:{xtype:'textfield'},
 	items:[
 		{
 			xtype:'label',
 			html:'<b>Las columnas deben seguir el siguiente orden:</b><br><br><center>login;password;nombres;apellidos;e-mail</center><br><br>',
-			height:30,
-			anchor:'100%'
+			height:30
 		},
 		{
 			xtype:'fileuploadfield', 
@@ -476,16 +447,14 @@ var gestionar_profesor_importar_panel = new Ext.FormPanel({
 	buttons:[
 		{
 			text:'Subir',
-			iconCls:'guardar24',
-			scale: 'medium',
+			iconCls:'guardar16',
 			handler:function(){
 				gestionar_profesores_importar_profesor_function();
 			}
 		},
 		{
 			text:'Cancelar',
-			iconCls:'cancelar24',
-			scale: 'medium',
+			iconCls:'cancelar16',
 			handler:function(){
 				gestionar_profesores_importar_window.hide();
 			}
