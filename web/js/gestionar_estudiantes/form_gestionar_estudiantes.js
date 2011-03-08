@@ -73,7 +73,7 @@ var gestionar_estudiantes_datos_estudiante_panel = new Ext.FormPanel({
 			columnWidth:0.7,
 			bodyStyle:'padding: 10px',
 			labelWidth:150,
-			defaults:{xtype:'textfield', labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'},
+			defaults:{xtype:'textfield'/*, labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'*/},
 			items:[
 				{
 					fieldLabel: 'Login',
@@ -162,9 +162,8 @@ var gestionar_estudiantes_datos_estudiante_panel = new Ext.FormPanel({
 	],
 	buttons:[
 		{
-			text:'<font size=3px>Guardar</font>',
-			iconCls:'guardar32',
-			scale: 'large',
+			text:'Guardar',
+			iconCls:'guardar16',
 			handler:function(){
 				if(codigo_estudiante == ''){
 					gestionar_estudiantes_guardar_estudiante_function();
@@ -175,9 +174,8 @@ var gestionar_estudiantes_datos_estudiante_panel = new Ext.FormPanel({
 			}
 		},
 		{
-			text:'<font size=3px>Cancelar</font>',
-			iconCls:'cancelar32',
-			scale: 'large',
+			text:'Cancelar',
+			iconCls:'cancelar16',
 			handler:function(){
 				gestionar_estudiantes_window.hide();
 			}
@@ -218,18 +216,18 @@ function si_no(val, x, store){
 }
 
 var gestionar_estudiantes_colmodel = new Ext.grid.ColumnModel({
-	defaults:{sortable: true, locked: false, resizable: true, align:'center', renderer:aumentar_tamano_letra_3px, css:'height:32px;'},
+	defaults:{sortable: true, locked: false, resizable: true, align:'center'/*, renderer:aumentar_tamano_letra_3px, css:'height:32px;'*/},
 	columns:[
-		{header: "<font size='3px'>Pinta</font>", width: 80, dataIndex: 'est_url-image', renderer:poner_pinta},
-		{header: "<font size='3px'>Codigo de usuario</font>", dataIndex: 'est_codigo_usuario', hidden: true},
-		{header: "<font size='3px'>Login</font>", width: 100, dataIndex: 'usu_login'},
-		{header: "<font size='3px'>Codigo</font>", width: 100, dataIndex: 'est_codigo'},
-		{id: 'col_est_nombres', header: "<font size='3px'>Nombres</font>", width: 200, dataIndex: 'est_nombres'},
-		{header: "<font size='3px'>Apellidos</font>", width: 200, dataIndex: 'est_apellidos'},
-		{header: "<font size='3px'>E-mail</font>", width: 200, dataIndex: 'est_e-mail'},
-		{header: "<font size='3px'>Tel&eacute;fono</font>", width: 90, dataIndex: 'est_telefono'},
-		{header: "<font size='3px'>Habilitado</font>", width: 85, dataIndex: 'est_habilitado', renderer:si_no},
-		{header: "<font size='3px'>Identificaci&oacute;n</font>", width: 120, dataIndex: 'est_identificacion'}
+		{header: "<b>Foto</b>", width: 80, dataIndex: 'est_url-image', renderer:poner_pinta},
+		{header: "<b>Codigo de usuario</b>", dataIndex: 'est_codigo_usuario', hidden: true},
+		{header: "<b>Login</b>", width: 100, dataIndex: 'usu_login'},
+		{header: "<b>Codigo</b>", width: 100, dataIndex: 'est_codigo'},
+		{id: 'col_est_nombres', header: "<b>Nombres</b>", width: 200, dataIndex: 'est_nombres'},
+		{header: "<b>Apellidos</b>", width: 200, dataIndex: 'est_apellidos'},
+		{header: "<b>E-mail</b>", width: 200, dataIndex: 'est_e-mail'},
+		{header: "<b>Tel&eacute;fono</b>", width: 90, dataIndex: 'est_telefono'},
+		{header: "<b>Habilitado", width: 85, dataIndex: 'est_habilitado', renderer:si_no},
+		{header: "<b>Identificaci&oacute;n</b>", width: 120, dataIndex: 'est_identificacion'}
 	]
 });
 
@@ -253,8 +251,8 @@ var gestionar_estudiantes_gridpanel = new Ext.grid.GridPanel({
 		singleSelect: true,
 		listeners: {
 			rowselect: function(sm, row, rec) {
-				gestionar_estudiante_datos_estudiantes_panel.getForm().reset();
-				gestionar_estudiante_datos_estudiantes_panel.getForm().loadRecord(rec);
+				gestionar_estudiantes_datos_estudiante_panel.getForm().reset();
+				gestionar_estudiantes_datos_estudiante_panel.getForm().loadRecord(rec);
 				
 				codigo_estudiante = rec.get('est_codigo');
 				
@@ -296,13 +294,13 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 	tbar:[
 		{
 			xtype:'buttongroup',
-			title:"<font size='3px'>Gesti&oacute;n</font>",
+			title:"Gesti&oacute;n",
 			items:[
 				{
-					text:"<font size='3px'>Agregar</font>",
+					text:"Agregar",
 					iconAlign:'top',
-					iconCls:'agregar_estudiante32',
-					scale:'large',
+					iconCls:'agregar_estudiante24',
+					scale:'medium',
 					handler:function(){
 						codigo_estudiante = '';
 						gestionar_estudiantes_datos_estudiante_panel.getForm().reset();
@@ -312,11 +310,12 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					}
 				},
 				{
-					text:"<font size='3px'>Modificar</font>",
+					text:"Modificar",
 					iconAlign:'top',
-					iconCls:'modificar_estudiante32',
-					scale:'large',
+					iconCls:'modificar_estudiante24',
+					scale:'medium',
 					handler:function(){
+						alert('asdfsd'+codigo_estudiante);
 						if(codigo_estudiante != ''){
 							gestionar_estudiantes_window.show();
 						}
@@ -326,10 +325,10 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					}
 				},
 				{
-					text:"<font size='3px'>Habilitar</font>",
+					text:"Habilitar",
 					iconAlign:'top',
-					iconCls:'habilitar_estudiante32',
-					scale:'large',
+					iconCls:'habilitar_estudiante24',
+					scale:'medium',
 					handler:function(){
 						if(codigo_estudiante != ''){
 							gestionar_estudiantes_habilitar_estudiante_function();
@@ -340,10 +339,10 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					}
 				},
 				{
-					text:"<font size='3px'>Desabilitar</font>",
+					text:"Desabilitar",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante32',
-					scale:'large',
+					iconCls:'desabilitar_estudiante24',
+					scale:'medium',
 					handler:function(){
 						if(codigo_estudiante != ''){
 							gestionar_estudiantes_desabilitar_estudiante_function();
@@ -357,14 +356,14 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 		},
 		{
 			xtype:'buttongroup',
-			title:"<font size='3px'>Filtro</font>",
+			title:"Filtro",
 			items:[
 				{
 					xtype:'splitbutton',
-					text:"<font size='3px'>Buscar</font>",
+					text:"Buscar",
 					iconAlign:'top',
-					iconCls:'buscar32',
-					scale:'large',
+					iconCls:'buscar24',
+					scale:'medium',
 					colspan:1,
 					menu:[
 						{xtype: 'textfield', iconCls: 'buscar', id: 'busqueda_estudiante', emptyText: 'buscar'},
@@ -401,22 +400,22 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 		},
 		{
 			xtype:'buttongroup',
-			title:"<font size='3px'>CSV</font>",
+			title:"CSV",
 			items:[
 				{
-					text:"<font size='3px'>Importar</font>",
+					text:"Importar",
 					iconAlign:'top',
-					iconCls:'importar32',
-					scale: 'large',
+					iconCls:'importar24',
+					scale: 'medium',
 					handler:function(){ 
 						gestionar_estudiantes_importar_window.show();
 					}
 				},
 				{
-					text:"<font size='3px'>Exportar</font>",
+					text:"Exportar",
 					iconAlign:'top',
-					iconCls:'exportar32',
-					scale: 'large',
+					iconCls:'exportar24',
+					scale: 'medium',
 					handler:function(){ 
 						//gestionar_estudiantes_exportar_estudiante_function();
 						window.open (getAbsoluteUrl('gestion_estudiantes', 'exportar_estudiante'),"csv");
@@ -426,13 +425,13 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 		},
 		{
 			xtype:'buttongroup',
-			title:"<font size='3px'>Ayuda</font>",
+			title:"Ayuda",
 			items:[
 				{
-					text:"<font size='3px'>Estoy perdido!</font>",
+					text:"Estoy perdido!",
 					iconAlign:'top',
-					iconCls:'ayuda32',
-					scale: 'large'
+					iconCls:'ayuda24',
+					scale: 'medium'
 				}
 			]
 		}

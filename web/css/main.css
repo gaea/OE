@@ -8,20 +8,28 @@
 .desabilitar_profesor16{ background-image:url(../images/desabilitar_profesor16.png) !important;}
 .habilitar_profesor32{ background-image:url(../images/habilitar_profesor32.png) !important;}
 .habilitar_profesor24{ background-image:url(../images/habilitar_profesor24.png) !important;}
+
 .agregar_estudiante32{ background-image:url(../images/agregar_estudiante32.png) !important;}
+.agregar_estudiante24{ background-image:url(../images/agregar_estudiante24.png) !important;}
 .modificar_estudiante32{ background-image:url(../images/modificar_estudiante32.png) !important;}
+.modificar_estudiante24{ background-image:url(../images/modificar_estudiante24.png) !important;}
 .desabilitar_estudiante32{ background-image:url(../images/desabilitar_estudiante32.png) !important;}
+.desabilitar_estudiante24{ background-image:url(../images/desabilitar_estudiante24.png) !important;}
 .habilitar_estudiante32{ background-image:url(../images/habilitar_estudiante32.png) !important;}
+.habilitar_estudiante24{ background-image:url(../images/habilitar_estudiante24.png) !important;}
+
 .ayuda32{ background-image:url(../images/ayuda32.png) !important;}
 .ayuda24{ background-image:url(../images/ayuda24.png) !important;}
 .texto_buscar{ background-image:url(../images/texto_buscar.png) !important;}
 .buscar32{ background-image:url(../images/buscar32.png) !important;}
 .buscar24{ background-image:url(../images/buscar24.png) !important;}
 .buscar_por{ background-image:url(../images/buscar_por.png) !important;}
+
 .importar32{ background-image:url(../images/importar32.png) !important;}
 .importar24{ background-image:url(../images/importar24.png) !important;}
 .exportar32{ background-image:url(../images/exportar32.png) !important;}
 .exportar24{ background-image:url(../images/exportar24.png) !important;}
+
 .guardar32{ background-image:url(../images/guardar32.png) !important;}
 .guardar24{ background-image:url(../images/guardar24.png) !important;}
 .guardar16{ background-image:url(../images/guardar16.png) !important;}

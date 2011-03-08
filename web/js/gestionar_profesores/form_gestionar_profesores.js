@@ -202,7 +202,7 @@ function si_no(val, x, store){
 var gestionar_profesores_colmodel = new Ext.grid.ColumnModel({
 	defaults:{sortable: true, locked: false, resizable: true, align:'center'},
 	columns:[
-		{header: "<b>Imagen</b>", width: 80, dataIndex: 'pro_url-image', renderer:poner_pinta},
+		{header: "<b>Foto</b>", width: 80, dataIndex: 'pro_url-image', renderer:poner_pinta},
 		{header: "<b>Codigo de usuario</b>", dataIndex: 'pro_codigo_usuario', hidden: true},
 		{header: "<b>Login</b>", width: 100, dataIndex: 'usu_login'},
 		{header: "<b>Codigo</b>", width: 100, dataIndex: 'pro_codigo'},
