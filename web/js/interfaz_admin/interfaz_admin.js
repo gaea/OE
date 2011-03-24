@@ -41,6 +41,12 @@ var viewport = new Ext.Viewport({
 						autoLoad: {url: getAbsoluteUrl('gestion_estudiantes', 'index'), scripts: true, scope: this}
 					},
 					{
+						title: 'Gestionar Cursos',
+						tabTip: 'Gestionar Cursos',
+						autoScroll: true,
+						autoLoad: {url: getAbsoluteUrl('gestion_cursos', 'index'), scripts: true, scope: this}
+					},
+					{
 						title:'Gestionar Plugins',
 						tabTip:'Gestionar Plugins',
 						autoScroll:true,
