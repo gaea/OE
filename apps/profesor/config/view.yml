@@ -6,15 +6,15 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
+    title:        Open Evaluation (Profesor)
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    [main.css, ../extjs/resources/css/ext-all.css, ../extjs/resources/css/xtheme-blue.css, ../extjs/ex/examples/examples.css, ../extjs/ex/fileuploadfield/css/fileuploadfield.css]
 
-  javascripts:    []
+  javascripts:    [../extjs/adapter/ext/ext-base.js, ../extjs/ext-all-debug.js, ../extjs/src/locale/ext-lang-es.js, ../extjs/ex/examples/examples.js, ../extjs/examples/ux/Spinner.js, ../extjs/examples/ux/SpinnerField.js, ../extjs/ex/fileuploadfield/FileUploadField.js, variablesgenerales.js, funcionesgenerales.js, ../extjs/ex/moreVtypes.js]
 
   has_layout:     true
   layout:         layout

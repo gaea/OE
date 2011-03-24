@@ -5,6 +5,12 @@
     <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <script type="text/javascript">
+		var urlWeb = '<?php echo (url_for('default/index')."../"); ?>';
+		urlPrefix = '<?php echo url_for('default/index'); ?>';
+	</script>
+	
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
