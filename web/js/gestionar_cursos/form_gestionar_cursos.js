@@ -1,28 +1,156 @@
 var gestionar_cursos_datastore = new Ext.data.GroupingStore({
-		proxy:new Ext.data.HttpProxy({
-			url:getAbsoluteUrl('gestion_cursos', 'consultar_cursos'),
-			method:'POST',
-			limit:20,
-			start:0
-		}),
-		baseParams:{}, 
-		reader:new Ext.data.JsonReader({
-			root:'results',
-			totalProperty:'total'
-			},[ 
-				{name:'cur_codigo'},
-				{name:'cur_codigo_profesor'},
-				{name:'cur_nombre_profesor'},
-				{name:'cur_nombre'},
-				{name:'cur_fecha_creacion'},
-				{name:'cur_habilitado'}
-			]),
-		sortInfo:{field: 'cur_codigo', direction: "ASC"}
-	});
-gestionar_cursos_datastore.load();
+	proxy:new Ext.data.HttpProxy({
+		url:getAbsoluteUrl('gestion_cursos', 'consultar_cursos'),
+		method:'POST',
+		limit:20,
+		start:0
+	}),
+	baseParams:{}, 
+	reader:new Ext.data.JsonReader({
+		root:'results',
+		totalProperty:'total'
+		},[ 
+			{name:'cur_codigo'},
+			{name:'cur_codigo_profesor'},
+			{name:'cur_nombre_profesor'},
+			{name:'cur_nombre'},
+			{name:'cur_fecha_creacion'},
+			{name:'cur_habilitado'}
+		]),
+	sortInfo:{field: 'cur_codigo', direction: "ASC"}
+});
+//gestionar_cursos_datastore.load();
+
+var gestionar_cursos_estudiantes_curso_datastore = new Ext.data.GroupingStore({
+	proxy:new Ext.data.HttpProxy({
+		url:getAbsoluteUrl('gestion_cursos', 'consultar_estudiantes_cursos'),
+		method:'POST',
+		limit:20,
+		start:0
+	}),
+	baseParams:{}, 
+	reader:new Ext.data.JsonReader({
+		root:'results',
+		totalProperty:'total'
+		},[
+			{name:'pro_codigo'},
+			{name:'pro_nombres'},
+			{name:'pro_apellidos'}
+		]),
+	sortInfo:{field: 'pro_codigo', direction: "ASC"}
+});
+//gestionar_cursos_datastore.load();
+
+var gestionar_curso_estudiantes_curso_gridpanel = new Ext.grid.GridPanel({
+	id:'gestionar_curso_estudiantes_curso_gridpanel',
+	title:'Estudiantes del Curso',
+	columnLines:true,
+	height:350,
+	autoWidth:true,
+	region:'center',
+	collapseMode:'mini',
+	stripeRows:true,
+	monitorResize:true,
+	frame:true,
+	ds:gestionar_cursos_estudiantes_curso_datastore,
+	cm:new Ext.grid.ColumnModel({
+		defaults:{sortable: true, locked: false, resizable: true, align:'center'},
+		columns:[
+			{header: "<b>C&oacute;digo</b>", width: 60, dataIndex: 'pro_codigo'},
+			{header: "<b>Nombres</b>", width: 150, dataIndex: 'pro_nombres'},
+			{header: "<b>Apellidos</b>", width: 150, dataIndex: 'pro_apellidos'}
+		]
+	}),
+	sm:new Ext.grid.RowSelectionModel({
+		singleSelect:true,
+		listeners:{
+			rowselect: function(sm, row, rec) {
+
+			}
+		}
+	}),
+	autoExpandMin:200,
+	listeners:{
+		viewready:function(g) {
+			g.getSelectionModel().selectRow(0);
+		}
+	},
+	bbar:new Ext.PagingToolbar({
+		pageSize:10,
+		store:gestionar_cursos_datastore,
+		displayInfo:true,
+		displayMsg:'cursos {0} - {1} de {2}',
+		emptyMsg:"No hay estudiantes en el curso"
+	}),
+	view: new Ext.grid.GroupingView()
+});
+
+var gestionar_cursos_estudiantes_datastore = new Ext.data.GroupingStore({
+	proxy:new Ext.data.HttpProxy({
+		url:getAbsoluteUrl('gestion_cursos', 'consultar_estudiantes'),
+		method:'POST',
+		limit:20,
+		start:0
+	}),
+	baseParams:{}, 
+	reader:new Ext.data.JsonReader({
+		root:'results',
+		totalProperty:'total'
+		},[
+			{name:'pro_codigo'},
+			{name:'pro_nombres'},
+			{name:'pro_apellidos'}
+		]),
+	sortInfo:{field: 'pro_codigo', direction: "ASC"}
+});
+//gestionar_cursos_estudiantes_datastore.load();
+
+var gestionar_curso_estudiantes_gridpanel = new Ext.grid.GridPanel({
+	id:'gestionar_curso_estudiantes_gridpanel',
+	title:'Todos los estudiantes',
+	columnLines:true,
+	height:350,
+	autoWidth:true,
+	region:'center',
+	collapseMode:'mini',
+	stripeRows:true,
+	monitorResize:true,
+	frame:true,
+	ds:gestionar_cursos_estudiantes_datastore,
+	cm:new Ext.grid.ColumnModel({
+		defaults:{sortable: true, locked: false, resizable: true, align:'center'},
+		columns:[
+			{header: "<b>C&oacute;digo</b>", width: 60, dataIndex: 'pro_codigo'},
+			{header: "<b>Nombres</b>", width: 150, dataIndex: 'pro_nombres'},
+			{header: "<b>Apellidos</b>", width: 150, dataIndex: 'pro_apellidos'}
+		]
+	}),
+	sm:new Ext.grid.RowSelectionModel({
+		singleSelect:true,
+		listeners:{
+			rowselect: function(sm, row, rec) {
+
+			}
+		}
+	}),
+	autoExpandMin:200,
+	listeners:{
+		viewready:function(g) {
+			g.getSelectionModel().selectRow(0);
+		}
+	},
+	bbar:new Ext.PagingToolbar({
+		pageSize:10,
+		store:gestionar_cursos_datastore,
+		displayInfo:true,
+		displayMsg:'cursos {0} - {1} de {2}',
+		emptyMsg:"No hay estudiantes"
+	}),
+	view: new Ext.grid.GroupingView()
+});
 
 var gestionar_curso_datos_curso_panel = new Ext.FormPanel({
-	width:600,
+	width:800,
 	frame:true,
 	layout:'column',
 	items:[
@@ -31,34 +159,66 @@ var gestionar_curso_datos_curso_panel = new Ext.FormPanel({
 			layout:'form',
 			columnWidth:1,
 			bodyStyle:'padding: 10px',
-			labelWidth:140,
+			labelWidth:120,
 			defaults:{xtype:'textfield'},
 			items:[
 				{
-					fieldLabel:'Codigo',
+					fieldLabel:'C&oacute;digo',
 					readOnly:true,
-					anchor:'100%',
 					name:'cur_codigo',
 					maskRe:/([a-zA-Z0-9\s]+)$/
 				},
 				{
 					fieldLabel:'Nombre',
-					anchor:'100%',
+					width:300,
 					allowBlank:false,
 					name:'cur_nombre',
 					maskRe:/([a-zA-Z0-9\s]+)$/
 				},
 				{
+					xtype: 'compositefield',
 					fieldLabel:'Profesor',
-					anchor:'100%',
-					name:'cur_nombre_profesor',
-					maskRe:/([a-zA-Z0-9\s]+)$/
+					//anchor:'100%',
+					//defaults: { flex: 1 },
+					items:[
+						{
+							xtype:'textfield',
+							width:300,
+							name:'cur_nombre_profesor',
+							maskRe:/([a-zA-Z0-9\s]+)$/
+						},
+						{
+							xtype:'button',
+							width:100,
+							text:'seleccionar profesor',
+							handler:function(){
+								gestionar_curso_seleccionar_profesor_window.show();
+							}
+						}
+					]
+					
 				},
 				{
 					fieldLabel:'Fecha de creaci&oacute;n',
-					anchor:'100%',
 					name:'cur_fecha_creacion',
 					maskRe:/([a-zA-Z0-9\s]+)$/
+				}
+			]
+		},
+		{
+			xtype:'panel',
+			columnWidth:1,
+			layout:'column',
+			items:[
+				{
+					xtype:'panel',
+					columnWidth:0.5,
+					items:[gestionar_curso_estudiantes_curso_gridpanel]
+				},
+				{
+					xtype:'panel',
+					columnWidth:0.5,
+					items:[gestionar_curso_estudiantes_gridpanel]
 				}
 			]
 		}
@@ -86,6 +246,83 @@ var gestionar_curso_datos_curso_panel = new Ext.FormPanel({
 	]
 });
 
+var gestionar_cursos_seleccionar_profesor_datastore = new Ext.data.GroupingStore({
+	proxy:new Ext.data.HttpProxy({
+		url:getAbsoluteUrl('gestion_cursos', 'consultar_profesores'),
+		method:'POST',
+		limit:20,
+		start:0
+	}),
+	baseParams:{}, 
+	reader:new Ext.data.JsonReader({
+		root:'results',
+		totalProperty:'total'
+		},[
+			{name:'pro_codigo'},
+			{name:'pro_nombres'},
+			{name:'pro_apellidos'}
+		]),
+	sortInfo:{field: 'pro_codigo', direction: "ASC"}
+});
+//gestionar_cursos_datastore.load();
+
+var gestionar_curso_seleccionar_profesor_gridpanel = new Ext.grid.GridPanel({
+	id:'gestionar_curso_seleccionar_profesor_gridpanel',
+	columnLines:true,
+	width:550,
+	autoWidth:true,
+	region:'center',
+	collapseMode:'mini',
+	stripeRows:true,
+	monitorResize:true,
+	frame:true,
+	ds:gestionar_cursos_seleccionar_profesor_datastore,
+	cm:new Ext.grid.ColumnModel({
+		defaults:{sortable: true, locked: false, resizable: true, align:'center'},
+		columns:[
+			{header: "<b>Codigo</b>", width: 100, dataIndex: 'pro_codigo'},
+			{header: "<b>Nombres</b>", width: 200, dataIndex: 'pro_nombres'},
+			{header: "<b>Apellidos</b>", width: 200, dataIndex: 'pro_apellidos'}
+		]
+	}),
+	sm:new Ext.grid.RowSelectionModel({
+		singleSelect:true,
+		listeners:{
+			rowselect: function(sm, row, rec) {
+
+			}
+		}
+	}),
+	autoExpandMin:200,
+	autoHeight:true,
+	listeners:{
+		viewready:function(g) {
+			g.getSelectionModel().selectRow(0);
+		}
+	},
+	bbar:new Ext.PagingToolbar({
+		pageSize:10,
+		store:gestionar_cursos_datastore,
+		displayInfo:true,
+		displayMsg:'cursos {0} - {1} de {2}',
+		emptyMsg:"No hay profesores"
+	}),
+	view: new Ext.grid.GroupingView()
+});
+
+var gestionar_curso_seleccionar_profesor_window = new Ext.Window({
+	title:'Seleccionar profesor',
+	modal:true,
+	closeAction:'hide',
+	forceLayout:true,
+	items:[gestionar_curso_seleccionar_profesor_gridpanel]
+});
+gestionar_curso_seleccionar_profesor_window.show();
+gestionar_curso_seleccionar_profesor_window.hide();
+
+
+/////***************************//////////////////////
+
 var gestionar_cursos_window = new Ext.Window({
 	title:'Datos del curso',
 	modal:true,
@@ -95,15 +332,6 @@ var gestionar_cursos_window = new Ext.Window({
 });
 gestionar_cursos_window.show();
 gestionar_cursos_window.hide();
-
-function poner_pinta(val, x, store){
-	if(val != null){
-		return '<img src="../'+val+'" width=40 heigth=60 align=center />';
-	}
-	else{
-		return '<img src="../images/no_user_image.png" width=50 heigth=80 align=center />';
-	}
-}
 
 function si_no(val, x, store){
 	if(val == true){
@@ -117,14 +345,10 @@ function si_no(val, x, store){
 var gestionar_cursos_colmodel = new Ext.grid.ColumnModel({
 	defaults:{sortable: true, locked: false, resizable: true, align:'center'},
 	columns:[
-		{header: "<b>Foto</b>", width: 80, dataIndex: 'pro_url-image', renderer:poner_pinta},
-		{header: "<b>Codigo de usuario</b>", dataIndex: 'pro_codigo_usuario', hidden: true},
-		{header: "<b>Login</b>", width: 100, dataIndex: 'usu_login'},
-		{header: "<b>Codigo</b>", width: 100, dataIndex: 'pro_codigo'},
-		{id: 'col_pro_nombres', header: "<b>Nombres</b>", width: 200, dataIndex: 'pro_nombres'},
-		{header: "<b>Apellidos</b>", width: 200, dataIndex: 'pro_apellidos'},
-		{header: "<b>E-mail</b>", width: 200, dataIndex: 'pro_e-mail'},
-		{header: "<b>Tel&eacute;fono</b>", width: 90, dataIndex: 'pro_telefono'},
+		{header: "<b>C&oacute;digo</b>", width: 100, dataIndex: 'pro_codigo'},
+		{id: 'col_pro_nombres', header: "<b>Nombre</b>", width: 200, dataIndex: 'pro_nombres'},
+		{header: "<b>Profesor</b>", width: 200, dataIndex: 'pro_e-mail'},
+		{header: "<b>C&oacute;digo Profesor</b>", width: 90, dataIndex: 'pro_telefono'},
 		{header: "<b>Habilitado</b>", width: 85, dataIndex: 'pro_habilitado', renderer:si_no},
 		{header: "<b>Identificaci&oacute;n</b>", width: 120, dataIndex: 'pro_identificacion'}
 	]
@@ -197,11 +421,7 @@ var gestionar_cursos_panel = new Ext.Panel({
 					iconCls:'agregar_curso24',
 					scale:'medium',
 					handler:function(){
-						codigo_curso = '';
-						gestionar_curso_datos_curso_panel.getForm().reset();
-						Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 						gestionar_cursos_window.show();
-						gestionar_cursos_gridpanel.getSelectionModel().clearSelections();
 					}
 				},
 				{
@@ -334,8 +554,6 @@ var gestionar_cursos_panel = new Ext.Panel({
 	],
 	renderTo:'div_form_gestionar_cursos'
 });
-
-Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
 
 var gestionar_curso_importar_panel = new Ext.FormPanel({
 	width:400,
