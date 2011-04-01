@@ -58,7 +58,8 @@ var viewport = new Ext.Viewport({
 						title:'Temas',
 						autoScroll:true,
 						height:600,
-						autoLoad:{url: '../extjs/ex/themes/index.php', scripts: true}
+						//autoLoad:{url: '../extjs/ex/themes/index.php', scripts: true}
+						autoLoad:{url: '../js/themes/themes.html', scripts: true}
 						//html: '<iframe style="overflow:auto;width:100%;height:100%;" frameborder="0"  src="../extjs/ex/themes/index.html"></iframe>'
 					},
 					{

@@ -1,6 +1,6 @@
 var gestionar_estudiantes_panel = new Ext.Panel({
 	layout:'border',
-	height:window.innerHeight-112,
+	
 	monitorResize: true,
 	tbar:[
 		{
@@ -13,7 +13,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'agregar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-access.css');
 					}
 				},
 				{
@@ -22,7 +22,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'modificar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-black.css');
 					}
 				},
 				{
@@ -31,7 +31,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'habilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-blue.css');
 					}
 				},
 				{
@@ -40,7 +40,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-chocolate.css');
 					}
 				},
 				{
@@ -49,7 +49,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-gray.css');
 					}
 				},
 				{
@@ -58,7 +58,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-green.css');
 					}
 				},
 				{
@@ -67,7 +67,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-indigo.css');
 					}
 				},
 				{
@@ -76,7 +76,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-midnight.css');
 					}
 				},
 				{
@@ -85,7 +85,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-olive.css');
 					}
 				},
 				{
@@ -94,7 +94,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-peppermint.css');
 					}
 				},
 				{
@@ -103,7 +103,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-purple.css');
 					}
 				},
 				{
@@ -112,7 +112,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-quizz.css');
 					}
 				},
 				{
@@ -121,7 +121,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-red.css');
 					}
 				},
 				{
@@ -130,7 +130,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-silverCherry.css');
 					}
 				},
 				{
@@ -139,7 +139,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-slate.css');
 					}
 				},
 				{
@@ -148,7 +148,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-slickness.css');
 					}
 				},
 				{
@@ -157,7 +157,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-univalle.css');
 					}
 				},
 				{
@@ -166,7 +166,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'desabilitar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						
+						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-vista.css');
 					}
 				}
 			]
@@ -175,7 +175,9 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 	items:[
 		{
 			xtype:'panel',
-			
+			region:'center',
+			html:'themes',
+			height:window.innerHeight-112,
 		}
 	],
 	renderTo:'div_form_themes'

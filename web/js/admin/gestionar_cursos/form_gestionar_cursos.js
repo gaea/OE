@@ -45,7 +45,7 @@ var gestionar_curso_estudiantes_curso_gridpanel = new Ext.grid.GridPanel({
 	id:'gestionar_curso_estudiantes_curso_gridpanel',
 	title:'Estudiantes del Curso',
 	columnLines:true,
-	height:350,
+	height:450,
 	autoWidth:true,
 	region:'center',
 	collapseMode:'mini',
@@ -109,7 +109,7 @@ var gestionar_curso_estudiantes_gridpanel = new Ext.grid.GridPanel({
 	id:'gestionar_curso_estudiantes_gridpanel',
 	title:'Todos los estudiantes',
 	columnLines:true,
-	height:350,
+	height:450,
 	autoWidth:true,
 	region:'center',
 	collapseMode:'mini',
@@ -184,8 +184,9 @@ var gestionar_curso_datos_curso_panel = new Ext.FormPanel({
 						{
 							xtype:'textfield',
 							width:300,
-							name:'cur_nombre_profesor',
-							maskRe:/([a-zA-Z0-9\s]+)$/
+							readOnly:true,
+							id:'id_gestionar_curso_nombre_profesor_textfield',
+							name:'cur_nombre_profesor'
 						},
 						{
 							xtype:'button',
@@ -199,9 +200,17 @@ var gestionar_curso_datos_curso_panel = new Ext.FormPanel({
 					
 				},
 				{
+					xtype:'textfield',
+					fieldLabel:'Codigo del profesor',
+					width:300,
+					readOnly:true,
+					id:'id_gestionar_curso_codigo_profesor_textfield',
+					name:'cur_codigo_profesor'
+				},
+				{
 					fieldLabel:'Fecha de creaci&oacute;n',
 					name:'cur_fecha_creacion',
-					maskRe:/([a-zA-Z0-9\s]+)$/
+					readOnly:true,
 				}
 			]
 		},
@@ -260,17 +269,19 @@ var gestionar_cursos_seleccionar_profesor_datastore = new Ext.data.GroupingStore
 		},[
 			{name:'pro_codigo'},
 			{name:'pro_nombres'},
-			{name:'pro_apellidos'}
+			{name:'pro_apellidos'},
+			{name:'pro_identificacion'}
 		]),
 	sortInfo:{field: 'pro_codigo', direction: "ASC"}
 });
-//gestionar_cursos_datastore.load();
+gestionar_cursos_seleccionar_profesor_datastore.load();
 
 var gestionar_curso_seleccionar_profesor_gridpanel = new Ext.grid.GridPanel({
 	id:'gestionar_curso_seleccionar_profesor_gridpanel',
 	columnLines:true,
-	width:550,
-	autoWidth:true,
+	width:650,
+	//autoWidth:true,
+	height:400,
 	region:'center',
 	collapseMode:'mini',
 	stripeRows:true,
@@ -282,27 +293,47 @@ var gestionar_curso_seleccionar_profesor_gridpanel = new Ext.grid.GridPanel({
 		columns:[
 			{header: "<b>Codigo</b>", width: 100, dataIndex: 'pro_codigo'},
 			{header: "<b>Nombres</b>", width: 200, dataIndex: 'pro_nombres'},
-			{header: "<b>Apellidos</b>", width: 200, dataIndex: 'pro_apellidos'}
+			{header: "<b>Apellidos</b>", width: 200, dataIndex: 'pro_apellidos'},
+			{header: "<b>Identificaci&oacute;n</b>", width: 200, dataIndex: 'pro_identificacion'}
 		]
 	}),
 	sm:new Ext.grid.RowSelectionModel({
 		singleSelect:true,
 		listeners:{
 			rowselect: function(sm, row, rec) {
-
+				Ext.getCmp('id_gestionar_curso_nombre_profesor_textfield').setValue(rec.get('pro_nombres')+' '+rec.get('pro_apellidos'));
+				Ext.getCmp('id_gestionar_curso_codigo_profesor_textfield').setValue(rec.get('pro_codigo'));
+				///alert('select');
 			}
 		}
 	}),
 	autoExpandMin:200,
-	autoHeight:true,
+	//autoHeight:true,
 	listeners:{
 		viewready:function(g) {
 			g.getSelectionModel().selectRow(0);
 		}
 	},
+	tbar: [
+		{
+			xtype:'label',
+			text:'Filtro:'
+		},
+		{
+			xtype:'textfield',
+			id:'id_gestionar_curso_seleccionar_profesor_textfield'
+		},
+		{
+			xtype:'button',
+			text:'buscar',
+			handler:function(){
+				
+			}
+		}
+	],
 	bbar:new Ext.PagingToolbar({
 		pageSize:10,
-		store:gestionar_cursos_datastore,
+		store:gestionar_cursos_seleccionar_profesor_datastore,
 		displayInfo:true,
 		displayMsg:'cursos {0} - {1} de {2}',
 		emptyMsg:"No hay profesores"
@@ -345,12 +376,12 @@ function si_no(val, x, store){
 var gestionar_cursos_colmodel = new Ext.grid.ColumnModel({
 	defaults:{sortable: true, locked: false, resizable: true, align:'center'},
 	columns:[
-		{header: "<b>C&oacute;digo</b>", width: 100, dataIndex: 'pro_codigo'},
-		{id: 'col_pro_nombres', header: "<b>Nombre</b>", width: 200, dataIndex: 'pro_nombres'},
-		{header: "<b>Profesor</b>", width: 200, dataIndex: 'pro_e-mail'},
-		{header: "<b>C&oacute;digo Profesor</b>", width: 90, dataIndex: 'pro_telefono'},
-		{header: "<b>Habilitado</b>", width: 85, dataIndex: 'pro_habilitado', renderer:si_no},
-		{header: "<b>Identificaci&oacute;n</b>", width: 120, dataIndex: 'pro_identificacion'}
+		{header: "<b>C&oacute;digo</b>", width: 100, dataIndex: 'cur_codigo'},
+		{id: 'col_pro_nombres', header: "<b>Nombre</b>", width: 200, dataIndex: 'cur_nombre'},
+		{header: "<b>Profesor</b>", width: 300, dataIndex: 'cur_nombre_profesor'},
+		{header: "<b>C&oacute;digo Profesor</b>", width: 150, dataIndex: 'cur_codigo_profesor'},
+		{header: "<b>Fecha creaci&oacute;n</b>", width: 150, dataIndex: 'cur_fecha_crecion'},
+		{header: "<b>Habilitado</b>", width: 85, dataIndex: 'cur_habilitado', renderer:si_no}
 	]
 });
 
@@ -360,7 +391,7 @@ var gestionar_cursos_gridpanel = new Ext.grid.GridPanel({
 	id:'gestionar_cursos_gridpanel',
 	title:'Lista de cursos',
 	columnLines:true,
-	width:800,
+	//width:800,
 	autoWidth:true,
 	region:'center',
 	collapseMode:'mini',
@@ -376,14 +407,7 @@ var gestionar_cursos_gridpanel = new Ext.grid.GridPanel({
 				gestionar_curso_datos_curso_panel.getForm().reset();
 				gestionar_curso_datos_curso_panel.getForm().loadRecord(rec);
 				
-				codigo_curso = rec.get('pro_codigo');
-				
-				if(rec.get('pro_url-image') != null){
-					Ext.get('pro_image_foto').dom.src = urlPrefix +'../'+rec.get('pro_url-image');
-				}
-				else{
-					Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
-				}
+				codigo_curso = rec.get('cur_codigo');
 			}
 		}
 	}),
