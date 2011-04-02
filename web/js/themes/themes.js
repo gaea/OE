@@ -10,7 +10,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"access",
 					iconAlign:'top',
-					iconCls:'agregar_estudiante24',
+					iconCls:'access',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-access.css');
@@ -19,7 +19,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"black",
 					iconAlign:'top',
-					iconCls:'modificar_estudiante24',
+					iconCls:'black',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-black.css');
@@ -28,7 +28,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"blue",
 					iconAlign:'top',
-					iconCls:'habilitar_estudiante24',
+					iconCls:'blue',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-blue.css');
@@ -37,7 +37,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"chocolate",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'chocolate',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-chocolate.css');
@@ -46,7 +46,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"gray",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'gray',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-gray.css');
@@ -55,7 +55,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"green",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'green',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-green.css');
@@ -64,7 +64,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"indigo",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'indigo',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-indigo.css');
@@ -73,7 +73,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"midnight",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'midnight',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-midnight.css');
@@ -82,7 +82,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"olive",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'olive',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-olive.css');
@@ -91,7 +91,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"peppermint",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'peppermint',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-peppermint.css');
@@ -100,7 +100,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"purple",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'purple',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-purple.css');
@@ -109,7 +109,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"quizz",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'quizz',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-quizz.css');
@@ -118,7 +118,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"red",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'red',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-red.css');
@@ -127,7 +127,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"silverCherry",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'silvercherry',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-silverCherry.css');
@@ -136,7 +136,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"slate",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'slate',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-slate.css');
@@ -145,7 +145,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"slickness",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'slickness',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-slickness.css');
@@ -154,7 +154,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"univalle",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'univalle',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-univalle.css');
@@ -163,7 +163,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 				{
 					text:"vista",
 					iconAlign:'top',
-					iconCls:'desabilitar_estudiante24',
+					iconCls:'vista',
 					scale:'medium',
 					handler:function(){
 						Ext.util.CSS.swapStyleSheet('theme', '../extjs/resources/css/xtheme-vista.css');

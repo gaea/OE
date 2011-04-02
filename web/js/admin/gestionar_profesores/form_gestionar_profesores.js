@@ -5,7 +5,7 @@ var gestionar_profesores_datastore = new Ext.data.GroupingStore({
 			limit:20,
 			start:0
 		}),
-		baseParams:{}, 
+		baseParams:{campo_busqueda:'ninguno'}, 
 		reader:new Ext.data.JsonReader({
 			root:'results',
 			totalProperty:'total'
@@ -257,7 +257,7 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 		}
 	},
 	bbar:new Ext.PagingToolbar({
-		pageSize:10,
+		pageSize:20,
 		store:gestionar_profesores_datastore,
 		displayInfo:true,
 		displayMsg:'Profesores {0} - {1} de {2}',

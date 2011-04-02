@@ -27,28 +27,34 @@ class gestion_profesoresActions extends sfActions
 		$fila = 0;
 		$campo_busqueda = $request->getParameter('campo');
 		$busqueda = $request->getParameter('busqueda');
+		$start = $request->getParameter('start');
+		$limit = $request->getParameter('limit');
 
 		try
-		{  
-			//--$profesoresTable =  Doctrine_Core::getTable('Profesor'); 
-			
-			
-			$query = Doctrine_Query::create() ->from('Profesor ');
-		 	//$query = Doctrine::getTable('Planillascatastro')->queryPlanillasCatastroBusqueda();
+		{
+			$query = Doctrine_Query::create()->from('Profesor ');
 			
 			if($campo_busqueda == 'nombres')
 			{
-			$query =$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
-			//	$profesores =  $profesoresTable->findByProNombres($busqueda); 
+				$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
 			}
-			else
+			if($campo_busqueda == 'apellidos')
 			{
-			//	$profesores =  $profesoresTable->findAll(); 
+				$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
+				$query->andWhere('pro_apellidos LIKE ?', '%'.$busqueda.'%');
 			}
-			$profesores = new sfDoctrinePager('Profesor', 20);//limit 20
-			$profesores->setQuery($query);	
-			//$profesores->getQuery();
-			$profesores->setPage(0);//start page
+			if($campo_busqueda == 'todos')
+			{
+				$query->andWhere('pro_apellidos LIKE ?', '%'.$busqueda.'%');
+			}
+			if($campo_busqueda == 'ninguno')
+			{
+				$profesores =  $profesoresTable->findAll(); 
+			}
+			
+			$profesores = new sfDoctrinePager('Profesor', $limit);//limit 20
+			$profesores->setQuery($query);
+			$profesores->setPage($start);//start page
 			$profesores->init();
 
 			foreach($profesores as $profesor)
