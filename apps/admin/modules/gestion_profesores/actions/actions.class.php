@@ -30,24 +30,34 @@ class gestion_profesoresActions extends sfActions
 
 		try
 		{  
-			$profesoresTable =  Doctrine_Core::getTable('Profesor'); 
+			//--$profesoresTable =  Doctrine_Core::getTable('Profesor'); 
+			
+			
+			$query = Doctrine_Query::create() ->from('Profesor ');
+		 	//$query = Doctrine::getTable('Planillascatastro')->queryPlanillasCatastroBusqueda();
 			
 			if($campo_busqueda == 'nombres')
 			{
-				$profesores =  $profesoresTable->findByProNombres($busqueda); 
+			$query =$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
+			//	$profesores =  $profesoresTable->findByProNombres($busqueda); 
 			}
 			else
 			{
-				$profesores =  $profesoresTable->findAll(); 
+			//	$profesores =  $profesoresTable->findAll(); 
 			}
+			$profesores = new sfDoctrinePager('Profesor', 20);//limit 20
+			$profesores->setQuery($query);	
+			//$profesores->getQuery();
+			$profesores->setPage(0);//start page
+			$profesores->init();
 
-			foreach($profesores As $profesor)
+			foreach($profesores as $profesor)
 			{
 				$datos[$fila]['pro_codigo_usuario'] = $profesor->getProCodigoUsuario();
 				$datos[$fila]['usu_login'] = $profesor->getUsuario()->getUsuLogin();
 				$datos[$fila]['pro_codigo'] = $profesor->getProCodigo();
 				$datos[$fila]['pro_nombres'] = $profesor->getProNombres();
-
+		
 				//$identificacion = IdentificacionPeer::retrieveByPK($profesor->getProCodigoIdentificacion());
 				$identificacionTable =  Doctrine_Core::getTable('Identificacion');  
 				$identificacion = $identificacionTable->find($profesor->getProCodigoIdentificacion()); 
