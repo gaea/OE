@@ -25,7 +25,7 @@ class gestion_profesoresActions extends sfActions
 		$salida='({"total":"0", "results":""})';
 		$datos;
 		$fila = 0;
-		$campo_busqueda = $request->getParameter('campo');
+		$campo_busqueda = $request->getParameter('campo_busqueda');
 		$busqueda = $request->getParameter('busqueda');
 		$start = $request->getParameter('start');
 		$limit = $request->getParameter('limit');
@@ -38,19 +38,23 @@ class gestion_profesoresActions extends sfActions
 			{
 				$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
 			}
+			/*if($campo_busqueda == 'login') averiguar el join para poder buscar por login
+			{
+				$query->where('pro_login LIKE ?', '%'.$busqueda.'%');
+			}*/
 			if($campo_busqueda == 'apellidos')
+			{
+				$query->where('pro_apellidos LIKE ?', '%'.$busqueda.'%');
+			}
+			if($campo_busqueda == 'todos')
 			{
 				$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
 				$query->andWhere('pro_apellidos LIKE ?', '%'.$busqueda.'%');
 			}
-			if($campo_busqueda == 'todos')
-			{
-				$query->andWhere('pro_apellidos LIKE ?', '%'.$busqueda.'%');
-			}
-			if($campo_busqueda == 'ninguno')
+			/*if($campo_busqueda == 'ninguno')
 			{
 				$profesores =  $profesoresTable->findAll(); 
-			}
+			}*/
 			
 			$profesores = new sfDoctrinePager('Profesor', $limit);//limit 20
 			$profesores->setQuery($query);

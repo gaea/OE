@@ -186,7 +186,7 @@ function poner_pinta(val, x, store){
 		return '<img src="../'+val+'" width=40 heigth=60 align=center />';
 	}
 	else{
-		return '<img src="../images/no_user_image.png" width=50 heigth=80 align=center />';
+		return '<img src="../images/profesor/no_user_image.png" width=50 heigth=80 align=center />';
 	}
 }
 
@@ -243,7 +243,7 @@ var gestionar_profesores_gridpanel = new Ext.grid.GridPanel({
 					Ext.get('pro_image_foto').dom.src = urlPrefix +'../'+rec.get('pro_url-image');
 				}
 				else{
-					Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
+					Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/profesor/no_user_image.png';
 				}
 			}
 		}
@@ -284,7 +284,7 @@ var gestionar_profesores_panel = new Ext.Panel({
 					handler:function(){
 						codigo_profesor = '';
 						gestionar_profesor_datos_profesor_panel.getForm().reset();
-						Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
+						Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/profesor/no_user_image.png';
 						gestionar_profesores_window.show();
 						gestionar_profesores_gridpanel.getSelectionModel().clearSelections();
 					}
@@ -351,16 +351,25 @@ var gestionar_profesores_panel = new Ext.Panel({
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_profesores_datastore.load({
-									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo:'login', start: 0, limit: 20}
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'login', start: 0, limit: 20}
 								});
 							}
 						},
 						{
-							text:'Buscar por nombre', 
+							text:'Buscar por nombres', 
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_profesores_datastore.load({
-									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo:'nombres', start: 0, limit: 20}
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'nombres', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar por apellidos', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'apellidos', start: 0, limit: 20}
 								});
 							}
 						},
@@ -420,7 +429,7 @@ var gestionar_profesores_panel = new Ext.Panel({
 	renderTo:'div_form_gestionar_profesores'
 });
 
-Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/no_user_image.png';
+Ext.get('pro_image_foto').dom.src = urlPrefix +'../images/profesor/no_user_image.png';
 
 var gestionar_profesor_importar_panel = new Ext.FormPanel({
 	width:400,
