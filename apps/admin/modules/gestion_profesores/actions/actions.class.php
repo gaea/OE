@@ -32,29 +32,32 @@ class gestion_profesoresActions extends sfActions
 
 		try
 		{
-			$query = Doctrine_Query::create()->from('Profesor ');
+			$query = Doctrine_Query::create()->from('Profesor');
 			
-			if($campo_busqueda == 'nombres')
-			{
-				$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
+			switch ($campo_busqueda) {
+				case 'nombres':
+					$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'apellidos':
+					$query->where('pro_apellidos LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'login':
+					$query->innerJoin('Profesor.Usuario');
+					$query->where('usu_login LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'e-mail':
+					$query->where('pro_e_mail LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'identificacion':
+					$query->where('pro_identificacion LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'todos': // la instruccion andWhere no me funciona logicamente asi que probe con orWhere y tambien es un metodo de Doctrine_Query
+					$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
+					$query->orWhere('pro_apellidos LIKE ?', '%'.$busqueda.'%');
+					$query->orWhere('pro_e_mail LIKE ?', '%'.$busqueda.'%');
+					$query->orWhere('pro_identificacion LIKE ?', '%'.$busqueda.'%');
+					break;
 			}
-			/*if($campo_busqueda == 'login') averiguar el join para poder buscar por login
-			{
-				$query->where('pro_login LIKE ?', '%'.$busqueda.'%');
-			}*/
-			if($campo_busqueda == 'apellidos')
-			{
-				$query->where('pro_apellidos LIKE ?', '%'.$busqueda.'%');
-			}
-			if($campo_busqueda == 'todos')
-			{
-				$query->where('pro_nombres LIKE ?', '%'.$busqueda.'%');
-				$query->andWhere('pro_apellidos LIKE ?', '%'.$busqueda.'%');
-			}
-			/*if($campo_busqueda == 'ninguno')
-			{
-				$profesores =  $profesoresTable->findAll(); 
-			}*/
 			
 			$profesores = new sfDoctrinePager('Profesor', $limit);//limit 20
 			$profesores->setQuery($query);

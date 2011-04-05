@@ -506,7 +506,7 @@ var gestionar_cursos_panel = new Ext.Panel({
 					menu:[
 						{xtype: 'textfield', iconCls: 'texto_buscar', id: 'busqueda_curso', emptyText: 'buscar'},
 						{
-							text:'Buscar por login', 
+							text:'Buscar por codigo del curso', 
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_cursos_datastore.load({
@@ -515,7 +515,52 @@ var gestionar_cursos_panel = new Ext.Panel({
 							}
 						},
 						{
-							text:'Buscar por nombre', 
+							text:'Buscar por nombre del curso', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_cursos_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_curso').getValue(), campo:'nombres', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar por codigo del profesor', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_cursos_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_curso').getValue(), campo:'login', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar por nombre del profesor', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_cursos_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_curso').getValue(), campo:'nombres', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar por fecha de creaci&oacute;n', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_cursos_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_curso').getValue(), campo:'nombres', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar habilitados', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_cursos_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_curso').getValue(), campo:'nombres', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar des-habilitados', 
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_cursos_datastore.load({

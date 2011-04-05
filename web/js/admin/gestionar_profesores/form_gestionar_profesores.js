@@ -374,11 +374,29 @@ var gestionar_profesores_panel = new Ext.Panel({
 							}
 						},
 						{
+							text:'Buscar por e-mail', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'e-mail', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar por identificaci&oacute;n', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'identificacion', start: 0, limit: 20}
+								});
+							}
+						},
+						{
 							text:'Buscar por todos los campos', 
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_profesores_datastore.load({
-									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo:'todos', start: 0, limit: 20}
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'todos', start: 0, limit: 20}
 								});
 							}
 						}

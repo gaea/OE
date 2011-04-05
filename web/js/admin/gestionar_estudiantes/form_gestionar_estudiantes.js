@@ -202,7 +202,7 @@ function poner_pinta(val, x, store){
 		return '<img src="../'+val+'" width=50 heigth=80 align=center />';
 	}
 	else{
-		return '<img src="../images/no_estudiante_image.png" width=50 heigth=80 align=center />';
+		return '<img src="../images/estudiante/no_estudiante_image.png" width=50 heigth=80 align=center />';
 	}
 }
 
@@ -260,7 +260,7 @@ var gestionar_estudiantes_gridpanel = new Ext.grid.GridPanel({
 					Ext.get('est_image_foto').dom.src = urlPrefix +'../'+rec.get('est_url-image');
 				}
 				else{
-					Ext.get('est_image_foto').dom.src = urlPrefix +'../images/no_estudiante_image.png';
+					Ext.get('est_image_foto').dom.src = urlPrefix +'../images/estudiante/no_estudiante_image.png';
 				}
 				
 				//comboTipoId.setValue(rec.data.identificacion_nombre);
@@ -304,7 +304,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					handler:function(){
 						codigo_estudiante = '';
 						gestionar_estudiantes_datos_estudiante_panel.getForm().reset();
-						Ext.get('est_image_foto').dom.src = urlPrefix +'../images/no_estudiante_image.png';
+						Ext.get('est_image_foto').dom.src = urlPrefix +'../images/estudiante/no_estudiante_image.png';
 						gestionar_estudiantes_window.show();
 						gestionar_estudiantes_gridpanel.getSelectionModel().clearSelections();
 					}
@@ -315,7 +315,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 					iconCls:'modificar_estudiante24',
 					scale:'medium',
 					handler:function(){
-						alert('asdfsd'+codigo_estudiante);
+						//alert('asdfsd'+codigo_estudiante);
 						if(codigo_estudiante != ''){
 							gestionar_estudiantes_window.show();
 						}
@@ -372,16 +372,43 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_estudiantes_datastore.load({
-									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo:'login', start: 0, limit: 20}
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'login', start:0, limit:20}
 								});
 							}
 						},
 						{
-							text:'Buscar por nombre', 
+							text:'Buscar por nombres', 
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_estudiantes_datastore.load({
-									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo:'nombres', start: 0, limit: 20}
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'nombres', start:0, limit:20}
+								});
+							}
+						},
+						{
+							text:'Buscar por apellidos', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_estudiantes_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'apellidos', start:0, limit:20}
+								});
+							}
+						},
+						{
+							text:'Buscar por e-mail', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_estudiantes_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'e-mail', start:0, limit:20}
+								});
+							}
+						},
+						{
+							text:'Buscar por identificacion', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_estudiantes_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'identificacion', start:0, limit:20}
 								});
 							}
 						},
@@ -390,7 +417,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 							iconCls:'buscar_por', 
 							handler:function(){ 
 								gestionar_estudiantes_datastore.load({
-									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo:'todos', start: 0, limit: 20}
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'todos', start: 0, limit: 20}
 								});
 							}
 						}
@@ -450,7 +477,7 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 	renderTo:'div_form_gestionar_estudiantes'
 });
 
-Ext.get('est_image_foto').dom.src = urlPrefix +'../images/no_estudiante_image.png';
+Ext.get('est_image_foto').dom.src = urlPrefix +'../images/estudiante/no_estudiante_image.png';
 
 var gestionar_estudiantes_importar_panel = new Ext.FormPanel({
 	width:500,

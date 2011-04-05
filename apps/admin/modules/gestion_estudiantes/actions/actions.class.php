@@ -25,21 +25,45 @@ class gestion_estudiantesActions extends sfActions
 		$salida='({"total":"0", "results":""})';
 		$datos;
 		$fila = 0;
-		$campo_busqueda = $request->getParameter('campo');
+		$campo_busqueda = $request->getParameter('campo_busqueda');
 		$busqueda = $request->getParameter('busqueda');
-
+		$start = $request->getParameter('start');
+		$limit = $request->getParameter('limit');
+		
 		try
 		{  
-			$estudiantesTable =  Doctrine_Core::getTable('estudiante'); 
+			$query = Doctrine_Query::create()->from('Estudiante');
 			
-			if($campo_busqueda == 'nombres')
-			{
-				$estudiantes =  $estudiantesTable->findByProNombres($busqueda); 
+			switch ($campo_busqueda) {
+				case 'nombres':
+					$query->where('est_nombres LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'apellidos':
+					$query->where('est_apellidos LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'login':
+					$query->innerJoin('Estudiante.Usuario');
+					$query->where('usu_login LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'e-mail':
+					$query->where('est_e_mail LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'identificacion':
+					$query->where('est_identificacion LIKE ?', '%'.$busqueda.'%');
+					break;
+				case 'todos': // la instruccion andWhere no me funciona logicamente asi que probe con orWhere y tambien es un metodo de Doctrine_Query
+					$query->where('est_nombres LIKE ?', '%'.$busqueda.'%');
+					$query->orWhere('est_apellidos LIKE ?', '%'.$busqueda.'%');
+					$query->orWhere('est_e_mail LIKE ?', '%'.$busqueda.'%');
+					$query->orWhere('est_identificacion LIKE ?', '%'.$busqueda.'%');
+					break;
 			}
-			else
-			{
-				$estudiantes =  $estudiantesTable->findAll(); 
-			}
+			
+			$estudiantes = new sfDoctrinePager('Estudiante', $limit);
+			$estudiantes->setQuery($query);
+			$estudiantes->setPage($start);
+			$estudiantes->init();
+			
 
 			foreach($estudiantes As $estudiante)
 			{
