@@ -73,11 +73,10 @@ var gestionar_estudiantes_datos_estudiante_panel = new Ext.FormPanel({
 			columnWidth:0.7,
 			bodyStyle:'padding: 10px',
 			labelWidth:150,
-			defaults:{xtype:'textfield'/*, labelStyle: 'font-size:16px;', height:30, style:'font-size:16px;'*/},
+			defaults:{xtype:'textfield'},
 			items:[
 				{
 					fieldLabel: 'Login',
-					height:30,
 					anchor:'100%',
 					name: 'usu_login',
 					maskRe: /([a-zA-Z0-9\s]+)$/
@@ -413,6 +412,24 @@ var gestionar_estudiantes_panel = new Ext.Panel({
 							}
 						},
 						{
+							text:'Buscar habilitados', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'habilitados', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar des-habilitados', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_estudiante').getValue(), campo_busqueda:'desabilitados', start: 0, limit: 20}
+								});
+							}
+						},
+						{
 							text:'Buscar por todos los campos', 
 							iconCls:'buscar_por', 
 							handler:function(){ 
@@ -562,7 +579,7 @@ gestionar_estudiantes_guardar_estudiante_function = function(){
 		gestionar_estudiantes_datos_estudiante_panel,
 		getAbsoluteUrl('gestion_estudiantes', 'guardar_estudiante'),
 		[],
-		function(){gestionar_estudiantes_datastore.reload();},
+		function(){gestionar_estudiantes_datastore.reload();gestionar_estudiantes_window.hide();},
 		function(){}
 	);
 }
@@ -572,7 +589,7 @@ gestionar_estudiantes_actualizar_estudiante_function = function(){
 		gestionar_estudiantes_datos_estudiante_panel,
 		getAbsoluteUrl('gestion_estudiantes', 'actualizar_estudiante'),
 		{codigo_estudiante: codigo_estudiante},
-		function(){gestionar_estudiantes_datastore.reload();},
+		function(){gestionar_estudiantes_datastore.reload();gestionar_estudiantes_window.hide();},
 		function(){}
 	);
 }

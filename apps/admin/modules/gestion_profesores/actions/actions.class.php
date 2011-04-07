@@ -48,6 +48,12 @@ class gestion_profesoresActions extends sfActions
 				case 'e-mail':
 					$query->where('pro_e_mail LIKE ?', '%'.$busqueda.'%');
 					break;
+				case 'habilitados':
+					$query->where('pro_habilitado = TRUE');
+					break;
+				case 'desabilitados':
+					$query->where('pro_habilitado = FALSE');
+					break;
 				case 'identificacion':
 					$query->where('pro_identificacion LIKE ?', '%'.$busqueda.'%');
 					break;

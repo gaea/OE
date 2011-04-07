@@ -51,6 +51,12 @@ class gestion_estudiantesActions extends sfActions
 				case 'identificacion':
 					$query->where('est_identificacion LIKE ?', '%'.$busqueda.'%');
 					break;
+					case 'habilitados':
+					$query->where('est_habilitado = TRUE');
+					break;
+				case 'desabilitados':
+					$query->where('est_habilitado = FALSE');
+					break;
 				case 'todos': // la instruccion andWhere no me funciona logicamente asi que probe con orWhere y tambien es un metodo de Doctrine_Query
 					$query->where('est_nombres LIKE ?', '%'.$busqueda.'%');
 					$query->orWhere('est_apellidos LIKE ?', '%'.$busqueda.'%');

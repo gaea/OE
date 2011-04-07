@@ -392,6 +392,24 @@ var gestionar_profesores_panel = new Ext.Panel({
 							}
 						},
 						{
+							text:'Buscar habilitados', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'habilitados', start: 0, limit: 20}
+								});
+							}
+						},
+						{
+							text:'Buscar des-habilitados', 
+							iconCls:'buscar_por', 
+							handler:function(){ 
+								gestionar_profesores_datastore.load({
+									params: {busqueda:Ext.getCmp('busqueda_profesor').getValue(), campo_busqueda:'desabilitados', start: 0, limit: 20}
+								});
+							}
+						},
+						{
 							text:'Buscar por todos los campos', 
 							iconCls:'buscar_por', 
 							handler:function(){ 
@@ -529,7 +547,7 @@ gestionar_profesores_guardar_profesor_function = function(){
 		gestionar_profesor_datos_profesor_panel,
 		getAbsoluteUrl('gestion_profesores', 'guardar_profesor'),
 		[],
-		function(){gestionar_profesores_datastore.reload();},
+		function(){gestionar_profesores_datastore.reload();gestionar_profesores_window.hide();},
 		function(){}
 	);
 }
@@ -539,7 +557,7 @@ gestionar_profesores_actualizar_profesor_function = function(){
 		gestionar_profesor_datos_profesor_panel,
 		getAbsoluteUrl('gestion_profesores', 'actualizar_profesor'),
 		{codigo_profesor: codigo_profesor},
-		function(){gestionar_profesores_datastore.reload();},
+		function(){gestionar_profesores_datastore.reload();gestionar_profesores_window.hide();},
 		function(){}
 	);
 }
