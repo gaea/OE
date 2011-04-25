@@ -31742,3 +31742,196 @@ abr 11 12:12:31 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/con
 abr 11 12:12:31 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
 abr 11 12:12:31 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_tipos_identificacion" 0.01 ms (1)
 abr 11 12:12:31 symfony [info] {sfWebResponse} Send content (192 o)
+Apr 25 13:20:10 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_profesores',)
+Apr 25 13:20:10 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_tipos_identificacion with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_tipos_identificacion',)
+abr 25 13:20:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:20:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:20:11 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_tipos_identificacion()"
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i - ()
+abr 25 13:20:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:20:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Configuration 13.46 ms (8)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Factories 148.86 ms (1)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/consultar_tipos_identificacion" 50.80 ms (1)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_tipos_identificacion" 0.01 ms (1)
+abr 25 13:20:11 symfony [info] {sfWebResponse} Send content (192 o)
+abr 25 13:20:11 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:20:11 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:20:11 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_profesores()"
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT COUNT(*) AS num_results FROM profesor p - ()
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (10)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (12)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (9)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (13)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (14)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (17)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:20:11 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (11)
+abr 25 13:20:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:20:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Configuration 1.25 ms (8)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Factories 232.84 ms (1)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/consultar_profesores" 101.98 ms (1)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.05 ms (14)
+abr 25 13:20:11 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_profesores" 0.01 ms (1)
+abr 25 13:20:11 symfony [info] {sfWebResponse} Send content (2376 o)
+Apr 25 13:20:14 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_profesores',)
+Apr 25 13:20:14 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_tipos_identificacion with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_tipos_identificacion',)
+abr 25 13:20:14 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:20:14 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:20:14 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_profesores()"
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT COUNT(*) AS num_results FROM profesor p - ()
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (10)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (12)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (9)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (13)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (14)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (17)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:20:14 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (11)
+abr 25 13:20:14 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:20:14 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:20:14 symfony [info] {sfWebDebugLogger} Configuration 1.12 ms (8)
+abr 25 13:20:14 symfony [info] {sfWebDebugLogger} Factories 7.71 ms (1)
+abr 25 13:20:14 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/consultar_profesores" 84.53 ms (1)
+abr 25 13:20:14 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.04 ms (14)
+abr 25 13:20:14 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_profesores" 0.01 ms (1)
+abr 25 13:20:14 symfony [info] {sfWebResponse} Send content (2376 o)
+abr 25 13:20:14 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:20:14 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:20:14 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_tipos_identificacion()"
+abr 25 13:20:15 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:20:15 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i - ()
+abr 25 13:20:15 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:20:15 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:20:15 symfony [info] {sfWebDebugLogger} Configuration 1.29 ms (8)
+abr 25 13:20:15 symfony [info] {sfWebDebugLogger} Factories 97.76 ms (1)
+abr 25 13:20:15 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/consultar_tipos_identificacion" 47.66 ms (1)
+abr 25 13:20:15 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+abr 25 13:20:15 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_tipos_identificacion" 0.01 ms (1)
+abr 25 13:20:15 symfony [info] {sfWebResponse} Send content (192 o)
+Apr 25 13:21:50 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /interfaz_administracion with parameters array (  'module' => 'interfaz_administracion',  'action' => 'index',)
+abr 25 13:21:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:21:50 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:21:50 symfony [info] {interfaz_administracionActions} Call "interfaz_administracionActions->executeIndex()"
+abr 25 13:21:50 symfony [info] {sfPHPView} Render "/var/www/OE/apps/admin/modules/interfaz_administracion/templates/indexSuccess.php"
+abr 25 13:21:50 symfony [info] {sfPHPView} Decorate content with "/var/www/OE/apps/admin/templates/layout.php"
+abr 25 13:21:50 symfony [info] {sfPHPView} Render "/var/www/OE/apps/admin/templates/layout.php"
+abr 25 13:21:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:21:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:21:50 symfony [info] {sfWebDebugLogger} Configuration 1.35 ms (9)
+abr 25 13:21:50 symfony [info] {sfWebDebugLogger} Factories 7.82 ms (1)
+abr 25 13:21:50 symfony [info] {sfWebDebugLogger} Action "interfaz_administracion/index" 0.14 ms (1)
+abr 25 13:21:50 symfony [info] {sfWebDebugLogger} View "Success" for "interfaz_administracion/index" 34.23 ms (1)
+abr 25 13:21:50 symfony [info] {sfWebResponse} Send content (30167 o)
+Apr 25 13:21:51 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/index with parameters array (  'module' => 'gestion_profesores',  'action' => 'index',)
+abr 25 13:21:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:21:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:21:51 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeIndex()"
+abr 25 13:21:51 symfony [info] {sfPHPView} Render "/var/www/OE/apps/admin/modules/gestion_profesores/templates/indexSuccess.php"
+abr 25 13:21:51 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:21:51 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:21:51 symfony [info] {sfWebDebugLogger} Configuration 1.17 ms (9)
+abr 25 13:21:51 symfony [info] {sfWebDebugLogger} Factories 9.15 ms (1)
+abr 25 13:21:51 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/index" 0.09 ms (1)
+abr 25 13:21:51 symfony [info] {sfWebDebugLogger} View "Success" for "gestion_profesores/index" 22.05 ms (1)
+abr 25 13:21:51 symfony [info] {sfWebResponse} Send content (162 o)
+Apr 25 13:21:52 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_profesores with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_profesores',)
+Apr 25 13:21:52 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_profesores/consultar_tipos_identificacion with parameters array (  'module' => 'gestion_profesores',  'action' => 'consultar_tipos_identificacion',)
+abr 25 13:21:52 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:21:52 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:21:52 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_profesores()"
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT COUNT(*) AS num_results FROM profesor p - ()
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT p.pro_codigo AS p__pro_codigo, p.pro_codigo_usuario AS p__pro_codigo_usuario, p.pro_codigo_identificacion AS p__pro_codigo_identificacion, p.pro_nombres AS p__pro_nombres, p.pro_apellidos AS p__pro_apellidos, p.pro_telefono AS p__pro_telefono, p.pro_e_mail AS p__pro_e_mail, p.pro_habilitado AS p__pro_habilitado, p.pro_url_imagen AS p__pro_url_imagen, p.pro_identificacion AS p__pro_identificacion FROM profesor p - ()
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (10)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (12)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (9)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (13)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (14)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (8)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (6)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (17)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (11)
+abr 25 13:21:52 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:21:52 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Configuration 1.29 ms (8)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Factories 8.64 ms (1)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/consultar_profesores" 104.55 ms (1)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.05 ms (14)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_profesores" 0.01 ms (1)
+abr 25 13:21:52 symfony [info] {sfWebResponse} Send content (2376 o)
+abr 25 13:21:52 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:21:52 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:21:52 symfony [info] {gestion_profesoresActions} Call "gestion_profesoresActions->executeConsultar_tipos_identificacion()"
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:21:52 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i - ()
+abr 25 13:21:52 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:21:52 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Configuration 0.96 ms (8)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Factories 118.59 ms (1)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Action "gestion_profesores/consultar_tipos_identificacion" 49.96 ms (1)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+abr 25 13:21:52 symfony [info] {sfWebDebugLogger} View "None" for "gestion_profesores/consultar_tipos_identificacion" 0.01 ms (1)
+abr 25 13:21:52 symfony [info] {sfWebResponse} Send content (192 o)
+Apr 25 13:21:57 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_estudiantes/index with parameters array (  'module' => 'gestion_estudiantes',  'action' => 'index',)
+abr 25 13:21:57 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:21:57 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:21:57 symfony [info] {gestion_estudiantesActions} Call "gestion_estudiantesActions->executeIndex()"
+abr 25 13:21:57 symfony [info] {sfPHPView} Render "/var/www/OE/apps/admin/modules/gestion_estudiantes/templates/indexSuccess.php"
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Configuration 1.31 ms (9)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Factories 8.23 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Action "gestion_estudiantes/index" 0.13 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} View "Success" for "gestion_estudiantes/index" 8.83 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send content (165 o)
+Apr 25 13:21:57 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_estudiantes/consultar_estudiantes with parameters array (  'module' => 'gestion_estudiantes',  'action' => 'consultar_estudiantes',)
+abr 25 13:21:57 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:21:57 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:21:57 symfony [info] {gestion_estudiantesActions} Call "gestion_estudiantesActions->executeConsultar_estudiantes()"
+Apr 25 13:21:57 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /gestion_estudiantes/consultar_tipos_identificacion with parameters array (  'module' => 'gestion_estudiantes',  'action' => 'consultar_tipos_identificacion',)
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT COUNT(*) AS num_results FROM estudiante e - ()
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT e.est_codigo_usuario AS e__est_codigo_usuario, e.est_codigo_identificacion AS e__est_codigo_identificacion, e.est_codigo AS e__est_codigo, e.est_nombres AS e__est_nombres, e.est_apellidos AS e__est_apellidos, e.est_telefono AS e__est_telefono, e.est_e_mail AS e__est_e_mail, e.est_habilitado AS e__est_habilitado, e.est_url_imagen AS e__est_url_imagen, e.est_identificacion AS e__est_identificacion FROM estudiante e - ()
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (16)
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (18)
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Statement} execute : SELECT u.usu_codigo AS u__usu_codigo, u.usu_login AS u__usu_login, u.usu_password AS u__usu_password FROM usuario u WHERE (u.usu_codigo = ?) - (19)
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Statement} execute : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i WHERE (i.ide_codigo = ?) LIMIT 1 - (1)
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Configuration 0.87 ms (8)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Factories 5.74 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Action "gestion_estudiantes/consultar_estudiantes" 123.80 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.03 ms (9)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} View "None" for "gestion_estudiantes/consultar_estudiantes" 0.01 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send content (876 o)
+abr 25 13:21:57 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+abr 25 13:21:57 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+abr 25 13:21:57 symfony [info] {gestion_estudiantesActions} Call "gestion_estudiantesActions->executeConsultar_tipos_identificacion()"
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Pgsql} exec : SET NAMES 'UTF8' - ()
+abr 25 13:21:57 symfony [info] {Doctrine_Connection_Pgsql} query : SELECT i.ide_codigo AS i__ide_codigo, i.ide_tipo AS i__ide_tipo FROM identificacion i - ()
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Configuration 1.24 ms (8)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Factories 117.31 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Action "gestion_estudiantes/consultar_tipos_identificacion" 57.09 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+abr 25 13:21:57 symfony [info] {sfWebDebugLogger} View "None" for "gestion_estudiantes/consultar_tipos_identificacion" 0.01 ms (1)
+abr 25 13:21:57 symfony [info] {sfWebResponse} Send content (192 o)
