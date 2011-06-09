@@ -14,8 +14,8 @@ Doctrine_Manager::getInstance()->bindComponent('Pregunta', 'doctrine');
  * @property string $pre_cuerpo
  * @property string $pre_solucion
  * @property boolean $pre_publico
- * @property TemaOMateria $TemaOMateria
  * @property Profesor $Profesor
+ * @property TemaOMateria $TemaOMateria
  * @property TipoPregunta $TipoPregunta
  * @property Doctrine_Collection $EvaluacionPregunta
  * @property Doctrine_Collection $PreguntaHerramienta
@@ -27,8 +27,8 @@ Doctrine_Manager::getInstance()->bindComponent('Pregunta', 'doctrine');
  * @method string              getPreCuerpo()                 Returns the current record's "pre_cuerpo" value
  * @method string              getPreSolucion()               Returns the current record's "pre_solucion" value
  * @method boolean             getPrePublico()                Returns the current record's "pre_publico" value
- * @method TemaOMateria        getTemaOMateria()              Returns the current record's "TemaOMateria" value
  * @method Profesor            getProfesor()                  Returns the current record's "Profesor" value
+ * @method TemaOMateria        getTemaOMateria()              Returns the current record's "TemaOMateria" value
  * @method TipoPregunta        getTipoPregunta()              Returns the current record's "TipoPregunta" value
  * @method Doctrine_Collection getEvaluacionPregunta()        Returns the current record's "EvaluacionPregunta" collection
  * @method Doctrine_Collection getPreguntaHerramienta()       Returns the current record's "PreguntaHerramienta" collection
@@ -39,8 +39,8 @@ Doctrine_Manager::getInstance()->bindComponent('Pregunta', 'doctrine');
  * @method Pregunta            setPreCuerpo()                 Sets the current record's "pre_cuerpo" value
  * @method Pregunta            setPreSolucion()               Sets the current record's "pre_solucion" value
  * @method Pregunta            setPrePublico()                Sets the current record's "pre_publico" value
- * @method Pregunta            setTemaOMateria()              Sets the current record's "TemaOMateria" value
  * @method Pregunta            setProfesor()                  Sets the current record's "Profesor" value
+ * @method Pregunta            setTemaOMateria()              Sets the current record's "TemaOMateria" value
  * @method Pregunta            setTipoPregunta()              Sets the current record's "TipoPregunta" value
  * @method Pregunta            setEvaluacionPregunta()        Sets the current record's "EvaluacionPregunta" collection
  * @method Pregunta            setPreguntaHerramienta()       Sets the current record's "PreguntaHerramienta" collection
@@ -116,13 +116,13 @@ abstract class BasePregunta extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('TemaOMateria', array(
-             'local' => 'pre_codigo_tema_o_materia',
-             'foreign' => 'tom_codigo'));
-
         $this->hasOne('Profesor', array(
              'local' => 'pre_codigo_profesor',
              'foreign' => 'pro_codigo'));
+
+        $this->hasOne('TemaOMateria', array(
+             'local' => 'pre_codigo_tema_o_materia',
+             'foreign' => 'tom_codigo'));
 
         $this->hasOne('TipoPregunta', array(
              'local' => 'pre_codigo_tipo_pregunta',

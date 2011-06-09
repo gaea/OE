@@ -17,8 +17,8 @@ Doctrine_Manager::getInstance()->bindComponent('Profesor', 'doctrine');
  * @property boolean $pro_habilitado
  * @property string $pro_url_imagen
  * @property string $pro_identificacion
- * @property Usuario $Usuario
  * @property Identificacion $Identificacion
+ * @property Usuario $Usuario
  * @property Doctrine_Collection $Curso
  * @property Doctrine_Collection $Evaluacion
  * @property Doctrine_Collection $Pregunta
@@ -33,8 +33,8 @@ Doctrine_Manager::getInstance()->bindComponent('Profesor', 'doctrine');
  * @method boolean             getProHabilitado()             Returns the current record's "pro_habilitado" value
  * @method string              getProUrlImagen()              Returns the current record's "pro_url_imagen" value
  * @method string              getProIdentificacion()         Returns the current record's "pro_identificacion" value
- * @method Usuario             getUsuario()                   Returns the current record's "Usuario" value
  * @method Identificacion      getIdentificacion()            Returns the current record's "Identificacion" value
+ * @method Usuario             getUsuario()                   Returns the current record's "Usuario" value
  * @method Doctrine_Collection getCurso()                     Returns the current record's "Curso" collection
  * @method Doctrine_Collection getEvaluacion()                Returns the current record's "Evaluacion" collection
  * @method Doctrine_Collection getPregunta()                  Returns the current record's "Pregunta" collection
@@ -48,8 +48,8 @@ Doctrine_Manager::getInstance()->bindComponent('Profesor', 'doctrine');
  * @method Profesor            setProHabilitado()             Sets the current record's "pro_habilitado" value
  * @method Profesor            setProUrlImagen()              Sets the current record's "pro_url_imagen" value
  * @method Profesor            setProIdentificacion()         Sets the current record's "pro_identificacion" value
- * @method Profesor            setUsuario()                   Sets the current record's "Usuario" value
  * @method Profesor            setIdentificacion()            Sets the current record's "Identificacion" value
+ * @method Profesor            setUsuario()                   Sets the current record's "Usuario" value
  * @method Profesor            setCurso()                     Sets the current record's "Curso" collection
  * @method Profesor            setEvaluacion()                Sets the current record's "Evaluacion" collection
  * @method Profesor            setPregunta()                  Sets the current record's "Pregunta" collection
@@ -149,17 +149,17 @@ abstract class BaseProfesor extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Usuario', array(
-             'local' => 'pro_codigo_usuario',
-             'foreign' => 'usu_codigo'));
-
         $this->hasOne('Identificacion', array(
              'local' => 'pro_codigo_identificacion',
              'foreign' => 'ide_codigo'));
 
+        $this->hasOne('Usuario', array(
+             'local' => 'pro_codigo_usuario',
+             'foreign' => 'usu_codigo'));
+
         $this->hasMany('Curso', array(
              'local' => 'pro_codigo',
-             'foreign' => 'cur_codigo'));
+             'foreign' => 'cur_codigo_profesor'));
 
         $this->hasMany('Evaluacion', array(
              'local' => 'pro_codigo',

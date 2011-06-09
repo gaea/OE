@@ -1,0 +1,21 @@
+Jun 07 20:31:18 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /interfaz_administracion with parameters array (  'module' => 'interfaz_administracion',  'action' => 'index',)
+Jun 07 20:31:18 symfony [info] {sfFrontWebController} Action "interfaz_administracion/index" does not exist
+Jun 07 20:31:18 symfony [err] {sfError404Exception} Action "interfaz_administracion/index" does not exist.
+Jun 07 20:31:18 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Jun 07 20:31:18 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jun 07 20:31:18 symfony [info] {sfWebDebugLogger} Configuration 65.40 ms (5)
+Jun 07 20:31:18 symfony [info] {sfWebDebugLogger} Factories 51.48 ms (1)
+Jun 07 20:31:24 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /interfaz_profesor with parameters array (  'module' => 'interfaz_profesor',  'action' => 'index',)
+Jun 07 20:31:24 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jun 07 20:31:24 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jun 07 20:31:24 symfony [info] {interfaz_profesorActions} Call "interfaz_profesorActions->executeIndex()"
+Jun 07 20:31:24 symfony [info] {sfPHPView} Render "/var/www/OE/apps/profesor/modules/interfaz_profesor/templates/indexSuccess.php"
+Jun 07 20:31:24 symfony [info] {sfPHPView} Decorate content with "/var/www/OE/apps/profesor/templates/layout.php"
+Jun 07 20:31:24 symfony [info] {sfPHPView} Render "/var/www/OE/apps/profesor/templates/layout.php"
+Jun 07 20:31:24 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jun 07 20:31:24 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jun 07 20:31:24 symfony [info] {sfWebDebugLogger} Configuration 10.44 ms (10)
+Jun 07 20:31:24 symfony [info] {sfWebDebugLogger} Factories 17.70 ms (1)
+Jun 07 20:31:24 symfony [info] {sfWebDebugLogger} Action "interfaz_profesor/index" 0.06 ms (1)
+Jun 07 20:31:24 symfony [info] {sfWebDebugLogger} View "Success" for "interfaz_profesor/index" 7.98 ms (1)
+Jun 07 20:31:24 symfony [info] {sfWebResponse} Send content (29967 o)

@@ -9,17 +9,17 @@ Doctrine_Manager::getInstance()->bindComponent('EstudianteCurso', 'doctrine');
  * 
  * @property integer $est_cur_codigo_curso
  * @property integer $est_cur_codigo_estudiante
- * @property Curso $Curso
  * @property Estudiante $Estudiante
+ * @property Curso $Curso
  * 
  * @method integer         getEstCurCodigoCurso()         Returns the current record's "est_cur_codigo_curso" value
  * @method integer         getEstCurCodigoEstudiante()    Returns the current record's "est_cur_codigo_estudiante" value
- * @method Curso           getCurso()                     Returns the current record's "Curso" value
  * @method Estudiante      getEstudiante()                Returns the current record's "Estudiante" value
+ * @method Curso           getCurso()                     Returns the current record's "Curso" value
  * @method EstudianteCurso setEstCurCodigoCurso()         Sets the current record's "est_cur_codigo_curso" value
  * @method EstudianteCurso setEstCurCodigoEstudiante()    Sets the current record's "est_cur_codigo_estudiante" value
- * @method EstudianteCurso setCurso()                     Sets the current record's "Curso" value
  * @method EstudianteCurso setEstudiante()                Sets the current record's "Estudiante" value
+ * @method EstudianteCurso setCurso()                     Sets the current record's "Curso" value
  * 
  * @package    OE
  * @subpackage model
@@ -50,12 +50,12 @@ abstract class BaseEstudianteCurso extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Curso', array(
-             'local' => 'est_cur_codigo_curso',
-             'foreign' => 'cur_codigo'));
-
         $this->hasOne('Estudiante', array(
              'local' => 'est_cur_codigo_estudiante',
              'foreign' => 'est_codigo'));
+
+        $this->hasOne('Curso', array(
+             'local' => 'est_cur_codigo_curso',
+             'foreign' => 'cur_codigo'));
     }
 }

@@ -9,17 +9,17 @@ Doctrine_Manager::getInstance()->bindComponent('EvaluacionPregunta', 'doctrine')
  * 
  * @property integer $eva_pre_codigo_evaluacion
  * @property integer $eva_pre_codigo_pregunta
- * @property Pregunta $Pregunta
  * @property Evaluacion $Evaluacion
+ * @property Pregunta $Pregunta
  * 
  * @method integer            getEvaPreCodigoEvaluacion()    Returns the current record's "eva_pre_codigo_evaluacion" value
  * @method integer            getEvaPreCodigoPregunta()      Returns the current record's "eva_pre_codigo_pregunta" value
- * @method Pregunta           getPregunta()                  Returns the current record's "Pregunta" value
  * @method Evaluacion         getEvaluacion()                Returns the current record's "Evaluacion" value
+ * @method Pregunta           getPregunta()                  Returns the current record's "Pregunta" value
  * @method EvaluacionPregunta setEvaPreCodigoEvaluacion()    Sets the current record's "eva_pre_codigo_evaluacion" value
  * @method EvaluacionPregunta setEvaPreCodigoPregunta()      Sets the current record's "eva_pre_codigo_pregunta" value
- * @method EvaluacionPregunta setPregunta()                  Sets the current record's "Pregunta" value
  * @method EvaluacionPregunta setEvaluacion()                Sets the current record's "Evaluacion" value
+ * @method EvaluacionPregunta setPregunta()                  Sets the current record's "Pregunta" value
  * 
  * @package    OE
  * @subpackage model
@@ -50,12 +50,12 @@ abstract class BaseEvaluacionPregunta extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Pregunta', array(
-             'local' => 'eva_pre_codigo_pregunta',
-             'foreign' => 'pre_codigo'));
-
         $this->hasOne('Evaluacion', array(
              'local' => 'eva_pre_codigo_evaluacion',
              'foreign' => 'eva_codigo'));
+
+        $this->hasOne('Pregunta', array(
+             'local' => 'eva_pre_codigo_pregunta',
+             'foreign' => 'pre_codigo'));
     }
 }

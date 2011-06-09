@@ -19,29 +19,44 @@ var gestionar_cursos_datastore = new Ext.data.GroupingStore({
 		]),
 	sortInfo:{field: 'cur_codigo', direction: "ASC"}
 });
-//gestionar_cursos_datastore.load();
+gestionar_cursos_datastore.load();
+
+var gestionar_cursos_estudiantes_fields = [
+	{name:'est_codigo'},
+	{name:'est_nombres'},
+	{name:'est_apellidos'}
+];
 
 var gestionar_cursos_estudiantes_curso_datastore = new Ext.data.GroupingStore({
-	proxy:new Ext.data.HttpProxy({
+	proxy: new Ext.data.HttpProxy({
 		url:getAbsoluteUrl('gestion_cursos', 'consultar_estudiantes_curso'),
-		method:'POST'
-	}),
+		method: 'POST'
+	}),	
 	baseParams:{}, 
-	reader:new Ext.data.JsonReader({
-		root:'results',
-		totalProperty:'total'
-		},[
-			{name:'est_codigo'},
-			{name:'est_nombres'},
-			{name:'est_apellidos'}
-		]),
+	reader: new Ext.data.JsonReader({
+			root:'results',
+			totalProperty:'total'
+		},
+		gestionar_cursos_estudiantes_fields
+	),
 	sortInfo:{field: 'est_codigo', direction: "ASC"}
 });
 //gestionar_cursos_estudiantes_curso_datastore.load();
 
+var gestionar_curso_estudiantes_curso_columnmodel = new Ext.grid.ColumnModel({
+	defaults:{sortable: true, locked: false, resizable: true, align:'center'},
+	columns:[
+		{header: "<b>C&oacute;digo</b>", width: 60, dataIndex: 'est_codigo'},
+		{header: "<b>Nombres</b>", width: 150, dataIndex: 'est_nombres'},
+		{header: "<b>Apellidos</b>", width: 150, dataIndex: 'est_apellidos'}
+	]
+});
+
 var gestionar_curso_estudiantes_curso_gridpanel = new Ext.grid.GridPanel({
 	id:'gestionar_curso_estudiantes_curso_gridpanel',
 	title:'Estudiantes del Curso',
+	ddGroup:'gestionar_curso_estudiantes_ddgroup',
+	enableDragDrop:true,
 	columnLines:true,
 	height:450,
 	autoWidth:true,
@@ -51,14 +66,7 @@ var gestionar_curso_estudiantes_curso_gridpanel = new Ext.grid.GridPanel({
 	monitorResize:true,
 	frame:true,
 	ds:gestionar_cursos_estudiantes_curso_datastore,
-	cm:new Ext.grid.ColumnModel({
-		defaults:{sortable: true, locked: false, resizable: true, align:'center'},
-		columns:[
-			{header: "<b>C&oacute;digo</b>", width: 60, dataIndex: 'pro_codigo'},
-			{header: "<b>Nombres</b>", width: 150, dataIndex: 'pro_nombres'},
-			{header: "<b>Apellidos</b>", width: 150, dataIndex: 'pro_apellidos'}
-		]
-	}),
+	cm:gestionar_curso_estudiantes_curso_columnmodel,
 	sm:new Ext.grid.RowSelectionModel({
 		singleSelect:true,
 		listeners:{
@@ -73,41 +81,47 @@ var gestionar_curso_estudiantes_curso_gridpanel = new Ext.grid.GridPanel({
 			g.getSelectionModel().selectRow(0);
 		}
 	},
-	
-	bbar:new Ext.PagingToolbar({
+	/*bbar:new Ext.PagingToolbar({
 		pageSize:10,
 		store:gestionar_cursos_datastore,
 		displayInfo:true,
 		displayMsg:'cursos {0} - {1} de {2}',
 		emptyMsg:"No hay estudiantes en el curso"
-	}),
-	view: new Ext.grid.GroupingView()
+	}),*/
+	view: new Ext.grid.GroupingView(),
+	renderTo: 'div_gridpanel_gestionar_curso_estudiantes_curso'
 });
 
 var gestionar_cursos_estudiantes_datastore = new Ext.data.GroupingStore({
 	proxy:new Ext.data.HttpProxy({
 		url:getAbsoluteUrl('gestion_cursos', 'consultar_estudiantes'),
-		method:'POST',
-		limit:20,
-		start:0
-	}),
+		method: 'POST'
+	}),	
 	baseParams:{}, 
-	reader:new Ext.data.JsonReader({
-		root:'results',
-		totalProperty:'total'
-		},[
-			{name:'est_codigo'},
-			{name:'est_nombres'},
-			{name:'est_apellidos'},
-			{name:'est_identificacion'}
-		]),
+	reader: new Ext.data.JsonReader({
+			root:'results',
+			totalProperty:'total'
+		},
+		gestionar_cursos_estudiantes_fields
+	),
 	sortInfo:{field: 'est_codigo', direction: "ASC"}
 });
 gestionar_cursos_estudiantes_datastore.load();
 
+var gestionar_curso_estudiantes_columnmodel = new Ext.grid.ColumnModel({
+	defaults:{sortable: true, locked: false, resizable: true, align:'center'},
+	columns:[
+		{header: "<b>C&oacute;digo</b>", width: 60, dataIndex: 'est_codigo'},
+		{header: "<b>Nombres</b>", width: 150, dataIndex: 'est_nombres'},
+		{header: "<b>Apellidos</b>", width: 150, dataIndex: 'est_apellidos'}
+	]
+});
+
 var gestionar_curso_estudiantes_gridpanel = new Ext.grid.GridPanel({
 	id:'gestionar_curso_estudiantes_gridpanel',
 	title:'Todos los estudiantes',
+	ddGroup:'gestionar_curso_estudiantes_curso_ddgroup',
+	enableDragDrop:true,
 	columnLines:true,
 	height:450,
 	autoWidth:true,
@@ -117,14 +131,7 @@ var gestionar_curso_estudiantes_gridpanel = new Ext.grid.GridPanel({
 	monitorResize:true,
 	frame:true,
 	ds:gestionar_cursos_estudiantes_datastore,
-	cm:new Ext.grid.ColumnModel({
-		defaults:{sortable: true, locked: false, resizable: true, align:'center'},
-		columns:[
-			{header: "<b>C&oacute;digo</b>", width: 60, dataIndex: 'est_codigo'},
-			{header: "<b>Nombres</b>", width: 150, dataIndex: 'est_nombres'},
-			{header: "<b>Apellidos</b>", width: 150, dataIndex: 'est_apellidos'}
-		]
-	}),
+	cm:gestionar_curso_estudiantes_columnmodel,
 	sm:new Ext.grid.RowSelectionModel({
 		singleSelect:true,
 		listeners:{
@@ -165,7 +172,32 @@ var gestionar_curso_estudiantes_gridpanel = new Ext.grid.GridPanel({
 		displayMsg:'cursos {0} - {1} de {2}',
 		emptyMsg:"No hay estudiantes"
 	}),
-	view: new Ext.grid.GroupingView()
+	view: new Ext.grid.GroupingView(),
+	renderTo: 'div_gridpanel_gestionar_curso_estudiantes'
+});
+
+var gestionar_curso_estudiantes_curso_DropTargetEl =  gestionar_curso_estudiantes_curso_gridpanel.getView().scroller.dom;
+var gestionar_curso_estudiantes_curso_DropTarget = new Ext.dd.DropTarget(gestionar_curso_estudiantes_curso_DropTargetEl, {
+		ddGroup: 'gestionar_curso_estudiantes_curso_ddgroup',
+		notifyDrop: function(ddSource, e, data){
+				var records =  ddSource.dragData.selections;
+				Ext.each(records, ddSource.grid.store.remove, ddSource.grid.store);
+				gestionar_curso_estudiantes_curso_gridpanel.store.add(records);
+				gestionar_curso_estudiantes_curso_gridpanel.store.sort('est_codigo', 'ASC');
+				return true
+		}
+});
+
+var gestionar_curso_estudiantes_DropTargetEl =  gestionar_curso_estudiantes_gridpanel.getView().scroller.dom;
+var gestionar_curso_estudiantes_DropTarget = new Ext.dd.DropTarget(gestionar_curso_estudiantes_DropTargetEl, {
+		ddGroup: 'gestionar_curso_estudiantes_ddgroup',
+		notifyDrop: function(ddSource, e, data){
+				var records =  ddSource.dragData.selections;
+				Ext.each(records, ddSource.grid.store.remove, ddSource.grid.store);
+				gestionar_curso_estudiantes_gridpanel.store.add(records);
+				gestionar_curso_estudiantes_gridpanel.store.sort('est_codigo', 'ASC');
+				return true
+		}
 });
 
 var gestionar_curso_datos_curso_panel = new Ext.FormPanel({
@@ -395,7 +427,7 @@ var gestionar_cursos_colmodel = new Ext.grid.ColumnModel({
 		{id: 'col_pro_nombres', header: "<b>Nombre</b>", width: 200, dataIndex: 'cur_nombre'},
 		{header: "<b>Profesor</b>", width: 300, dataIndex: 'cur_nombre_profesor'},
 		{header: "<b>C&oacute;digo Profesor</b>", width: 150, dataIndex: 'cur_codigo_profesor'},
-		{header: "<b>Fecha creaci&oacute;n</b>", width: 150, dataIndex: 'cur_fecha_crecion'},
+		{header: "<b>Fecha creaci&oacute;n</b>", width: 150, dataIndex: 'cur_fecha_creacion'},
 		{header: "<b>Habilitado</b>", width: 85, dataIndex: 'cur_habilitado', renderer:si_no}
 	]
 });
@@ -718,10 +750,20 @@ gestionar_cursos_exportar_curso_function = function(){
 }
 
 gestionar_cursos_guardar_curso_function = function(){
+	var codigos_estudiantes = new Array();
+	
+	var rows = gestionar_cursos_estudiantes_curso_datastore.getCount();
+	
+	for(var i=0; i<rows; i++){
+		var record = gestionar_cursos_estudiantes_curso_datastore.getAt(i);
+		
+		codigos_estudiantes.push(record.get('est_codigo'));
+	}
+	
 	subir_datos(
 		gestionar_curso_datos_curso_panel,
 		getAbsoluteUrl('gestion_cursos', 'guardar_curso'),
-		[],
+		{codigos_estudiantes: Ext.encode(codigos_estudiantes)},
 		function(){gestionar_cursos_datastore.reload();},
 		function(){}
 	);

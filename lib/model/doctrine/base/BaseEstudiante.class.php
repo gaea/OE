@@ -14,11 +14,11 @@ Doctrine_Manager::getInstance()->bindComponent('Estudiante', 'doctrine');
  * @property string $est_apellidos
  * @property string $est_telefono
  * @property string $est_e_mail
- * @property string $est_habilitado
  * @property string $est_url_imagen
  * @property string $est_identificacion
- * @property Usuario $Usuario
+ * @property boolean $est_habilitado
  * @property Identificacion $Identificacion
+ * @property Usuario $Usuario
  * @property Doctrine_Collection $EstudianteCurso
  * @property Doctrine_Collection $EstudianteEvaluacionGrupo
  * @property Doctrine_Collection $EstudianteSolucionEvaluacionPregunta
@@ -30,11 +30,11 @@ Doctrine_Manager::getInstance()->bindComponent('Estudiante', 'doctrine');
  * @method string              getEstApellidos()                         Returns the current record's "est_apellidos" value
  * @method string              getEstTelefono()                          Returns the current record's "est_telefono" value
  * @method string              getEstEMail()                             Returns the current record's "est_e_mail" value
- * @method string              getEstHabilitado()                        Returns the current record's "est_habilitado" value
  * @method string              getEstUrlImagen()                         Returns the current record's "est_url_imagen" value
  * @method string              getEstIdentificacion()                    Returns the current record's "est_identificacion" value
- * @method Usuario             getUsuario()                              Returns the current record's "Usuario" value
+ * @method boolean             getEstHabilitado()                        Returns the current record's "est_habilitado" value
  * @method Identificacion      getIdentificacion()                       Returns the current record's "Identificacion" value
+ * @method Usuario             getUsuario()                              Returns the current record's "Usuario" value
  * @method Doctrine_Collection getEstudianteCurso()                      Returns the current record's "EstudianteCurso" collection
  * @method Doctrine_Collection getEstudianteEvaluacionGrupo()            Returns the current record's "EstudianteEvaluacionGrupo" collection
  * @method Doctrine_Collection getEstudianteSolucionEvaluacionPregunta() Returns the current record's "EstudianteSolucionEvaluacionPregunta" collection
@@ -45,11 +45,11 @@ Doctrine_Manager::getInstance()->bindComponent('Estudiante', 'doctrine');
  * @method Estudiante          setEstApellidos()                         Sets the current record's "est_apellidos" value
  * @method Estudiante          setEstTelefono()                          Sets the current record's "est_telefono" value
  * @method Estudiante          setEstEMail()                             Sets the current record's "est_e_mail" value
- * @method Estudiante          setEstHabilitado()                        Sets the current record's "est_habilitado" value
  * @method Estudiante          setEstUrlImagen()                         Sets the current record's "est_url_imagen" value
  * @method Estudiante          setEstIdentificacion()                    Sets the current record's "est_identificacion" value
- * @method Estudiante          setUsuario()                              Sets the current record's "Usuario" value
+ * @method Estudiante          setEstHabilitado()                        Sets the current record's "est_habilitado" value
  * @method Estudiante          setIdentificacion()                       Sets the current record's "Identificacion" value
+ * @method Estudiante          setUsuario()                              Sets the current record's "Usuario" value
  * @method Estudiante          setEstudianteCurso()                      Sets the current record's "EstudianteCurso" collection
  * @method Estudiante          setEstudianteEvaluacionGrupo()            Sets the current record's "EstudianteEvaluacionGrupo" collection
  * @method Estudiante          setEstudianteSolucionEvaluacionPregunta() Sets the current record's "EstudianteSolucionEvaluacionPregunta" collection
@@ -120,14 +120,6 @@ abstract class BaseEstudiante extends sfDoctrineRecord
              'primary' => false,
              'length' => '',
              ));
-        $this->hasColumn('est_habilitado', 'string', null, array(
-             'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
-             'length' => '',
-             ));
         $this->hasColumn('est_url_imagen', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
@@ -144,18 +136,26 @@ abstract class BaseEstudiante extends sfDoctrineRecord
              'primary' => false,
              'length' => '',
              ));
+        $this->hasColumn('est_habilitado', 'boolean', 1, array(
+             'type' => 'boolean',
+             'fixed' => 0,
+             'unsigned' => false,
+             'notnull' => false,
+             'primary' => false,
+             'length' => 1,
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Usuario', array(
-             'local' => 'est_codigo_usuario',
-             'foreign' => 'usu_codigo'));
-
         $this->hasOne('Identificacion', array(
              'local' => 'est_codigo_identificacion',
              'foreign' => 'ide_codigo'));
+
+        $this->hasOne('Usuario', array(
+             'local' => 'est_codigo_usuario',
+             'foreign' => 'usu_codigo'));
 
         $this->hasMany('EstudianteCurso', array(
              'local' => 'est_codigo',

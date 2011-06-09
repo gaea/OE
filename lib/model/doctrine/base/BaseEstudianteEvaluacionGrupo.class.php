@@ -11,21 +11,21 @@ Doctrine_Manager::getInstance()->bindComponent('EstudianteEvaluacionGrupo', 'doc
  * @property integer $est_eva_gru_codigo_estudiante
  * @property integer $est_eva_gru_codigo_evaluacion
  * @property integer $est_eva_gru_numero_grupo
- * @property Evaluacion $Evaluacion
  * @property Estudiante $Estudiante
+ * @property Evaluacion $Evaluacion
  * 
  * @method integer                   getId()                            Returns the current record's "id" value
  * @method integer                   getEstEvaGruCodigoEstudiante()     Returns the current record's "est_eva_gru_codigo_estudiante" value
  * @method integer                   getEstEvaGruCodigoEvaluacion()     Returns the current record's "est_eva_gru_codigo_evaluacion" value
  * @method integer                   getEstEvaGruNumeroGrupo()          Returns the current record's "est_eva_gru_numero_grupo" value
- * @method Evaluacion                getEvaluacion()                    Returns the current record's "Evaluacion" value
  * @method Estudiante                getEstudiante()                    Returns the current record's "Estudiante" value
+ * @method Evaluacion                getEvaluacion()                    Returns the current record's "Evaluacion" value
  * @method EstudianteEvaluacionGrupo setId()                            Sets the current record's "id" value
  * @method EstudianteEvaluacionGrupo setEstEvaGruCodigoEstudiante()     Sets the current record's "est_eva_gru_codigo_estudiante" value
  * @method EstudianteEvaluacionGrupo setEstEvaGruCodigoEvaluacion()     Sets the current record's "est_eva_gru_codigo_evaluacion" value
  * @method EstudianteEvaluacionGrupo setEstEvaGruNumeroGrupo()          Sets the current record's "est_eva_gru_numero_grupo" value
- * @method EstudianteEvaluacionGrupo setEvaluacion()                    Sets the current record's "Evaluacion" value
  * @method EstudianteEvaluacionGrupo setEstudiante()                    Sets the current record's "Estudiante" value
+ * @method EstudianteEvaluacionGrupo setEvaluacion()                    Sets the current record's "Evaluacion" value
  * 
  * @package    OE
  * @subpackage model
@@ -72,12 +72,12 @@ abstract class BaseEstudianteEvaluacionGrupo extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Evaluacion', array(
-             'local' => 'est_eva_gru_codigo_evaluacion',
-             'foreign' => 'eva_codigo'));
-
         $this->hasOne('Estudiante', array(
              'local' => 'est_eva_gru_codigo_estudiante',
              'foreign' => 'est_codigo'));
+
+        $this->hasOne('Evaluacion', array(
+             'local' => 'est_eva_gru_codigo_evaluacion',
+             'foreign' => 'eva_codigo'));
     }
 }

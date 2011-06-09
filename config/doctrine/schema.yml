@@ -39,20 +39,39 @@ Curso:
   connection: doctrine
   tableName: curso
   columns:
-    cur_codigo:
+    cur_codigo_profesor:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
+      notnull: true
+      primary: false
     cur_nombre:
       type: string()
       fixed: false
       unsigned: false
       notnull: false
       primary: false
+    cur_codigo:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      sequence: curso_cur_codigo
+    cur_fecha_creacion:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
+    cur_habilitado:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
   relations:
     Profesor:
-      local: cur_codigo
+      local: cur_codigo_profesor
       foreign: pro_codigo
       type: one
     EstudianteCurso:
@@ -126,12 +145,6 @@ Estudiante:
       unsigned: false
       notnull: false
       primary: false
-    est_habilitado:
-      type: string()
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
     est_url_imagen:
       type: string()
       fixed: false
@@ -144,14 +157,20 @@ Estudiante:
       unsigned: false
       notnull: false
       primary: false
+    est_habilitado:
+      type: boolean(1)
+      fixed: false
+      unsigned: false
+      notnull: false
+      primary: false
   relations:
-    Usuario:
-      local: est_codigo_usuario
-      foreign: usu_codigo
-      type: one
     Identificacion:
       local: est_codigo_identificacion
       foreign: ide_codigo
+      type: one
+    Usuario:
+      local: est_codigo_usuario
+      foreign: usu_codigo
       type: one
     EstudianteCurso:
       local: est_codigo
@@ -180,13 +199,13 @@ EstudianteCurso:
       unsigned: false
       primary: true
   relations:
-    Curso:
-      local: est_cur_codigo_curso
-      foreign: cur_codigo
-      type: one
     Estudiante:
       local: est_cur_codigo_estudiante
       foreign: est_codigo
+      type: one
+    Curso:
+      local: est_cur_codigo_curso
+      foreign: cur_codigo
       type: one
 EstudianteEvaluacionGrupo:
   connection: doctrine
@@ -215,13 +234,13 @@ EstudianteEvaluacionGrupo:
       notnull: false
       primary: false
   relations:
-    Evaluacion:
-      local: est_eva_gru_codigo_evaluacion
-      foreign: eva_codigo
-      type: one
     Estudiante:
       local: est_eva_gru_codigo_estudiante
       foreign: est_codigo
+      type: one
+    Evaluacion:
+      local: est_eva_gru_codigo_evaluacion
+      foreign: eva_codigo
       type: one
 EstudianteSolucionEvaluacionPregunta:
   connection: doctrine
@@ -429,13 +448,13 @@ EvaluacionPregunta:
       unsigned: false
       primary: true
   relations:
-    Pregunta:
-      local: eva_pre_codigo_pregunta
-      foreign: pre_codigo
-      type: one
     Evaluacion:
       local: eva_pre_codigo_evaluacion
       foreign: eva_codigo
+      type: one
+    Pregunta:
+      local: eva_pre_codigo_pregunta
+      foreign: pre_codigo
       type: one
 EvaluacionPreguntaAyuda:
   connection: doctrine
@@ -561,13 +580,13 @@ Pregunta:
       notnull: false
       primary: false
   relations:
-    TemaOMateria:
-      local: pre_codigo_tema_o_materia
-      foreign: tom_codigo
-      type: one
     Profesor:
       local: pre_codigo_profesor
       foreign: pro_codigo
+      type: one
+    TemaOMateria:
+      local: pre_codigo_tema_o_materia
+      foreign: tom_codigo
       type: one
     TipoPregunta:
       local: pre_codigo_tipo_pregunta
@@ -675,17 +694,17 @@ Profesor:
       notnull: false
       primary: false
   relations:
-    Usuario:
-      local: pro_codigo_usuario
-      foreign: usu_codigo
-      type: one
     Identificacion:
       local: pro_codigo_identificacion
       foreign: ide_codigo
       type: one
+    Usuario:
+      local: pro_codigo_usuario
+      foreign: usu_codigo
+      type: one
     Curso:
       local: pro_codigo
-      foreign: cur_codigo
+      foreign: cur_codigo_profesor
       type: many
     Evaluacion:
       local: pro_codigo
