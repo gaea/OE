@@ -46,9 +46,9 @@
 	});
 	
 	var usu_recordarme=new Ext.form.Checkbox({
-		xtype: 'checkbox',
-		name: 'usu_recordarme',
-		fieldLabel: 'Recordarme',
+		xtype:'checkbox',
+		name:'usu_recordarme',
+		fieldLabel:'Recordarme',
 		handler:function(){
 			if(usu_recordarme.isDirty() && usu_login.getValue()!="" && usu_password.getValue()!="")
 			{		
@@ -59,23 +59,24 @@
 	});
 	
 	var form_autenticacion_profesor=new Ext.FormPanel({
-		layout: 'form',
+		layout:'form',
 		frame:true,
-		title: 'Iniciar sesi&oacute;n',
+		title:'Iniciar sesi&oacute;n',
 		monitorValid:true,
-		stateful : true,
-		labelWidth :120,
-		width: 320,
+		stateful:true,
+		labelWidth:80,
+		width:320,
 		bodyStyle:'padding:15px',
 		defaults:{xtype: 'textfield',width:160,allowBlank:false},
-		items: [
+		items:[
 			usu_login,
 			usu_password,
 			usu_recordarme  
-			],
-		buttons:[{text:'registrarse',  handler:registrarse},
+		],
+		buttons:[
+			{text:'registrarse', handler:registrarse},
 			{text:'Acceder', formBind: true, handler:autenticar}
-			],
+		],
 		renderTo:'div_login'
 	});
 

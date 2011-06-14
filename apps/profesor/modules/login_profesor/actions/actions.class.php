@@ -31,26 +31,27 @@ class login_profesorActions extends sfActions
 		$usu_login=$this->getRequestParameter('usu_login');
 		$usu_password=$this->getRequestParameter('usu_password');
 		
-		try{
-			/*	
-				$query = Doctrine_Query::create()->from('Usuario ');
-				$query->innerJoin('Profesor');
+		try
+		{
+				$query = Doctrine_Query::create();
+				$query->from('Profesor');
+				$query->innerJoin('Profesor.Usuario');
 
 				$query->where('Usuario.usu_login = ?', $usu_login);
-				$query->andWhere('Usuario.usu_password = ?', $usu_password);
-				$query->andWhere('Usuario.usu_codigo = Profesor.pro_codigo_usuario);				
+				$query->andWhere('Usuario.usu_password = ?', md5($usu_password));
+				//$query->andWhere('Usuario.usu_codigo = Profesor.pro_codigo_usuario');				
 				
-				$users = $query->fetchArray();
+				$profesores = $query->fetchArray();
  
-				foreach ($users[0]['Groups'] as $group) {
+				foreach ($profesores as $profesor) 
+				{
 					$salida = "({success: true, mensaje:'profesor'})";
 				}
-				*/
 				
-			
+			/*
 			if($usu_login=='maryit'){
 				$salida = "({success: true, mensaje:'profesor'})";
-			}
+			}*/
 		}
 		catch (Exception $excepcion)
 		{
