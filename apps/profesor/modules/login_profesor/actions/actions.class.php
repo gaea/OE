@@ -38,20 +38,23 @@ class login_profesorActions extends sfActions
 				$query->innerJoin('Profesor.Usuario');
 
 				$query->where('Usuario.usu_login = ?', $usu_login);
-				$query->andWhere('Usuario.usu_password = ?', md5($usu_password));
-				//$query->andWhere('Usuario.usu_codigo = Profesor.pro_codigo_usuario');				
+				$query->andWhere('Usuario.usu_password = ?', md5($usu_password));		
 				
 				$profesores = $query->fetchArray();
  
 				foreach ($profesores as $profesor) 
 				{
+					$this->getUser()->setCulture('es_CO');
+					$this->getUser()->setAttribute('pro_codigo', $profesor['pro_codigo']);
+					$this->getUser()->setAttribute('usu_login', $profesor['Usuario']['usu_login']);
+					$this->getUser()->setAttribute('pro_nombres', $profesor['pro_nombres']);
+					$this->getUser()->setAttribute('pro_apellidos', $profesor['pro_apellidos']);
+					
+					$this->getUser()->setAuthenticated(true);
+					$this->getUser()->addCredential('profesor');
+					
 					$salida = "({success: true, mensaje:'profesor'})";
 				}
-				
-			/*
-			if($usu_login=='maryit'){
-				$salida = "({success: true, mensaje:'profesor'})";
-			}*/
 		}
 		catch (Exception $excepcion)
 		{
@@ -60,4 +63,15 @@ class login_profesorActions extends sfActions
 
 		return $this->renderText($salida);
   }
+  
+	public function executeDesautenticar()
+	{
+		if($this->getUser()->isAuthenticated())
+		{
+			$this->getUser()->setAuthenticated(false);
+			$this->getUser()->clearCredentials();
+			$this->getUser()->getAttributeHolder()->clear();
+		}
+		return $this->renderText("{success: true, mensaje: 'El usuario ha terminado'}");
+	}
 }
