@@ -1,3 +1,21 @@
+tema_o_materia_maestra_tema_o_materia:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TemaOMateria
+    module:               maestra_tema_o_materia
+    prefix_path:          /maestra_tema_o_materia
+    column:               tom_codigo
+    with_wildcard_routes: true
+
+tema_o_materia:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TemaOMateria
+    module:               admin_tema_o_materia
+    prefix_path:          /admin_tema_o_materia
+    column:               tom_codigo
+    with_wildcard_routes: true
+
 
 identificacion:
   class: sfDoctrineRouteCollection
