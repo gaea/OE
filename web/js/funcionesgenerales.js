@@ -15,6 +15,14 @@ function getAbsoluteUrl(module, action){
     return urlPrefix + module + '/' + action;
 }
 
+function get_absolute_url(module, action){
+    return urlPrefix + module + '/' + action;
+}
+
+function get_absolute_url_app(app, module, action){
+    return urlPrefix + '../' + app + '.php/' +  module + '/' + action;
+}
+
 function subir_datos(panel, url_action, extra_params, funcion_success, funcion_failure){
     panel.getForm().submit({
         method:'POST',

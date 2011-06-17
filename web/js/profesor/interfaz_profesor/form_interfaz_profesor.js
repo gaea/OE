@@ -30,8 +30,8 @@ var viewport = new Ext.Viewport({
 				},
                 items:[
                     {
-						title:'Archivo',
-						tabTip:'Archivo',
+						title:'Evaluaciones',
+						tabTip:'Evaluaciones',
 						//layout:'fit',
 						//autoScroll:true,
 						tbar:[
@@ -40,21 +40,33 @@ var viewport = new Ext.Viewport({
 								title:"Evaluaciones",
 								items:[
 									{
-										text:"Nuevo",
-										iconAlign:'top',
-										iconCls:'agregar_estudiante24',
-										scale:'medium',
-										handler:function(){
-
-										}
-									},
-									{
 										text:"Mis Evaluaciones",
 										iconAlign:'top',
 										iconCls:'agregar_estudiante24',
 										scale:'medium',
 										handler:function(){
-
+											Ext.getCmp('formpanel_evaluacion').hide();
+											Ext.getCmp('formpanel_evaluacion_gridpanel').show();
+										}
+									},
+									{
+										text:"Agregar",
+										iconAlign:'top',
+										iconCls:'agregar_estudiante24',
+										scale:'medium',
+										handler:function(){
+											Ext.getCmp('formpanel_evaluacion_gridpanel').hide();
+											Ext.getCmp('formpanel_evaluacion').show();
+										}
+									},
+									{
+										text:"Modificar",
+										iconAlign:'top',
+										iconCls:'agregar_estudiante24',
+										scale:'medium',
+										handler:function(){
+											Ext.getCmp('formpanel_evaluacion_gridpanel').hide();
+											Ext.getCmp('formpanel_evaluacion').show();
 										}
 									}
 								]
@@ -96,8 +108,14 @@ var viewport = new Ext.Viewport({
 						]
 					},
 					{
-						title: 'Editar',
-						tabTip: 'Editar',
+						title: 'Preguntas',
+						tabTip: 'Preguntas',
+						autoScroll: true,
+						//autoLoad: {url: getAbsoluteUrl('gestion_estudiantes', 'index'), scripts: true, scope: this}
+					},
+					{
+						title: 'Programaci&oacute;n',
+						tabTip: 'Programaci&oacute;n',
 						autoScroll: true,
 						//autoLoad: {url: getAbsoluteUrl('gestion_estudiantes', 'index'), scripts: true, scope: this}
 					},
@@ -136,15 +154,18 @@ var viewport = new Ext.Viewport({
 			},
 			{
 				xtype:'panel',
-				title:'panel central',
-				height:500,
+				title:'Area de Trabajo',
+				height:550,
 				//html:'hola'
 				layout:'border',
 				items:[
 					{
 						xtype:'panel',
 						region:'center',
-						html:'hola'
+						items:[
+							formpanel_evaluacion,
+							formpanel_evaluacion_gridpanel
+						]
 					},
 					{
 						xtype:'panel',
