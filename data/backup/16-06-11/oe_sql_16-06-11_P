@@ -1,0 +1,1527 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Started on 2011-06-16 23:21:57 COT
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 1545 (class 1259 OID 38055)
+-- Dependencies: 6
+-- Name: ayuda; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE ayuda (
+    ayu_codigo integer NOT NULL,
+    ayu_nombre character varying(250),
+    ayu_penalizacion numeric,
+    ayu_cuerpo text
+);
+
+
+ALTER TABLE public.ayuda OWNER TO oe;
+
+--
+-- TOC entry 1546 (class 1259 OID 38061)
+-- Dependencies: 1545 6
+-- Name: ayuda_ayu_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE ayuda_ayu_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ayuda_ayu_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1947 (class 0 OID 0)
+-- Dependencies: 1546
+-- Name: ayuda_ayu_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE ayuda_ayu_codigo_seq OWNED BY ayuda.ayu_codigo;
+
+
+--
+-- TOC entry 1948 (class 0 OID 0)
+-- Dependencies: 1546
+-- Name: ayuda_ayu_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('ayuda_ayu_codigo_seq', 1, false);
+
+
+--
+-- TOC entry 1547 (class 1259 OID 38063)
+-- Dependencies: 6
+-- Name: curso; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE curso (
+    cur_codigo_profesor integer NOT NULL,
+    cur_nombre character varying(250),
+    cur_codigo integer NOT NULL,
+    cur_fecha_creacion date,
+    cur_habilitado boolean
+);
+
+
+ALTER TABLE public.curso OWNER TO oe;
+
+--
+-- TOC entry 1576 (class 1259 OID 38352)
+-- Dependencies: 1547 6
+-- Name: curso_cur_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE curso_cur_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.curso_cur_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1949 (class 0 OID 0)
+-- Dependencies: 1576
+-- Name: curso_cur_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE curso_cur_codigo_seq OWNED BY curso.cur_codigo;
+
+
+--
+-- TOC entry 1950 (class 0 OID 0)
+-- Dependencies: 1576
+-- Name: curso_cur_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('curso_cur_codigo_seq', 2, true);
+
+
+--
+-- TOC entry 1548 (class 1259 OID 38066)
+-- Dependencies: 6
+-- Name: dispositivo; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE dispositivo (
+    dis_codigo integer NOT NULL,
+    nombre character varying(250)
+);
+
+
+ALTER TABLE public.dispositivo OWNER TO oe;
+
+--
+-- TOC entry 1549 (class 1259 OID 38069)
+-- Dependencies: 6 1548
+-- Name: dispositivo_dis_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE dispositivo_dis_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.dispositivo_dis_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1951 (class 0 OID 0)
+-- Dependencies: 1549
+-- Name: dispositivo_dis_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE dispositivo_dis_codigo_seq OWNED BY dispositivo.dis_codigo;
+
+
+--
+-- TOC entry 1952 (class 0 OID 0)
+-- Dependencies: 1549
+-- Name: dispositivo_dis_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('dispositivo_dis_codigo_seq', 1, false);
+
+
+--
+-- TOC entry 1550 (class 1259 OID 38071)
+-- Dependencies: 6
+-- Name: estudiante; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE estudiante (
+    est_codigo_usuario integer,
+    est_codigo_identificacion integer NOT NULL,
+    est_codigo integer NOT NULL,
+    est_nombres character varying(250),
+    est_apellidos character varying(250),
+    est_telefono character varying(250),
+    est_e_mail character varying(250),
+    est_url_imagen character varying(250),
+    est_identificacion character varying(100),
+    est_habilitado boolean
+);
+
+
+ALTER TABLE public.estudiante OWNER TO oe;
+
+--
+-- TOC entry 1551 (class 1259 OID 38077)
+-- Dependencies: 6
+-- Name: estudiante_curso; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE estudiante_curso (
+    est_cur_codigo_curso integer NOT NULL,
+    est_cur_codigo_estudiante integer NOT NULL
+);
+
+
+ALTER TABLE public.estudiante_curso OWNER TO oe;
+
+--
+-- TOC entry 1552 (class 1259 OID 38080)
+-- Dependencies: 1550 6
+-- Name: estudiante_est_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE estudiante_est_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.estudiante_est_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1953 (class 0 OID 0)
+-- Dependencies: 1552
+-- Name: estudiante_est_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE estudiante_est_codigo_seq OWNED BY estudiante.est_codigo;
+
+
+--
+-- TOC entry 1954 (class 0 OID 0)
+-- Dependencies: 1552
+-- Name: estudiante_est_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('estudiante_est_codigo_seq', 3, true);
+
+
+--
+-- TOC entry 1553 (class 1259 OID 38082)
+-- Dependencies: 6
+-- Name: estudiante_evaluacion_grupo; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE estudiante_evaluacion_grupo (
+    est_eva_gru_codigo_estudiante integer,
+    est_eva_gru_codigo_evaluacion integer,
+    est_eva_gru_numero_grupo integer
+);
+
+
+ALTER TABLE public.estudiante_evaluacion_grupo OWNER TO oe;
+
+--
+-- TOC entry 1554 (class 1259 OID 38085)
+-- Dependencies: 6
+-- Name: estudiante_solucion_evaluacion_pregunta; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE estudiante_solucion_evaluacion_pregunta (
+    est_sol_eva_pre_codigo_estudiante integer NOT NULL,
+    est_sol_eva_pre_codigo_pregunta integer NOT NULL,
+    est_sol_eva_pre_codigo_evaluacion integer NOT NULL
+);
+
+
+ALTER TABLE public.estudiante_solucion_evaluacion_pregunta OWNER TO oe;
+
+--
+-- TOC entry 1555 (class 1259 OID 38088)
+-- Dependencies: 6
+-- Name: estudiante_solucion_evaluacion_pregunta_ayuda; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE estudiante_solucion_evaluacion_pregunta_ayuda (
+    est_sol_eva_pre_ayu_codigo_estudiante integer,
+    est_sol_eva_pre_ayu_codigo_pregunta integer,
+    est_sol_eva_pre_ayu_codigo_evaluacion integer,
+    est_sol_eva_pre_ayu_codigo_ayuda integer
+);
+
+
+ALTER TABLE public.estudiante_solucion_evaluacion_pregunta_ayuda OWNER TO oe;
+
+--
+-- TOC entry 1556 (class 1259 OID 38091)
+-- Dependencies: 6
+-- Name: estudiante_solucion_evaluacion_pregunta_dispositivo; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE estudiante_solucion_evaluacion_pregunta_dispositivo (
+    est_sol_eva_pre_dis_codigo_estudiante integer,
+    est_sol_eva_pre_dis_codigo_pregunta integer,
+    est_sol_eva_pre_dis_codigo_evaluacion integer,
+    est_sol_eva_pre_dis_codigo_dispositivo integer
+);
+
+
+ALTER TABLE public.estudiante_solucion_evaluacion_pregunta_dispositivo OWNER TO oe;
+
+--
+-- TOC entry 1557 (class 1259 OID 38094)
+-- Dependencies: 6
+-- Name: evaluacion; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE evaluacion (
+    eva_codigo integer NOT NULL,
+    eva_codigo_profesor integer NOT NULL,
+    eva_codigo_tema_materia integer,
+    eva_nombre character varying(250),
+    eva_hora_inicio time without time zone,
+    eva_hora_fin time without time zone,
+    eva_numero_personas_grupo integer,
+    eva_publico boolean,
+    eva_fecha date,
+    eva_numero_intentos integer,
+    eva_mostrar_solucion boolean,
+    eva_barajar_preguntas boolean
+);
+
+
+ALTER TABLE public.evaluacion OWNER TO oe;
+
+--
+-- TOC entry 1558 (class 1259 OID 38097)
+-- Dependencies: 1557 6
+-- Name: evaluacion_eva_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE evaluacion_eva_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.evaluacion_eva_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1955 (class 0 OID 0)
+-- Dependencies: 1558
+-- Name: evaluacion_eva_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE evaluacion_eva_codigo_seq OWNED BY evaluacion.eva_codigo;
+
+
+--
+-- TOC entry 1956 (class 0 OID 0)
+-- Dependencies: 1558
+-- Name: evaluacion_eva_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('evaluacion_eva_codigo_seq', 3, true);
+
+
+--
+-- TOC entry 1559 (class 1259 OID 38099)
+-- Dependencies: 6
+-- Name: evaluacion_pregunta; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE evaluacion_pregunta (
+    eva_pre_codigo_evaluacion integer NOT NULL,
+    eva_pre_codigo_pregunta integer NOT NULL
+);
+
+
+ALTER TABLE public.evaluacion_pregunta OWNER TO oe;
+
+--
+-- TOC entry 1560 (class 1259 OID 38102)
+-- Dependencies: 6
+-- Name: evaluacion_pregunta_ayuda; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE evaluacion_pregunta_ayuda (
+    eva_pre_ayu_codigo_evaluacion integer,
+    eva_pre_ayu_codigo_pregunta integer,
+    eva_pre_ayu_codigo_ayuda integer
+);
+
+
+ALTER TABLE public.evaluacion_pregunta_ayuda OWNER TO oe;
+
+--
+-- TOC entry 1561 (class 1259 OID 38105)
+-- Dependencies: 6
+-- Name: herramienta; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE herramienta (
+    her_codigo integer NOT NULL,
+    her_nombre character varying(250)
+);
+
+
+ALTER TABLE public.herramienta OWNER TO oe;
+
+--
+-- TOC entry 1562 (class 1259 OID 38108)
+-- Dependencies: 1561 6
+-- Name: herramienta_her_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE herramienta_her_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.herramienta_her_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1957 (class 0 OID 0)
+-- Dependencies: 1562
+-- Name: herramienta_her_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE herramienta_her_codigo_seq OWNED BY herramienta.her_codigo;
+
+
+--
+-- TOC entry 1958 (class 0 OID 0)
+-- Dependencies: 1562
+-- Name: herramienta_her_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('herramienta_her_codigo_seq', 1, false);
+
+
+--
+-- TOC entry 1563 (class 1259 OID 38110)
+-- Dependencies: 6
+-- Name: identificacion; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE identificacion (
+    ide_codigo integer NOT NULL,
+    ide_tipo character varying(250)
+);
+
+
+ALTER TABLE public.identificacion OWNER TO oe;
+
+--
+-- TOC entry 1564 (class 1259 OID 38113)
+-- Dependencies: 6 1563
+-- Name: identificacion_ide_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE identificacion_ide_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.identificacion_ide_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1959 (class 0 OID 0)
+-- Dependencies: 1564
+-- Name: identificacion_ide_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE identificacion_ide_codigo_seq OWNED BY identificacion.ide_codigo;
+
+
+--
+-- TOC entry 1960 (class 0 OID 0)
+-- Dependencies: 1564
+-- Name: identificacion_ide_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('identificacion_ide_codigo_seq', 6, true);
+
+
+--
+-- TOC entry 1565 (class 1259 OID 38115)
+-- Dependencies: 6
+-- Name: pregunta; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE pregunta (
+    pre_codigo integer NOT NULL,
+    pre_codigo_profesor integer NOT NULL,
+    pre_codigo_tema_o_materia integer,
+    pre_codigo_tipo_pregunta integer,
+    pre_cuerpo text,
+    pre_solucion text,
+    pre_publico boolean
+);
+
+
+ALTER TABLE public.pregunta OWNER TO oe;
+
+--
+-- TOC entry 1566 (class 1259 OID 38121)
+-- Dependencies: 6
+-- Name: pregunta_herramienta; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE pregunta_herramienta (
+    pre_her_codigo_herramienta integer NOT NULL,
+    pre_her_codigo_pregunta integer NOT NULL
+);
+
+
+ALTER TABLE public.pregunta_herramienta OWNER TO oe;
+
+--
+-- TOC entry 1567 (class 1259 OID 38124)
+-- Dependencies: 6 1565
+-- Name: pregunta_pre_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE pregunta_pre_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pregunta_pre_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1961 (class 0 OID 0)
+-- Dependencies: 1567
+-- Name: pregunta_pre_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE pregunta_pre_codigo_seq OWNED BY pregunta.pre_codigo;
+
+
+--
+-- TOC entry 1962 (class 0 OID 0)
+-- Dependencies: 1567
+-- Name: pregunta_pre_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('pregunta_pre_codigo_seq', 1, false);
+
+
+--
+-- TOC entry 1568 (class 1259 OID 38126)
+-- Dependencies: 6
+-- Name: profesor; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE profesor (
+    pro_codigo integer NOT NULL,
+    pro_codigo_usuario integer,
+    pro_codigo_identificacion integer,
+    pro_nombres character varying(250),
+    pro_apellidos character varying(250),
+    pro_telefono character varying(250),
+    pro_e_mail character varying(250),
+    pro_habilitado boolean,
+    pro_url_imagen character varying(250),
+    pro_identificacion character varying(100)
+);
+
+
+ALTER TABLE public.profesor OWNER TO oe;
+
+--
+-- TOC entry 1569 (class 1259 OID 38132)
+-- Dependencies: 6 1568
+-- Name: profesor_pro_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE profesor_pro_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.profesor_pro_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1963 (class 0 OID 0)
+-- Dependencies: 1569
+-- Name: profesor_pro_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE profesor_pro_codigo_seq OWNED BY profesor.pro_codigo;
+
+
+--
+-- TOC entry 1964 (class 0 OID 0)
+-- Dependencies: 1569
+-- Name: profesor_pro_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('profesor_pro_codigo_seq', 11, true);
+
+
+--
+-- TOC entry 1570 (class 1259 OID 38134)
+-- Dependencies: 6
+-- Name: tema_o_materia; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE tema_o_materia (
+    tom_codigo integer NOT NULL,
+    tom_nombre character varying(250)
+);
+
+
+ALTER TABLE public.tema_o_materia OWNER TO oe;
+
+--
+-- TOC entry 1571 (class 1259 OID 38137)
+-- Dependencies: 1570 6
+-- Name: tema_o_materia_tom_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE tema_o_materia_tom_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tema_o_materia_tom_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1965 (class 0 OID 0)
+-- Dependencies: 1571
+-- Name: tema_o_materia_tom_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE tema_o_materia_tom_codigo_seq OWNED BY tema_o_materia.tom_codigo;
+
+
+--
+-- TOC entry 1966 (class 0 OID 0)
+-- Dependencies: 1571
+-- Name: tema_o_materia_tom_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('tema_o_materia_tom_codigo_seq', 1, false);
+
+
+--
+-- TOC entry 1572 (class 1259 OID 38139)
+-- Dependencies: 6
+-- Name: tipo_pregunta; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE tipo_pregunta (
+    tip_pre_codigo integer NOT NULL,
+    tip_pre_nombre character varying(250),
+    tip_pre_plantilla text
+);
+
+
+ALTER TABLE public.tipo_pregunta OWNER TO oe;
+
+--
+-- TOC entry 1573 (class 1259 OID 38145)
+-- Dependencies: 6 1572
+-- Name: tipo_pregunta_tip_pre_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE tipo_pregunta_tip_pre_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tipo_pregunta_tip_pre_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1967 (class 0 OID 0)
+-- Dependencies: 1573
+-- Name: tipo_pregunta_tip_pre_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE tipo_pregunta_tip_pre_codigo_seq OWNED BY tipo_pregunta.tip_pre_codigo;
+
+
+--
+-- TOC entry 1968 (class 0 OID 0)
+-- Dependencies: 1573
+-- Name: tipo_pregunta_tip_pre_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('tipo_pregunta_tip_pre_codigo_seq', 1, false);
+
+
+--
+-- TOC entry 1574 (class 1259 OID 38147)
+-- Dependencies: 6
+-- Name: usuario; Type: TABLE; Schema: public; Owner: oe; Tablespace: 
+--
+
+CREATE TABLE usuario (
+    usu_codigo integer NOT NULL,
+    usu_login character varying(250),
+    usu_password character varying(250)
+);
+
+
+ALTER TABLE public.usuario OWNER TO oe;
+
+--
+-- TOC entry 1575 (class 1259 OID 38150)
+-- Dependencies: 6 1574
+-- Name: usuario_usu_codigo_seq; Type: SEQUENCE; Schema: public; Owner: oe
+--
+
+CREATE SEQUENCE usuario_usu_codigo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuario_usu_codigo_seq OWNER TO oe;
+
+--
+-- TOC entry 1969 (class 0 OID 0)
+-- Dependencies: 1575
+-- Name: usuario_usu_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oe
+--
+
+ALTER SEQUENCE usuario_usu_codigo_seq OWNED BY usuario.usu_codigo;
+
+
+--
+-- TOC entry 1970 (class 0 OID 0)
+-- Dependencies: 1575
+-- Name: usuario_usu_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: oe
+--
+
+SELECT pg_catalog.setval('usuario_usu_codigo_seq', 19, true);
+
+
+--
+-- TOC entry 1854 (class 2604 OID 38152)
+-- Dependencies: 1546 1545
+-- Name: ayu_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ayuda ALTER COLUMN ayu_codigo SET DEFAULT nextval('ayuda_ayu_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1855 (class 2604 OID 38354)
+-- Dependencies: 1576 1547
+-- Name: cur_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE curso ALTER COLUMN cur_codigo SET DEFAULT nextval('curso_cur_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1856 (class 2604 OID 38153)
+-- Dependencies: 1549 1548
+-- Name: dis_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE dispositivo ALTER COLUMN dis_codigo SET DEFAULT nextval('dispositivo_dis_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1857 (class 2604 OID 38154)
+-- Dependencies: 1552 1550
+-- Name: est_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE estudiante ALTER COLUMN est_codigo SET DEFAULT nextval('estudiante_est_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1858 (class 2604 OID 38155)
+-- Dependencies: 1558 1557
+-- Name: eva_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE evaluacion ALTER COLUMN eva_codigo SET DEFAULT nextval('evaluacion_eva_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1859 (class 2604 OID 38156)
+-- Dependencies: 1562 1561
+-- Name: her_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE herramienta ALTER COLUMN her_codigo SET DEFAULT nextval('herramienta_her_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1860 (class 2604 OID 38157)
+-- Dependencies: 1564 1563
+-- Name: ide_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE identificacion ALTER COLUMN ide_codigo SET DEFAULT nextval('identificacion_ide_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1861 (class 2604 OID 38158)
+-- Dependencies: 1567 1565
+-- Name: pre_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE pregunta ALTER COLUMN pre_codigo SET DEFAULT nextval('pregunta_pre_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1862 (class 2604 OID 38159)
+-- Dependencies: 1569 1568
+-- Name: pro_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE profesor ALTER COLUMN pro_codigo SET DEFAULT nextval('profesor_pro_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1863 (class 2604 OID 38160)
+-- Dependencies: 1571 1570
+-- Name: tom_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE tema_o_materia ALTER COLUMN tom_codigo SET DEFAULT nextval('tema_o_materia_tom_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1864 (class 2604 OID 38161)
+-- Dependencies: 1573 1572
+-- Name: tip_pre_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE tipo_pregunta ALTER COLUMN tip_pre_codigo SET DEFAULT nextval('tipo_pregunta_tip_pre_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1865 (class 2604 OID 38162)
+-- Dependencies: 1575 1574
+-- Name: usu_codigo; Type: DEFAULT; Schema: public; Owner: oe
+--
+
+ALTER TABLE usuario ALTER COLUMN usu_codigo SET DEFAULT nextval('usuario_usu_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 1922 (class 0 OID 38055)
+-- Dependencies: 1545
+-- Data for Name: ayuda; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY ayuda (ayu_codigo, ayu_nombre, ayu_penalizacion, ayu_cuerpo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1923 (class 0 OID 38063)
+-- Dependencies: 1547
+-- Data for Name: curso; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY curso (cur_codigo_profesor, cur_nombre, cur_codigo, cur_fecha_creacion, cur_habilitado) FROM stdin;
+2	Curso 1	1	2011-06-08	t
+6	Curso de IA	2	2011-06-14	t
+\.
+
+
+--
+-- TOC entry 1924 (class 0 OID 38066)
+-- Dependencies: 1548
+-- Data for Name: dispositivo; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY dispositivo (dis_codigo, nombre) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1925 (class 0 OID 38071)
+-- Dependencies: 1550
+-- Data for Name: estudiante; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY estudiante (est_codigo_usuario, est_codigo_identificacion, est_codigo, est_nombres, est_apellidos, est_telefono, est_e_mail, est_url_imagen, est_identificacion, est_habilitado) FROM stdin;
+16	1	1	jomaroc	jomaroc	135-3698	jomaroc@gmail.com	\N	1200698745	t
+18	1	2	daniel	duarte	369-2563	danield@gmail.com	\N	1563987456	t
+19	1	3	canamag	canamag	325-6398	canamag@gmail.com	\N	123658941	t
+\.
+
+
+--
+-- TOC entry 1926 (class 0 OID 38077)
+-- Dependencies: 1551
+-- Data for Name: estudiante_curso; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY estudiante_curso (est_cur_codigo_curso, est_cur_codigo_estudiante) FROM stdin;
+1	1
+1	3
+2	1
+2	2
+2	3
+\.
+
+
+--
+-- TOC entry 1927 (class 0 OID 38082)
+-- Dependencies: 1553
+-- Data for Name: estudiante_evaluacion_grupo; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY estudiante_evaluacion_grupo (est_eva_gru_codigo_estudiante, est_eva_gru_codigo_evaluacion, est_eva_gru_numero_grupo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1928 (class 0 OID 38085)
+-- Dependencies: 1554
+-- Data for Name: estudiante_solucion_evaluacion_pregunta; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY estudiante_solucion_evaluacion_pregunta (est_sol_eva_pre_codigo_estudiante, est_sol_eva_pre_codigo_pregunta, est_sol_eva_pre_codigo_evaluacion) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1929 (class 0 OID 38088)
+-- Dependencies: 1555
+-- Data for Name: estudiante_solucion_evaluacion_pregunta_ayuda; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY estudiante_solucion_evaluacion_pregunta_ayuda (est_sol_eva_pre_ayu_codigo_estudiante, est_sol_eva_pre_ayu_codigo_pregunta, est_sol_eva_pre_ayu_codigo_evaluacion, est_sol_eva_pre_ayu_codigo_ayuda) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1930 (class 0 OID 38091)
+-- Dependencies: 1556
+-- Data for Name: estudiante_solucion_evaluacion_pregunta_dispositivo; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY estudiante_solucion_evaluacion_pregunta_dispositivo (est_sol_eva_pre_dis_codigo_estudiante, est_sol_eva_pre_dis_codigo_pregunta, est_sol_eva_pre_dis_codigo_evaluacion, est_sol_eva_pre_dis_codigo_dispositivo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1931 (class 0 OID 38094)
+-- Dependencies: 1557
+-- Data for Name: evaluacion; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY evaluacion (eva_codigo, eva_codigo_profesor, eva_codigo_tema_materia, eva_nombre, eva_hora_inicio, eva_hora_fin, eva_numero_personas_grupo, eva_publico, eva_fecha, eva_numero_intentos, eva_mostrar_solucion, eva_barajar_preguntas) FROM stdin;
+2	11	1	Calculo 1	07:15:00	09:00:00	3	t	2011-06-16	3	t	t
+3	11	2	Parcial 1 Fisica	07:15:00	10:00:00	1	\N	2011-07-29	1	t	t
+\.
+
+
+--
+-- TOC entry 1932 (class 0 OID 38099)
+-- Dependencies: 1559
+-- Data for Name: evaluacion_pregunta; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY evaluacion_pregunta (eva_pre_codigo_evaluacion, eva_pre_codigo_pregunta) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1933 (class 0 OID 38102)
+-- Dependencies: 1560
+-- Data for Name: evaluacion_pregunta_ayuda; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY evaluacion_pregunta_ayuda (eva_pre_ayu_codigo_evaluacion, eva_pre_ayu_codigo_pregunta, eva_pre_ayu_codigo_ayuda) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1934 (class 0 OID 38105)
+-- Dependencies: 1561
+-- Data for Name: herramienta; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY herramienta (her_codigo, her_nombre) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1935 (class 0 OID 38110)
+-- Dependencies: 1563
+-- Data for Name: identificacion; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY identificacion (ide_codigo, ide_tipo) FROM stdin;
+2	Tarjeta de Identidad
+1	Cedula
+3	Pasaporte
+6	Maryit
+\.
+
+
+--
+-- TOC entry 1936 (class 0 OID 38115)
+-- Dependencies: 1565
+-- Data for Name: pregunta; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY pregunta (pre_codigo, pre_codigo_profesor, pre_codigo_tema_o_materia, pre_codigo_tipo_pregunta, pre_cuerpo, pre_solucion, pre_publico) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1937 (class 0 OID 38121)
+-- Dependencies: 1566
+-- Data for Name: pregunta_herramienta; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY pregunta_herramienta (pre_her_codigo_herramienta, pre_her_codigo_pregunta) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1938 (class 0 OID 38126)
+-- Dependencies: 1568
+-- Data for Name: profesor; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY profesor (pro_codigo, pro_codigo_usuario, pro_codigo_identificacion, pro_nombres, pro_apellidos, pro_telefono, pro_e_mail, pro_habilitado, pro_url_imagen, pro_identificacion) FROM stdin;
+6	10	\N	Maryit Viviana	Sanchez Vivas	\N	maryit@gmail.com\n	t	\N	\N
+8	12	\N	Maryit Viviana	Sanchez Vivas	\N	maryit@gmail.com\n	t	\N	\N
+5	9	\N	Maryit Viviana	Sanchez Vivas	\N	maryit@gmail.com\n	f	\N	\N
+9	13	\N	Eduar Jhony	Hincapie Monrroy	\N	eduar@gmail.com\n	t	\N	\N
+10	14	\N	Luis	Nunez	\N	luisarm@gmail.com\n	t	\N	\N
+4	8	\N	Maryit Viviana	Sanchez Vivas	\N	maryit@gmail.com\n	t	\N	\N
+2	6	1	Gustavo Adolfo	Espinosa Astudillo	356-9687	gaea.uv@gmail.com	t	uploads/gaea/454312Avatar_by_arriku.jpg	123445
+11	17	1	Mauricio	Gaona	123-3698	mgaona@gmail.com	f	\N	4562987123
+7	11	\N	Maryit Viviana	Sanchez Vivas	\N	maryit@gmail.com\n	f	\N	\N
+\.
+
+
+--
+-- TOC entry 1939 (class 0 OID 38134)
+-- Dependencies: 1570
+-- Data for Name: tema_o_materia; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY tema_o_materia (tom_codigo, tom_nombre) FROM stdin;
+1	Calculo
+2	Fisica
+\.
+
+
+--
+-- TOC entry 1940 (class 0 OID 38139)
+-- Dependencies: 1572
+-- Data for Name: tipo_pregunta; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY tipo_pregunta (tip_pre_codigo, tip_pre_nombre, tip_pre_plantilla) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1941 (class 0 OID 38147)
+-- Dependencies: 1574
+-- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: oe
+--
+
+COPY usuario (usu_codigo, usu_login, usu_password) FROM stdin;
+8	maryitsv	ffbcc873d1ba982d99e925eb4cd18d83
+9	maryitsv	ffbcc873d1ba982d99e925eb4cd18d83
+10	maryitsv	ffbcc873d1ba982d99e925eb4cd18d83
+11	maryitsv	ffbcc873d1ba982d99e925eb4cd18d83
+12	maryitsv	ffbcc873d1ba982d99e925eb4cd18d83
+13	eduarjhm	99b352957744369859cfc3d3ca94957c
+14	luisnarm	24c2b39e2c873f898fa4c19e24053641
+6	gaea	dd6169d68822a116cd97e1fbddf90622
+16	jomaroc	1b1e57942281635c4589cef1a3979cc8
+17	mgaona	8b409ffe1e9cbad9df9c190af4b1d4fb
+18	danield	7517f412d562a3b44645f6d6cb875be4
+19	canamag	a3096a3fc26d619d5c738fc3dc53e3c7
+\.
+
+
+--
+-- TOC entry 1867 (class 2606 OID 38164)
+-- Dependencies: 1545 1545
+-- Name: pk_ayuda; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY ayuda
+    ADD CONSTRAINT pk_ayuda PRIMARY KEY (ayu_codigo);
+
+
+--
+-- TOC entry 1869 (class 2606 OID 38365)
+-- Dependencies: 1547 1547
+-- Name: pk_curso; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY curso
+    ADD CONSTRAINT pk_curso PRIMARY KEY (cur_codigo);
+
+
+--
+-- TOC entry 1871 (class 2606 OID 38168)
+-- Dependencies: 1548 1548
+-- Name: pk_dispositivo; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY dispositivo
+    ADD CONSTRAINT pk_dispositivo PRIMARY KEY (dis_codigo);
+
+
+--
+-- TOC entry 1873 (class 2606 OID 38170)
+-- Dependencies: 1550 1550
+-- Name: pk_estudiante; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY estudiante
+    ADD CONSTRAINT pk_estudiante PRIMARY KEY (est_codigo);
+
+
+--
+-- TOC entry 1875 (class 2606 OID 38172)
+-- Dependencies: 1551 1551 1551
+-- Name: pk_estudiante_curso; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY estudiante_curso
+    ADD CONSTRAINT pk_estudiante_curso PRIMARY KEY (est_cur_codigo_curso, est_cur_codigo_estudiante);
+
+
+--
+-- TOC entry 1877 (class 2606 OID 38174)
+-- Dependencies: 1554 1554 1554 1554
+-- Name: pk_estudiante_solucion_evaluac; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY estudiante_solucion_evaluacion_pregunta
+    ADD CONSTRAINT pk_estudiante_solucion_evaluac PRIMARY KEY (est_sol_eva_pre_codigo_estudiante, est_sol_eva_pre_codigo_pregunta, est_sol_eva_pre_codigo_evaluacion);
+
+
+--
+-- TOC entry 1879 (class 2606 OID 38176)
+-- Dependencies: 1557 1557
+-- Name: pk_evaluacion; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY evaluacion
+    ADD CONSTRAINT pk_evaluacion PRIMARY KEY (eva_codigo);
+
+
+--
+-- TOC entry 1881 (class 2606 OID 38178)
+-- Dependencies: 1559 1559 1559
+-- Name: pk_evaluacion_pregunta; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY evaluacion_pregunta
+    ADD CONSTRAINT pk_evaluacion_pregunta PRIMARY KEY (eva_pre_codigo_evaluacion, eva_pre_codigo_pregunta);
+
+
+--
+-- TOC entry 1883 (class 2606 OID 38180)
+-- Dependencies: 1561 1561
+-- Name: pk_herramienta; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY herramienta
+    ADD CONSTRAINT pk_herramienta PRIMARY KEY (her_codigo);
+
+
+--
+-- TOC entry 1885 (class 2606 OID 38182)
+-- Dependencies: 1563 1563
+-- Name: pk_identificacion; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY identificacion
+    ADD CONSTRAINT pk_identificacion PRIMARY KEY (ide_codigo);
+
+
+--
+-- TOC entry 1887 (class 2606 OID 38184)
+-- Dependencies: 1565 1565
+-- Name: pk_pregunta; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY pregunta
+    ADD CONSTRAINT pk_pregunta PRIMARY KEY (pre_codigo);
+
+
+--
+-- TOC entry 1889 (class 2606 OID 38186)
+-- Dependencies: 1568 1568
+-- Name: pk_profesor; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY profesor
+    ADD CONSTRAINT pk_profesor PRIMARY KEY (pro_codigo);
+
+
+--
+-- TOC entry 1891 (class 2606 OID 38188)
+-- Dependencies: 1570 1570
+-- Name: pk_tema_o_materia; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY tema_o_materia
+    ADD CONSTRAINT pk_tema_o_materia PRIMARY KEY (tom_codigo);
+
+
+--
+-- TOC entry 1893 (class 2606 OID 38190)
+-- Dependencies: 1572 1572
+-- Name: pk_tipo_pregunta; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY tipo_pregunta
+    ADD CONSTRAINT pk_tipo_pregunta PRIMARY KEY (tip_pre_codigo);
+
+
+--
+-- TOC entry 1895 (class 2606 OID 38192)
+-- Dependencies: 1574 1574
+-- Name: pk_usuario; Type: CONSTRAINT; Schema: public; Owner: oe; Tablespace: 
+--
+
+ALTER TABLE ONLY usuario
+    ADD CONSTRAINT pk_usuario PRIMARY KEY (usu_codigo);
+
+
+--
+-- TOC entry 1900 (class 2606 OID 38366)
+-- Dependencies: 1551 1868 1547
+-- Name: fk_curso_reference30; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_curso
+    ADD CONSTRAINT fk_curso_reference30 FOREIGN KEY (est_cur_codigo_curso) REFERENCES curso(cur_codigo);
+
+
+--
+-- TOC entry 1905 (class 2606 OID 38198)
+-- Dependencies: 1555 1545 1866
+-- Name: fk_estudian_reference_ayuda; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_solucion_evaluacion_pregunta_ayuda
+    ADD CONSTRAINT fk_estudian_reference_ayuda FOREIGN KEY (est_sol_eva_pre_ayu_codigo_ayuda) REFERENCES ayuda(ayu_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1907 (class 2606 OID 38208)
+-- Dependencies: 1556 1548 1870
+-- Name: fk_estudian_reference_disposit; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_solucion_evaluacion_pregunta_dispositivo
+    ADD CONSTRAINT fk_estudian_reference_disposit FOREIGN KEY (est_sol_eva_pre_dis_codigo_dispositivo) REFERENCES dispositivo(dis_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1899 (class 2606 OID 38213)
+-- Dependencies: 1551 1550 1872
+-- Name: fk_estudian_reference_estudian; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_curso
+    ADD CONSTRAINT fk_estudian_reference_estudian FOREIGN KEY (est_cur_codigo_estudiante) REFERENCES estudiante(est_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1901 (class 2606 OID 38218)
+-- Dependencies: 1553 1550 1872
+-- Name: fk_estudian_reference_estudian; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_evaluacion_grupo
+    ADD CONSTRAINT fk_estudian_reference_estudian FOREIGN KEY (est_eva_gru_codigo_estudiante) REFERENCES estudiante(est_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1906 (class 2606 OID 38223)
+-- Dependencies: 1555 1555 1555 1554 1554 1554 1876
+-- Name: fk_estudian_reference_estudian; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_solucion_evaluacion_pregunta_ayuda
+    ADD CONSTRAINT fk_estudian_reference_estudian FOREIGN KEY (est_sol_eva_pre_ayu_codigo_estudiante, est_sol_eva_pre_ayu_codigo_pregunta, est_sol_eva_pre_ayu_codigo_evaluacion) REFERENCES estudiante_solucion_evaluacion_pregunta(est_sol_eva_pre_codigo_estudiante, est_sol_eva_pre_codigo_pregunta, est_sol_eva_pre_codigo_evaluacion) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1903 (class 2606 OID 38228)
+-- Dependencies: 1554 1550 1872
+-- Name: fk_estudian_reference_estudian; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_solucion_evaluacion_pregunta
+    ADD CONSTRAINT fk_estudian_reference_estudian FOREIGN KEY (est_sol_eva_pre_codigo_estudiante) REFERENCES estudiante(est_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1908 (class 2606 OID 38233)
+-- Dependencies: 1556 1556 1556 1554 1554 1554 1876
+-- Name: fk_estudian_reference_estudian; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_solucion_evaluacion_pregunta_dispositivo
+    ADD CONSTRAINT fk_estudian_reference_estudian FOREIGN KEY (est_sol_eva_pre_dis_codigo_estudiante, est_sol_eva_pre_dis_codigo_pregunta, est_sol_eva_pre_dis_codigo_evaluacion) REFERENCES estudiante_solucion_evaluacion_pregunta(est_sol_eva_pre_codigo_estudiante, est_sol_eva_pre_codigo_pregunta, est_sol_eva_pre_codigo_evaluacion) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1902 (class 2606 OID 38238)
+-- Dependencies: 1553 1557 1878
+-- Name: fk_estudian_reference_evaluaci; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_evaluacion_grupo
+    ADD CONSTRAINT fk_estudian_reference_evaluaci FOREIGN KEY (est_eva_gru_codigo_evaluacion) REFERENCES evaluacion(eva_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1904 (class 2606 OID 38243)
+-- Dependencies: 1554 1554 1559 1559 1880
+-- Name: fk_estudian_reference_evaluaci; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante_solucion_evaluacion_pregunta
+    ADD CONSTRAINT fk_estudian_reference_evaluaci FOREIGN KEY (est_sol_eva_pre_codigo_evaluacion, est_sol_eva_pre_codigo_pregunta) REFERENCES evaluacion_pregunta(eva_pre_codigo_evaluacion, eva_pre_codigo_pregunta) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1897 (class 2606 OID 38248)
+-- Dependencies: 1550 1563 1884
+-- Name: fk_estudian_reference_identifi; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante
+    ADD CONSTRAINT fk_estudian_reference_identifi FOREIGN KEY (est_codigo_identificacion) REFERENCES identificacion(ide_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1898 (class 2606 OID 38253)
+-- Dependencies: 1550 1574 1894
+-- Name: fk_estudian_reference_usuario; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY estudiante
+    ADD CONSTRAINT fk_estudian_reference_usuario FOREIGN KEY (est_codigo_usuario) REFERENCES usuario(usu_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1913 (class 2606 OID 38258)
+-- Dependencies: 1560 1545 1866
+-- Name: fk_evaluaci_reference_ayuda; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY evaluacion_pregunta_ayuda
+    ADD CONSTRAINT fk_evaluaci_reference_ayuda FOREIGN KEY (eva_pre_ayu_codigo_ayuda) REFERENCES ayuda(ayu_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1911 (class 2606 OID 38263)
+-- Dependencies: 1878 1557 1559
+-- Name: fk_evaluaci_reference_evaluaci; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY evaluacion_pregunta
+    ADD CONSTRAINT fk_evaluaci_reference_evaluaci FOREIGN KEY (eva_pre_codigo_evaluacion) REFERENCES evaluacion(eva_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1914 (class 2606 OID 38268)
+-- Dependencies: 1560 1880 1560 1559 1559
+-- Name: fk_evaluaci_reference_evaluaci; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY evaluacion_pregunta_ayuda
+    ADD CONSTRAINT fk_evaluaci_reference_evaluaci FOREIGN KEY (eva_pre_ayu_codigo_evaluacion, eva_pre_ayu_codigo_pregunta) REFERENCES evaluacion_pregunta(eva_pre_codigo_evaluacion, eva_pre_codigo_pregunta) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1912 (class 2606 OID 38273)
+-- Dependencies: 1559 1565 1886
+-- Name: fk_evaluaci_reference_pregunta; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY evaluacion_pregunta
+    ADD CONSTRAINT fk_evaluaci_reference_pregunta FOREIGN KEY (eva_pre_codigo_pregunta) REFERENCES pregunta(pre_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1909 (class 2606 OID 38278)
+-- Dependencies: 1557 1568 1888
+-- Name: fk_evaluaci_reference_profesor; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY evaluacion
+    ADD CONSTRAINT fk_evaluaci_reference_profesor FOREIGN KEY (eva_codigo_profesor) REFERENCES profesor(pro_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1910 (class 2606 OID 38283)
+-- Dependencies: 1890 1557 1570
+-- Name: fk_evaluaci_reference_tema_o_m; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY evaluacion
+    ADD CONSTRAINT fk_evaluaci_reference_tema_o_m FOREIGN KEY (eva_codigo_tema_materia) REFERENCES tema_o_materia(tom_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1918 (class 2606 OID 38288)
+-- Dependencies: 1561 1566 1882
+-- Name: fk_pregunta_reference_herramie; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY pregunta_herramienta
+    ADD CONSTRAINT fk_pregunta_reference_herramie FOREIGN KEY (pre_her_codigo_herramienta) REFERENCES herramienta(her_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1919 (class 2606 OID 38293)
+-- Dependencies: 1566 1565 1886
+-- Name: fk_pregunta_reference_pregunta; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY pregunta_herramienta
+    ADD CONSTRAINT fk_pregunta_reference_pregunta FOREIGN KEY (pre_her_codigo_pregunta) REFERENCES pregunta(pre_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1915 (class 2606 OID 38298)
+-- Dependencies: 1888 1565 1568
+-- Name: fk_pregunta_reference_profesor; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY pregunta
+    ADD CONSTRAINT fk_pregunta_reference_profesor FOREIGN KEY (pre_codigo_profesor) REFERENCES profesor(pro_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1916 (class 2606 OID 38303)
+-- Dependencies: 1565 1890 1570
+-- Name: fk_pregunta_reference_tema_o_m; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY pregunta
+    ADD CONSTRAINT fk_pregunta_reference_tema_o_m FOREIGN KEY (pre_codigo_tema_o_materia) REFERENCES tema_o_materia(tom_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1917 (class 2606 OID 38308)
+-- Dependencies: 1572 1565 1892
+-- Name: fk_pregunta_reference_tipo_pre; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY pregunta
+    ADD CONSTRAINT fk_pregunta_reference_tipo_pre FOREIGN KEY (pre_codigo_tipo_pregunta) REFERENCES tipo_pregunta(tip_pre_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1920 (class 2606 OID 38313)
+-- Dependencies: 1884 1568 1563
+-- Name: fk_profesor_reference_identifi; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY profesor
+    ADD CONSTRAINT fk_profesor_reference_identifi FOREIGN KEY (pro_codigo_identificacion) REFERENCES identificacion(ide_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1921 (class 2606 OID 38318)
+-- Dependencies: 1574 1894 1568
+-- Name: fk_profesor_reference_usuario; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY profesor
+    ADD CONSTRAINT fk_profesor_reference_usuario FOREIGN KEY (pro_codigo_usuario) REFERENCES usuario(usu_codigo) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 1896 (class 2606 OID 38359)
+-- Dependencies: 1888 1547 1568
+-- Name: fk_referencia_profesor; Type: FK CONSTRAINT; Schema: public; Owner: oe
+--
+
+ALTER TABLE ONLY curso
+    ADD CONSTRAINT fk_referencia_profesor FOREIGN KEY (cur_codigo_profesor) REFERENCES profesor(pro_codigo);
+
+
+--
+-- TOC entry 1946 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2011-06-16 23:21:58 COT
+
+--
+-- PostgreSQL database dump complete
+--
+
