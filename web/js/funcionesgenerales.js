@@ -12,15 +12,15 @@ function mostrar_mensaje_confirmacion(titulo, contenido){
 }
 
 function getAbsoluteUrl(module, action){
-    return urlPrefix + module + '/' + action;
+    return url_prefix + module + '/' + action;
 }
 
 function get_absolute_url(module, action){
-    return urlPrefix + module + '/' + action;
+    return url_prefix + module + '/' + action;
 }
 
 function get_absolute_url_app(app, module, action){
-    return urlPrefix + '../' + app + '.php/' +  module + '/' + action;
+    return url_prefix + '../' + app + '.php/' +  module + '/' + action;
 }
 
 function subir_datos(panel, url_action, extra_params, funcion_success, funcion_failure){
