@@ -7,8 +7,8 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     
     <script type="text/javascript">
-		var urlWeb = '<?php echo (url_for('default/index')."../"); ?>';
-		urlPrefix = '<?php echo url_for('default/index'); ?>';
+		var url_web = '<?php echo (url_for('default/index')."../"); ?>';
+		url_prefix = '<?php echo url_for('default/index'); ?>';
 	</script>
 	
     <?php include_stylesheets() ?>
